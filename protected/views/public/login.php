@@ -5,7 +5,7 @@
                 <?php $form=$this->beginWidget('CActiveForm', array(
                 'id'=>'login-form',
                 'enableAjaxValidation'=>false,
-                'action'=>'/public/login',
+                'action'=>Yii::app()->baseUrl.'/public/login',
                 )); ?>
                     <div class="denglu">
                         <div class="denglu1">帐号</div>

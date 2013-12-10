@@ -30,7 +30,7 @@
       <?php $form=$this->beginWidget('CActiveForm', array(
                     'id'=>'login-form',
                     'enableAjaxValidation'=>false,
-                    'action'=>'/public/login',
+                    'action'=>Yii::app()->baseUrl.'/public/login',
                     'htmlOptions'=>array('class'=>'login'),
                     )); ?>
       <div class="login1">

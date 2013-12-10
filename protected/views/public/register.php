@@ -85,7 +85,7 @@ $('#dengluform').ajaxForm({
         }
       }else{
         alert('注册成功');
-        window.location.href="<?php echo Yii::app()->createUrl('/'); ?>";
+        window.location.href="<?php echo Yii::app()->baseUrl."/"; ?>";
       }
     }
   });
