@@ -33,7 +33,7 @@ class Caiji extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'cm_caiji';
+		return Yii::app()->params['tablePrefix'].'caiji';
 	}
 
 	/**

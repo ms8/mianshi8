@@ -47,7 +47,7 @@ class UserScore extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'cm_user_score';
+		return Yii::app()->params['tablePrefix'].'user_score';
 	}
 
 	/**

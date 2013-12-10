@@ -68,11 +68,11 @@
                         
                         $this->widget('application.extensions.swfupload.SWFUpload',array(
                           'callbackJS'=>'swfupload_callback_user_photo',
-                          'fileTypes'=> '*.jpg;*.jpeg;*.gif;',
+                          'fileTypes'=> '*.jpg;*.jpeg;*.gif;*.png;',
                           'filePath'=> $filePath, //指定数组键名
                           //'fileName'=>  $fileName, //指定上传后的文件名称 不指定则上传多张图片
                           //'after' => 'user_photo', //指定上传完成后的操作
-                          'button_image_url' => '/assets/default/images/shangchuan.png',
+                          'button_image_url' => Yii::app()->baseUrl.'/assets/default/images/shangchuan.png',
                           'button_width' => 74,
                           'button_height' => 22,
                           'file_upload_limit' => 4,
@@ -81,7 +81,7 @@
                     ?>
                     <script>
                         function swfupload_callback_user_photo(name,path,oldname,type,size,width,height){
-                            $("#user_phototu").attr('src','/upload/user_photo/<?php echo date('Y-m-d'); ?>/'+name);
+                            $("#user_phototu").attr('src','<?php echo Yii::app()->baseUrl;?>/upload/user_photo/<?php echo date('Y-m-d'); ?>/'+name);
                             $("#Member_photo").val('<?php echo date('Y-m-d'); ?>/'+name);
                         }
                     </script>
@@ -91,7 +91,7 @@
 
             <div class="left2c">
                 <div class="left2c21 bgcl2" style="padding-left:75px;">
-                    <a href="javascript:void(0)" id="sub"><img src="<?php echo  IMAGES_PATH; ?>shenqing.jpg" /></a>
+                    <a href="javascript:void(0)" id="sub"><img src="<?php echo  Yii::app()->baseUrl.IMAGES_PATH; ?>shenqing.jpg" /></a>
                 </div>
             </div>
         <?php $this->endWidget(); ?>

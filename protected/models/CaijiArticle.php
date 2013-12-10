@@ -34,7 +34,7 @@ class CaijiArticle extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'cm_caiji_article';
+		return Yii::app()->params['tablePrefix'].'caiji_article';
 	}
 
 	/**

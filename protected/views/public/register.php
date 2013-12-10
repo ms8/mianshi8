@@ -57,8 +57,9 @@
                     	<div class="denglu1"></div>
                         <div class="denglu2"><a href="javascript:void(0)" id="sub"><img src="<?php echo  Yii::app()->baseUrl.IMAGES_PATH; ?>zc.jpg" /></a>
                         </div>
+
                     </div>
-               <?php $this->endWidget(); ?> 
+               <?php $this->endWidget(); ?>
             </div>
             <div class="right1">
             	<div class="dright">
@@ -70,25 +71,26 @@
 
 
 <script>
+
 //验证提示
 $('#dengluform').ajaxForm({
     dataType:'json',
     success:function(data) {
-      var items = [];
-      $.each(data,function(key, val){var tem=[key,val];items.push(tem)});
-      var length = items.length;
-      if(data.status != 1){
-        //items[i][0]错误节点名称s
-        //items[i][1]对应错误提示
-        for(var i=0;i<length;i++){  
-            $('#'+items[i][0]).parent().next().html('&nbsp;'+items[i][1]);
+        var items = [];
+        $.each(data,function(key, val){var tem=[key,val];items.push(tem)});
+        var length = items.length;
+        if(data.status != 1){
+            //items[i][0]错误节点名称s
+            //items[i][1]对应错误提示
+            for(var i=0;i<length;i++){
+                $('#'+items[i][0]).parent().next().html('&nbsp;'+items[i][1]);
+            }
+        }else{
+            alert('注册成功');
+            window.location.href="<?php echo Yii::app()->baseUrl."/"; ?>";
         }
-      }else{
-        alert('注册成功');
-        window.location.href="<?php echo Yii::app()->baseUrl."/"; ?>";
-      }
     }
-  });
+});
 
 //提交验证
 $('#sub').click( 

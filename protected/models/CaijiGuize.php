@@ -31,7 +31,7 @@ class CaijiGuize extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'cm_caiji_guize';
+		return Yii::app()->params['tablePrefix'].'caiji_guize';
 	}
 
 	/**
