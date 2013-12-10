@@ -90,8 +90,8 @@ class Member extends CActiveRecord
 		
 		return array(
 			//我加入的小组
-			'mGroup'=>array(self::MANY_MANY, 'Group','cm_mmember(mid, gid)','condition'=>'status = 1'),
-			'mGroupCount'=>array(self::STAT, 'Group','cm_mmember(mid, gid)','condition'=>'status = 1'),
+			'mGroup'=>array(self::MANY_MANY, 'Group','ms_mmember(mid, gid)','condition'=>'status = 1'),
+			'mGroupCount'=>array(self::STAT, 'Group','ms_mmember(mid, gid)','condition'=>'status = 1'),
 			//我的小组
 			'groupMany'=>array(self::HAS_MANY, 'Group', 'uid', 'condition'=>'status = 1'),
 			'groupCount'=>array(self::STAT, 'Group', 'uid', 'condition'=>'status = 1'),

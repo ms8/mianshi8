@@ -54,7 +54,7 @@ class Score extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return Yii::app()->params['tablePrefix'].'score';
+		return 'ms_score';
 	}
 
 	/**

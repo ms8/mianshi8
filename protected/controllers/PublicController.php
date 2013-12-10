@@ -58,6 +58,7 @@ class PublicController extends Controller
 	}
 	//注册
 	public function actionRegister(){
+
 		$this->pageKeyword['title'] = Helper::siteConfig()->site_name.'-注册';
 		$this->pageKeyword['keywords'] = Helper::siteConfig()->site_name.'-注册';
 		$this->pageKeyword['description'] = Helper::siteConfig()->site_name.'-注册';
@@ -89,11 +90,12 @@ class PublicController extends Controller
                 $memberModel->email = '';
                 $memberModel->remark = '';
                 $memberModel->info = '';
-
-                $memberModel->save(false);
+	      	 	$memberModel->save(false);
 	      	 	//创建用户积分
 	      	 	$memberModel->createrScore();
+
 	      	 	//用户积分
+
 	      	 	die(CJSON::encode(array('status'=>1)));
 	      	 }else{
 	      	 	die($ajaxRes);

@@ -32,7 +32,7 @@ class Role extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'cm_role';
+		return 'ms_role';
 	}
 
 	/**
