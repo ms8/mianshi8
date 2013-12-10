@@ -47,7 +47,7 @@ class UserScore extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'cm_user_score';
+		return 'ms_user_score';
 	}
 
 	/**

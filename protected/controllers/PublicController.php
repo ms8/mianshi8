@@ -86,6 +86,10 @@ class PublicController extends Controller
 	      	 	$memberModel->last_login_time=time();//登陆时间
 	      	 	$memberModel->last_login_ip=Yii::app()->request->UserHostAddress;//IP地址
 	      	 	$memberModel->score=$score->zhuce;//注册积分
+                $memberModel->bind_account = '';
+                $memberModel->email = '';
+                $memberModel->remark = '';
+                $memberModel->info = '';
 	      	 	$memberModel->save(false);
 	      	 	//创建用户积分
 	      	 	$memberModel->createrScore();

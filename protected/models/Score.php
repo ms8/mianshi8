@@ -54,7 +54,7 @@ class Score extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'cm_score';
+		return 'ms_score';
 	}
 
 	/**
