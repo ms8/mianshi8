@@ -190,7 +190,7 @@ class PublicController extends Controller
     			$this->redirect(Yii::app()->user->returnUrl);
     		}
     	}else{
-    		$this->redirect(array('site/index'));
+    		$this->redirect(array(Yii::app()->baseUrl.'/site/index'));
     	}
 	}
 

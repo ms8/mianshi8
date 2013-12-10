@@ -46,7 +46,7 @@ class GroupController extends Controller
 		$this->filePath=array(
 	      1=>'group_logo/'.date('Y-m-d').'/',//套系(从upload目录开始)
 		);
-		Yii::app()->clientScript->registerCssFile(CSS_PATH.'common.css');
+		Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.CSS_PATH.'common.css');
 	}
 	
 	//拉取个人信息
@@ -63,7 +63,7 @@ class GroupController extends Controller
 	public function actionIndex()
 	{
 		if(Yii::app()->user->isGuest){
-			$this->redirect('group/explore');//未登录跳转页面
+			$this->redirect(Yii::app()->baseUrl.'/group/explore');//未登录跳转页面
 		}else{
 			//我的小组话题
 			$model=$this->isLogin()->mGroup;
@@ -98,7 +98,7 @@ class GroupController extends Controller
 	public function actionMyTopic()
 	{
 		if(Yii::app()->user->isGuest){
-			$this->redirect('group/explore');//未登录跳转页面
+			$this->redirect(Yii::app()->baseUrl.'/group/explore');//未登录跳转页面
 		}else{
 
 			//我发起的话题
@@ -126,7 +126,7 @@ class GroupController extends Controller
 	public function actionRepliedTopics()
 	{
 		if(Yii::app()->user->isGuest){
-			$this->redirect('group/explore');//未登录跳转页面
+			$this->redirect(Yii::app()->baseUrl.'/group/explore');//未登录跳转页面
 		}else{
 			//我回应的话题
 			$model=$this->islogin();
@@ -156,7 +156,7 @@ class GroupController extends Controller
 	//发现小组
 	public function actionExplore(){
 		
-		Yii::app()->clientScript->registerScriptFile(JS_PATH.'jquery-1.7.1.min.js');
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.JS_PATH.'jquery-1.7.1.min.js');
 
 		$gid = Yii::app()->request->getParam('gid');
 		$tag=array();
@@ -216,7 +216,7 @@ class GroupController extends Controller
 	}
 	//小组详细
 	public function actionDetail(){
-		Yii::app()->clientScript->registerScriptFile(JS_PATH.'jquery-1.7.1.min.js');
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.JS_PATH.'jquery-1.7.1.min.js');
 		
 		$id		=Yii::app()->request->getParam('id');//组id
 		$model 	=Group::model()->find('id = :id and status = 1', array(':id'=>$id));
@@ -277,7 +277,7 @@ class GroupController extends Controller
 	//申请加入小组
 	public function actionAdd(){
 		if(Yii::app()->user->isGuest){
-			$this->redirect('group/explore');//未登录跳转页面
+			$this->redirect(Yii::app()->baseUrl.'/group/explore');//未登录跳转页面
 		}else{
 			$gid=Yii::app()->request->getParam('gid');//组id
 			$mid=Yii::app()->request->getParam('mid');//用户id
@@ -318,7 +318,7 @@ class GroupController extends Controller
 	//退出小组
 	public function actionDel(){
 		if(Yii::app()->user->isGuest){
-			$this->redirect('group/explore');//未登录跳转页面
+			$this->redirect(Yii::app()->baseUrl.'/group/explore');//未登录跳转页面
 		}else{
 			$gid=Yii::app()->request->getParam('gid');//组id
 			$mid=Yii::app()->request->getParam('mid');//用户id
@@ -349,7 +349,7 @@ class GroupController extends Controller
 	//我加入的小组
 	public function actionMine(){
 		if(Yii::app()->user->isGuest){
-			$this->redirect('group/explore');//未登录跳转页面
+			$this->redirect(Yii::app()->baseUrl.'/group/explore');//未登录跳转页面
 		}else{
 			$model=$this->isLogin();	
 		}
@@ -380,8 +380,8 @@ class GroupController extends Controller
 		if(Yii::app()->user->isGuest){
 			 throw new CHttpException ('404', '您访问的页面不存在'); 
 		}
-		Yii::app()->clientScript->registerScriptFile(JS_PATH.'jquery-1.7.1.min.js');
-		Yii::app()->clientScript->registerScriptFile(JS_PATH.'jquery.form.js');
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.JS_PATH.'jquery-1.7.1.min.js');
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.JS_PATH.'jquery.form.js');
 
 		$model=new Group;
 		if(!empty($_POST['Group'])){
@@ -428,8 +428,8 @@ class GroupController extends Controller
 		if(Yii::app()->user->isGuest){
 			 throw new CHttpException ('404', '您访问的页面不存在'); 
 		}
-		Yii::app()->clientScript->registerScriptFile(JS_PATH.'jquery-1.7.1.min.js');
-		Yii::app()->clientScript->registerScriptFile(JS_PATH.'jquery.form.js');
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.JS_PATH.'jquery-1.7.1.min.js');
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.JS_PATH.'jquery.form.js');
 
 		$id = Yii::app()->request->getParam('id');//小组id
 
@@ -496,8 +496,8 @@ class GroupController extends Controller
 	//增加话题
 	public function actionAddTopic(){
 
-		Yii::app()->clientScript->registerScriptFile(JS_PATH.'jquery-1.7.1.min.js');
-		Yii::app()->clientScript->registerScriptFile(JS_PATH.'jquery.form.js');
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.JS_PATH.'jquery-1.7.1.min.js');
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.JS_PATH.'jquery.form.js');
 		
 		$gid=Yii::app()->request->getParam('id');//组id
 		$group=Group::model()->find('id = :id and status =1', array(':id'=>$gid));
@@ -553,10 +553,10 @@ class GroupController extends Controller
 	public function actionEditTopic(){
 
 		if(Yii::app()->user->isGuest){
-			$this->redirect('public/login');//未登录跳转页面
+			$this->redirect(Yii::app()->baseUrl.'/public/login');//未登录跳转页面
 		}
-		Yii::app()->clientScript->registerScriptFile(JS_PATH.'jquery-1.7.1.min.js');
-		Yii::app()->clientScript->registerScriptFile(JS_PATH.'jquery.form.js');
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.JS_PATH.'jquery-1.7.1.min.js');
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.JS_PATH.'jquery.form.js');
 		
 		$id=Yii::app()->request->getParam('tid');//话题id
 		$model=Topic::model()->find('id = :id and uid= :uid and  status =1', array(':id'=>$id,':uid'=>Yii::app()->user->id));
@@ -598,9 +598,9 @@ class GroupController extends Controller
 	}
 	//话题详细
 	public function actionTopic(){
-		Yii::app()->clientScript->registerScriptFile(JS_PATH.'jquery-1.7.1.min.js');
-		Yii::app()->clientScript->registerScriptFile(JS_PATH.'jquery.form.js');
-		Yii::app()->clientScript->registerScriptFile('/js/applelike/js/script.js');
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.JS_PATH.'jquery-1.7.1.min.js');
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.JS_PATH.'jquery.form.js');
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/applelike/js/script.js');
 
 		
 		

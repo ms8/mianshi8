@@ -58,7 +58,7 @@ class SiteController extends Controller
 
 		if(Yii::app()->user->isGuest){
 			header("Content-type: text/html; charset=utf-8");
-			echo "<script>alert('请注册并登录后下载，谢谢支持!');window.location.href='/public/register';</script>";
+			echo "<script>alert('请注册并登录后下载，谢谢支持!');window.location.href=".Yii::app()->baseUrl."'/public/register';</script>";
 			exit;
 		}
 

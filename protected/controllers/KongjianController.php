@@ -33,12 +33,12 @@ class KongjianController extends Controller
 	}
 
 	public function init(){
-		Yii::app()->clientScript->registerScriptFile(JS_PATH.'jquery-1.7.1.min.js');
-		Yii::app()->clientScript->registerScriptFile(JS_PATH.'jquery.form.js');
-		Yii::app()->clientScript->registerCssFile(CSS_PATH.'common.css');
-		Yii::app()->clientScript->registerCssFile(CSS_PATH.'kongjian.css');
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.JS_PATH.'jquery-1.7.1.min.js');
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.JS_PATH.'jquery.form.js');
+		Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.CSS_PATH.'common.css');
+		Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.CSS_PATH.'kongjian.css');
 		$this->filePath=array(
-	      1=>'user_photo/'.date('Y-m-d').'/',//套系(从upload目录开始)
+	      1=>Yii::app()->baseUrl.'/user_photo/'.date('Y-m-d').'/',//套系(从upload目录开始)
 		);
 	}
 
@@ -125,7 +125,7 @@ class KongjianController extends Controller
 		$score=Score::model()->find('id=1');
 		$myscore=$model->myUserScoreOne;
 	}else{
-		$this->redirect('/public/login');//未登录跳转页面
+		$this->redirect(Yii::app()->baseUrl.'/public/login');//未登录跳转页面
 	}
 
 	$this->pageKeyword=array(
