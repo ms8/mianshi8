@@ -65,7 +65,7 @@
         <?php foreach($responseList as  $key => $value){?>
             <div class="leftxb">
                 <div class="leftxb1">
-                    <a href="<?php echo Yii::app()->createUrl('kongjian/index',array('uid'=>$value->memberOne->id)); ?>"><img src="<?php echo IMAGES_USER_PHOTO.$value->memberOne->photo ?> " width="48" height="48" /></a>
+                    <a href="<?php echo Yii::app()->createUrl('kongjian/index',array('uid'=>$value->memberOne->id)); ?>"><img src="<?php echo Yii::app()->baseUrl.IMAGES_USER_PHOTO.$value->memberOne->photo ?> " width="48" height="48" /></a>
                 </div>
            
                 <div class="leftxb22">
@@ -73,7 +73,7 @@
                       <?php if(!empty($value->pid)){?>
                         <DIV class=recomment><A 
                         href=""><IMG 
-                        align=absMiddle src="<?php echo IMAGES_USER_PHOTO.$value->huifuOne->memberOne->photo ?>" width="24" heigth="24"></A> <STRONG><A 
+                        align=absMiddle src="<?php echo Yii::app()->baseUrl.IMAGES_USER_PHOTO.$value->huifuOne->memberOne->photo ?>" width="24" heigth="24"></A> <STRONG><A
                         href="<?php echo Yii::app()->createUrl('kongjian/index',array('uid'=>$value->huifuOne->memberOne->id)); ?>"><?php echo $value->huifuOne->memberOne->nickname ?></A></STRONG>：
                         <?php if($value->huifuOne->status==0){?>
                                 <span style="color:red">原文已被作者删除</span>
@@ -191,7 +191,7 @@
             </div>
             <div class="left2c">
                 <div class="left2c21 bgcl2" style=" margin-top:20px;">
-                    <a href="javascript:void(0)" id="sub"><img src="<?php echo  IMAGES_PATH; ?>shenqing.jpg" /></a>
+                    <a href="javascript:void(0)" id="sub"><img src="<?php echo  Yii::app()->baseUrl.IMAGES_PATH; ?>shenqing.jpg" /></a>
                 </div>
             </div>
             <?php $this->endWidget(); ?>
