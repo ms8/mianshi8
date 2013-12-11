@@ -63,9 +63,9 @@
 
                 <div style="padding-left:5px; float:left;">
                     <?php if($model->isNewRecord){ ?>
-                        <img style="width:48px; height:48px;margin-bottom:5px;" id="group_logotu" src="/assets/default/images/addpic.jpg" />
+                        <img style="width:48px; height:48px;margin-bottom:5px;" id="group_logotu" src="<?php echo Yii::app()->baseUrl;?>/assets/default/images/addpic.jpg" />
                     <?php }else{ ?>
-                        <img style="width:48px; height:48px;margin-bottom:5px;"  id="group_logotu" src="/upload/group_logo/<?php echo $model->logo; ?>" />
+                        <img style="width:48px; height:48px;margin-bottom:5px;"  id="group_logotu" src="<?php echo Yii::app()->baseUrl;?>/upload/group_logo/<?php echo $model->logo; ?>" />
                     <?php } ?>
 
                     <?php echo $form->hiddenField($model,'logo'); ?>
@@ -92,7 +92,7 @@
                     ?>
                     <script>
                         function swfupload_callback_group_logo(name,path,oldname,type,size,width,height){
-                            $("#group_logotu").attr('src','/upload/group_logo/<?php echo date('Y-m-d'); ?>/'+name);
+                            $("#group_logotu").attr('src','<?php echo Yii::app()->baseUrl;?>/upload/group_logo/<?php echo date('Y-m-d'); ?>/'+name);
                             $("#Group_logo").val('<?php echo date('Y-m-d'); ?>/'+name);
                         }
                     </script>
@@ -100,7 +100,7 @@
             </div>
             <div class="left2c">
                 <div class="left2c21 bgcl2" style="padding-left:75px;">
-                    <a href="javascript:void(0)" id="sub"><img src="<?php echo  IMAGES_PATH; ?>shenqing.jpg" /></a>
+                    <a href="javascript:void(0)" id="sub"><img src="<?php echo Yii::app()->baseUrl.IMAGES_PATH; ?>shenqing.jpg" /></a>
                 </div>
             </div>
         <?php $this->endWidget(); ?>

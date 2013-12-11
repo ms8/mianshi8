@@ -36,7 +36,7 @@
                         'prevPageLabel' => '上一页',    
                         'nextPageLabel' => '下一页',    
                         'pages' => $pager,
-                        'cssFile'=>CSS_PATH.'pager_res.css',
+                        'cssFile'=>Yii::app()->baseUrl.CSS_PATH.'pager_res.css',
                         'maxButtonCount'=>5    
                     )
                 );  

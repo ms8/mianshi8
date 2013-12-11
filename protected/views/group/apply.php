@@ -7,7 +7,7 @@
             <div class="left5">
                 如果想就某一类话题跟别人交流，可以创建一个小组。<br />
 小组是对同一个话题感兴趣的人的聚集地。<br /><br />
-                <a href="<?php echo Yii::app()->createUrl('group/create'); ?>"><img src="<?php echo  IMAGES_PATH; ?>chuangjian.jpg" /></a>
+                <a href="<?php echo Yii::app()->createUrl('group/create'); ?>"><img src="<?php echo Yii::app()->baseUrl.IMAGES_PATH; ?>chuangjian.jpg" /></a>
             </div>
         </div>
         <div class="right5a">

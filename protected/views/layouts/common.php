@@ -84,7 +84,7 @@
                             alert('请输入要查询的关键词！');
                             return false;
                         }
-                        window.location.href = 'http://<?php echo $_SERVER['HTTP_HOST']; ?>/search/'+encodeURI(search);
+                        window.location.href = 'http://<?php echo Yii::app()->baseUrl; ?>/search/'+encodeURI(search);
                     }
                 );
 

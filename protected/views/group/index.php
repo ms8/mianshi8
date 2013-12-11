@@ -4,7 +4,7 @@
 	<div class="con clear">
     	<div class="left2">
         	<div class="ad1">
-            	<a href="http://www.ebenchu.com"><img src="<?php echo  IMAGES_PATH; ?>ad1.jpg" /></a>
+            	<a href="http://www.mianshi8.com"><img src="<?php echo  Yii::app()->baseUrl.IMAGES_PATH; ?>ad1.jpg" /></a>
             </div>
             <div class="left3">
                 <?php foreach ($topic as $key => $value) {?>

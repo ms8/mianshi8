@@ -60,7 +60,7 @@
         }
       }else{
         alert('登陆成功');
-        window.location.href ="<?php echo Yii::app()->createUrl('/'); ?>";
+        window.location.href ="<?php echo Yii::app()->baseUrl.'/'; ?>";
       }
     }
   });
