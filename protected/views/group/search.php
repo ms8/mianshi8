@@ -2,7 +2,7 @@
 <div class="con clear">
     <?php if($type == 1){ ?>
     <div class="leftx">
-        <div class="search1"> <a href="/search/<?php echo $keyword; ?>">小组</a> <a href="/search/<?php echo $keyword; ?>?type=2" class="nobg">话题</a> </div>
+        <div class="search1"> <a href="<?php echo Yii::app()->baseUrl;?>/search/<?php echo $keyword; ?>">小组</a> <a href="<?php echo Yii::app()->baseUrl;?>/search/<?php echo $keyword; ?>?type=2" class="nobg">话题</a> </div>
         <?php foreach($datas as $v){ ?>
             <div class="search2">
                 <div class="search3"> <a href="<?php echo $v->link; ?>"><img style="width:48px; height:48px;" src="<?php echo $v->imgLink; ?>" /></a> </div>
@@ -16,7 +16,7 @@
     <?php }else{ ?>
     <!--话题列表-->
     <div class="leftx">
-        <div class="search1"> <a class="nobg" href="/search/<?php echo $keyword; ?>">小组</a> <a href="/search/<?php echo $keyword; ?>?type=2">话题</a> </div>
+        <div class="search1"> <a class="nobg" href="<?php echo Yii::app()->baseUrl;?>/search/<?php echo $keyword; ?>">小组</a> <a href="<?php echo Yii::app()->baseUrl;?>/search/<?php echo $keyword; ?>?type=2">话题</a> </div>
         <?php foreach($datas as $v){ ?>
         <div class="left31">
             <div class="left32s"><a href="<?php echo $v->link; ?>"><?php echo $v->title; ?></a></div>
