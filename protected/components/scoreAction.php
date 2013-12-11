@@ -66,7 +66,7 @@ class  scoreAction extends CController
           $Member=Member::model()->find('status =1 and id='.$id);
           self::$Member=$Member;
           //用户等级信息
-          self::$beishu=$Member->roleOne->multiple?$Member->roleOne->multiple:1;
+          self::$beishu=isset($Member->roleOne->multiple)?$Member->roleOne->multiple:1;
           //积分规则
           self::$Score=Score::model()->find('id=1');
           //用户积分信息
