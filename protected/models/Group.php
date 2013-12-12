@@ -134,9 +134,9 @@ class Group extends CActiveRecord
 
 	// 获取图片链接
 	public function getImgLink(){
-		$imgLink = "upload/group_logo/".$this->logo;
+		$imgLink = Yii::app()->baseUrl."/upload/group_logo/".$this->logo;
 		if($this->logo == 'cm.jpg'){
-			$imgLink = 'upload/group_photo/cm.jpg';
+			$imgLink = Yii::app()->baseUrl.'/upload/group_photo/cm.jpg';
 		}
 		return $imgLink;
 	}
