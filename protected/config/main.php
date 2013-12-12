@@ -87,7 +87,7 @@ return array(
 			'connectionString' => 'mysql:host=127.0.0.1;dbname=ms8',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => '111111',
+			'password' => '1',
 			'charset' => 'utf8',
 		),
 		
