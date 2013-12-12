@@ -386,8 +386,8 @@ class GroupController extends Controller
 		$model=new Group;
 		if(!empty($_POST['Group'])){
 			//赋值给模型      
-	      	$memberModel->attributes=$_POST['Group'];
-	      	$memberModel->create_time = date('Y-m-d H:i:s',time());
+            $model->attributes=$_POST['Group'];
+            $model->create_time = date('Y-m-d H:i:s',time());
 	      	//验证
 	      	$ajaxRes 	= 	CActiveForm::validate($model, array('newpass','oldpass','queren'));
 	      	$ajaxResArr = 	CJSON::decode($ajaxRes);
@@ -398,6 +398,8 @@ class GroupController extends Controller
 	      	 	$model->tid=0;//默认无tag分类
 	      	 	$model->status=2;//默认审核不通过
 	      	 	$model->pnum=1;
+                $model->sort = 1;
+                $model->type = 1;
 	      
 	      	 	if($model->save(false)){
 	      	 		$mmember=new Mmember;
@@ -405,22 +407,29 @@ class GroupController extends Controller
 	      	 		$mmember->gid=$model->id;
 	      	 		$mmember->create_time=time();//创建时间
 	      	 		$mmember->save();
-	      	 		die(CJSON::encode(array('status'=>1)));
+//	      	 		die(CJSON::encode(array('status'=>1)));
+                    $result = CJSON::encode(array('status'=>1));
+
 	      	 	}else{
-	      	 		die(CJSON::encode(array('status'=>0)));
+//	      	 		die(CJSON::encode(array('status'=>0)));
+                    $result = CJSON::encode(array('status'=>0));
 	      	 	}
-	      	 	
+                //echo $result;
+                $model=$this->isLogin();
+                $this->render('mine',array('model'=>$model));
 	      	 }else{
 	      	 	die($ajaxRes);
 	      	 }
 
-		}
-		$this->pageKeyword=array(
-			'title'=>'创建小组'.'-'.Helper::siteConfig()->site_name,
-			'keywords'=>'创建小组',
-			'description'=>'创建小组',
-		);
-		$this->render('create',array('model'=>$model));
+		}else{
+            $this->pageKeyword=array(
+                'title'=>'创建小组'.'-'.Helper::siteConfig()->site_name,
+                'keywords'=>'创建小组',
+                'description'=>'创建小组',
+            );
+            $this->render('create',array('model'=>$model));
+        }
+
 	}
 
 	//创建小组
