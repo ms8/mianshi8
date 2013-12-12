@@ -52,7 +52,28 @@
 
 <body>
 
-	<div class="con">
+<div class="con">
+    <?php if(!Yii::app()->user->isGuest){?>
+    <div class="httop1">
+        <div class="httop11">
+            <a href="<?php echo Yii::app()->baseUrl;?>/">首页</a>
+            <a href="<?php echo Yii::app()->createUrl('/group'); ?>">小组</a>
+            <a href="<?php echo Yii::app()->createUrl('/article'); ?>">学院</a>
+            <a href="<?php echo Yii::app()->createUrl('/tongcheng'); ?>">活动</a>
+        </div>
+        <div class="httop12">
+            <!-- <a href="javascript:void(0)">提醒
+                <span class="num">
+                <span>1</span>
+                <i></i>
+                </span>
+            </a> -->
+            <a href="<?php echo Yii::app()->createUrl('kongjian/index',array('uid'=>Yii::app()->user->id)); ?>">欢迎您：<?php echo Yii::app()->user->nickname;?></a>
+            <a href="<?php echo Yii::app()->createUrl('kongjian/info'); ?>">设置</a>
+            <a href="<?php echo Yii::app()->createUrl('public/logout'); ?>">退出</a>
+        </div>
+    </div>
+    <?php }?>
     	<div class="head1">
         	<div class="logo">
             	<a href="<?php echo Yii::app()->baseUrl;?>/">
@@ -60,10 +81,17 @@
                 </a>
             </div>
             <div class="nav">
-            	<a class="shouye" href="<?php echo Yii::app()->baseUrl;?>/">首页</a>
-                <a href="<?php echo Yii::app()->createUrl('/group'); ?>">小组</a>
-                <a href="<?php echo Yii::app()->createUrl('/article'); ?>">学院</a>
-                <a href="<?php echo Yii::app()->createUrl('/tongcheng'); ?>">活动</a>
+                <?php if(!Yii::app()->user->isGuest){?>
+                    <a class="shouye" href="<?php echo Yii::app()->baseUrl;?>/">首页</a>
+                    <a href="<?php echo Yii::app()->createUrl('/group'); ?>">动态</a>
+                    <a href="<?php echo Yii::app()->createUrl('/article'); ?>">面试达人</a>
+                    <a href="<?php echo Yii::app()->createUrl('/tongcheng'); ?>">我的面试吧</a>
+                <?php }else{?>
+                    <a class="shouye" href="<?php echo Yii::app()->baseUrl;?>/">首页</a>
+                    <a href="<?php echo Yii::app()->createUrl('/group'); ?>">小组</a>
+                    <a href="<?php echo Yii::app()->createUrl('/article'); ?>">学院</a>
+                    <a href="<?php echo Yii::app()->createUrl('/tongcheng'); ?>">活动</a>
+                <?php }?>
             </div>
             <div class="sousuo">
                 <input type="text" value="小组、话题" class="inp3" id="search_inp"><a class="inp4" href="javascript:void(0)" id="search"></a>

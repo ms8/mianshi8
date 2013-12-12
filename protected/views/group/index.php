@@ -1,7 +1,7 @@
     <div class="top3">
     	我的小组话题
     </div>
-	<div class="con clear">
+	<div class="con1 clear">
     	<div class="left2">
         	<div class="ad1">
             	<a href="http://www.mianshi8.com"><img src="<?php echo  Yii::app()->baseUrl.IMAGES_PATH; ?>ad1.jpg" /></a>

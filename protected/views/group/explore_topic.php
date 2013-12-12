@@ -1,7 +1,7 @@
 <div class="top3">
         发现话题
     </div>
-    <div class="con clear">
+    <div class="con1 clear">
         <div class="left2">
             <?php if(!empty($_GET['tag'])){?>
                 <div class="left8">

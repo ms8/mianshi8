@@ -5,7 +5,7 @@
         <?php  echo $tag->title.'相关的小组'; ?>
         <?php } ?>
     </div>
-    <div class="con clear">
+    <div class="con1 clear">
         <div class="left2">
         <?php if(count($list)>0){?>
             <?php foreach ($list as $key => $value) {?>

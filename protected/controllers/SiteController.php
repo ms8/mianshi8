@@ -3,7 +3,7 @@
 class SiteController extends Controller
 {
 	public $layout='site';
- 
+
 	public function init(){
 		Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.CSS_PATH.'common.css');
 	}
@@ -27,7 +27,7 @@ class SiteController extends Controller
 	}
 
 	public function actionIndex(){
-		
+
 		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.JS_PATH.'jquery-1.7.1.min.js');
 		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.JS_PATH.'jquery.form.js');
 		$model=new LoginForm;
