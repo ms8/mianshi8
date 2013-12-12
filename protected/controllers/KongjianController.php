@@ -20,7 +20,7 @@ class KongjianController extends Controller
 		  //上传图片
 		  'upload'=>array(
 		    'class'=>'application.extensions.swfupload.SWFUploadAction',
-		    'filepath'=>Yii::app()->basePath.'/../upload/'.$path.$fileName.'.EXT',
+		    'filepath'=>Yii::app()->baseUrl.'/upload/'.$path.$fileName.'.EXT',
 		    //注意这里是绝对路径,.EXT是文件后缀名替代符号
 		    //'onAfterUpload'=>array($this,'saveFile'),
 		  )

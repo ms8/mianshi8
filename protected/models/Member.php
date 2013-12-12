@@ -218,9 +218,9 @@ class Member extends CActiveRecord
 
 	// 获取图片链接
 	public function getImgLink(){
-		$imgLink = "/upload/user_photo/".$this->photo;
+		$imgLink =Yii::app()->baseUrl."/upload/user_photo/".$this->photo;
 		if($this->photo == 'cm.jpg'){
-			$imgLink = '/upload/group_photo/cm.jpg';
+			$imgLink =Yii::app()->baseUrl.'/upload/group_photo/cm.jpg';
 		}
 		return $imgLink;
 	}
