@@ -115,6 +115,12 @@
     </div>
 
     <script>
+        //提交验证
+        $('#sub').live('click',function(){
+            $('#create_group').submit();
+            return false;
+        });
+
 //验证提示
 $('#create_group').ajaxForm({
     dataType:'json',
@@ -136,11 +142,12 @@ $('#create_group').ajaxForm({
     }
   });
 
-//提交验证
-$('#sub').click( 
-    function(){
-        $('#create_group').submit();
-        return false;
-  }
-);
+
+//click(
+//    alert('1');
+//    function(){
+//        $('#create_group').submit();
+//        return false;
+//  }
+//);
 </script>
