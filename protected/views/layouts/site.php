@@ -60,10 +60,13 @@
                 </a>
             </div>
             <div class="nav">
-            	<a class="shouye" href="<?php echo Yii::app()->baseUrl;?>/"></a>
+            	<a class="shouye" href="<?php echo Yii::app()->baseUrl;?>/">首页</a>
                 <a href="<?php echo Yii::app()->createUrl('/group'); ?>">小组</a>
                 <a href="<?php echo Yii::app()->createUrl('/article'); ?>">学院</a>
                 <a href="<?php echo Yii::app()->createUrl('/tongcheng'); ?>">活动</a>
+            </div>
+            <div class="sousuo">
+                <input type="text" value="小组、话题" class="inp3" id="search_inp"><a class="inp4" href="javascript:void(0)" id="search"></a>
             </div>
 
         </div>
