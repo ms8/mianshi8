@@ -127,6 +127,12 @@
     
 </div>
 <script>
+    //提交验证
+    $('#sub').live('click',function(){
+        $('#addtopic_group').submit();
+        return false;
+    });
+
  $('#addtopic_group').ajaxForm({
     dataType:'json',
     success:function processJson(data) {

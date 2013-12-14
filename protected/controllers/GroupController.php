@@ -534,14 +534,17 @@ class GroupController extends Controller
 	      	 	
 	      	 	if($model->save(false)){
 	      	 		scoreAction::setScore(Yii::app()->user->id,'fatie','add');
-	      	 		die(CJSON::encode(array('status'=>1,'id'=>$gid)));
+//	      	 		die(CJSON::encode(array('status'=>1,'id'=>$gid)));
+                    $result = CJSON::encode(array('status'=>1,'id'=>$gid));
 	      	 	}else{
-	      	 		die(CJSON::encode(array('status'=>0)));
+//	      	 		die(CJSON::encode(array('status'=>0)));
+                    $result = CJSON::encode(array('status'=>0));
 	      	 	}	
 	      	 }else{
 	      	 	die($ajaxRes);
 	      	 }
-		}
+            $this->actionDetail();
+		}else{
 
 
 		$newMember= Mmember::model()->findAll(
@@ -557,6 +560,7 @@ class GroupController extends Controller
 			'description'=>'增加话题',
 		);
 		$this->render('add_topic',array('model'=>$model,'group'=>$group,'newMember'=>$newMember));
+        }
 	}
 	//编辑话题
 	public function actionEditTopic(){
