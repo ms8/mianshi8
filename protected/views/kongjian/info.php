@@ -52,9 +52,9 @@
 
                 <div style="padding-left:5px; float:left;">
                     <?php if($model->isNewRecord){ ?>
-                        <img style="width:48px; height:48px;margin-bottom:5px;" id="user_phototu" src="/assets/default/images/addpic.jpg" />
+                        <img style="width:48px; height:48px;margin-bottom:5px;" id="user_phototu" src="<?php echo Yii::app()->baseUrl?>/assets/default/images/addpic.jpg" />
                     <?php }else{ ?>
-                        <img style="width:48px; height:48px;margin-bottom:5px;"  id="user_phototu" src="/upload/user_photo/<?php echo $model->photo; ?>" />
+                        <img style="width:48px; height:48px;margin-bottom:5px;"  id="user_phototu" src="<?php echo Yii::app()->baseUrl?>/upload/user_photo/<?php echo $model->photo; ?>" />
                     <?php } ?>
 
                     <?php echo $form->hiddenField($model,'photo'); ?>

@@ -35,7 +35,7 @@
 
             <div class="left2c">
                 <div class="left2c21 bgcl2" style="padding-left:75px;">
-                    <a href="javascript:void(0)" id="sub"><img src="<?php echo  IMAGES_PATH; ?>shenqing.jpg" /></a>
+                    <a href="javascript:void(0)" id="sub"><img src="<?php echo  Yii::app()->baseUrl.IMAGES_PATH; ?>shenqing.jpg" /></a>
                 </div>
             </div>
         <?php $this->endWidget(); ?>
