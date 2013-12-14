@@ -52,7 +52,7 @@
 
 <body>
 
-<div class="con">
+<div>
     <?php if(!Yii::app()->user->isGuest){?>
     <div class="httop1">
         <div class="httop11">

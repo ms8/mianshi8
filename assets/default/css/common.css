@@ -38,10 +38,10 @@ a:hover{ text-decoration:none; color:#fff; background: #3377aa; }
 .hidden{visibility:hidden;}
 .fl{ float:left;}
 .fr{ float:right;}
-.con{ width:100%; margin:0 auto;}
+.con{ width:950px; margin:0 auto;}
 .head1{ height:74px;width: 950px;margin: 0 auto;}
-.logo{ float:left; margin:23px 0 0 0;}
-.nav{ float:left; padding-top:30px;}
+.logo{ float:left; margin:12px 0 0 0;}
+.nav{ float:left; padding-top:23px;}
 .nav a{ font-size:20px; margin-left:20px; float: left;  height: 24px; background: transparent url(../../images/nav.png) no-repeat 100% 100%; overflow: hidden; clear: none;}
 
 .nav a.shouye{background-position: -5px 0;}
@@ -86,7 +86,7 @@ a:hover{ text-decoration:none; color:#fff; background: #3377aa; }
 .left1 .xiaozu dl dt font{color:orange; font-size:12px;}
 .left1 .xiaozu dl dt a:hover{ background:#3377aa; color:#fff;}
 .left1 .xiaozu dl dd{width:210px; font-size:12px; line-height:24px; margin-left:10px; display:inline; color:#666; float:left;}
-.left1 .gaungg{width:640px; height:180px; overflow:hidden; float:left; margin:0px 0 30px 0; display:inline; position: relative;}
+.left1 .gaungg{width:640px; height:280px; overflow:hidden; float:left; margin:0px 0 30px 0; display:inline; position: relative;}
 .left1 .huat{width:654px; margin-top:10px; display:inline; float:left;}
 .left1 .huat dl{ width:654px; float:left; padding-bottom:20px;}
 .left1 .huat dl img{ width:49px; height:49px; float:left; overflow:hidden;}
@@ -159,7 +159,7 @@ a:hover{ text-decoration:none; color:#fff; background: #3377aa; }
 .link3 a{color:#dd441b; font-size:14px; margin-right:34px;}
 .link3 a:hover{color:#FFF; background:#dd441b; font-size:14px; margin-right:34px;}
 .sousuo1{ float:right; padding-top:20px;}
-.inp3{ float:left; padding-left:11px; width:235px; height:28px; line-height:28px; border:1px solid #e1e9e1; border-right:0; color:#bbbbbb;}
+.inp3{ float:left; padding-left:11px; width:216px; height:28px; line-height:28px; border:1px solid #e1e9e1; border-right:0; color:#bbbbbb;}
 .inp4{ float:left; width:32px; height:28px; border:1px solid #e1e9e1; border-left:0; background:url(../images/sousuo.jpg) no-repeat 0 0;}
 .inp4:hover{ background:url(../images/sousuo.jpg) no-repeat 0 0;}
 .top3{ height:103px; line-height:103px; font-size:25px; font-weight:bold; width:950px; margin:0 auto; overflow:hidden; color:#494949;}
@@ -186,7 +186,7 @@ a:hover{ text-decoration:none; color:#fff; background: #3377aa; }
 .right52{ height:50px; line-height:50px; font-size:14px; color:#000;}
 .right53{ clear:both; overflow:hidden;}
 .right53 a{ float:left; margin:0 10px 10px 0;}
-.sousuo {float: right;padding-top: 30px;}
+.sousuo {float: right;padding-top: 23px;}
 
 /*发现小组*/
 .left4{ float:left; width:50%; height:140px; border-bottom:1px dashed #cccccc;}
@@ -366,3 +366,49 @@ _top:expression(eval(document.documentElement.scrollTop+document.documentElement
 	}
 
 .inp6{ color:#000;}
+
+.gclear:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+.gclear {
+    display: block;
+    min-height: 1%;
+    padding: 5px;
+}
+.side-user{
+    border: 1px solid #E1E9E1 ;
+}
+.user-info a {
+    float: left;
+    max-height: 36px;
+    max-width: 55px;
+    overflow: hidden;
+    word-break: break-all;
+    margin-right: 5px;
+}
+.user-num {
+    float: right;
+    margin-bottom: 5px;
+    width: 140px;
+}
+.user-num p {
+    float: left;
+    text-align: center;
+    width: 70px;
+}
+.user-num p span {
+    display: block;
+    font-size: 18px;
+}
+.user-asks {
+    background-color: #FAFAFA;
+    border-top: 1px solid #EAEAEA;
+}
+.user_into {
+    padding:10px;
+    text-align: right;
+}

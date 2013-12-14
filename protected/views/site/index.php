@@ -1,3 +1,4 @@
+<?php if(Yii::app()->user->isGuest){?>
   <div class="top">
       <div class="topInner">
         <div class="top1">
@@ -102,7 +103,7 @@
           <?php } ?></div>
       </div>
   </div>
-
+<?php }?>
   <div class="wz1">
     <!--这里正在流行······--> </div>
   <div class="con1">
@@ -115,8 +116,8 @@
           #wrapper {
               clear: both;
               background-color: #fff;
-              width: 100%;
-              height: 450px;
+              width: 400px;
+              height: 280px;
               overflow: hidden;
               position: relative;
           }
@@ -188,10 +189,16 @@
               width: 100px;
           }
         </style>
+        <h2>
+              最新推荐
+            <span>
+              <a href="<?php echo Yii::app()->createUrl('/article'); ?>" title="全部" target="_self">（全部）</a>
+            </span>
+        </h2>
         <div id="wrapper">
             <div id="carousel">
               <?php foreach ($ad as $key => $value) {?>
-                  <img onclick="window.location.href='<?php echo $value->url; ?>';" style="cursor:pointer;" src="<?php echo $value->imglink;  ?>" alt="<?php echo $value->title; ?>" width="500" height="180" />
+                  <img onclick="window.location.href='<?php echo $value->url; ?>';" style="cursor:pointer;" src="<?php echo $value->imglink;  ?>" alt="<?php echo $value->title; ?>" width="500" height="280" />
               <?php } ?>
             </div>
             <a href="#" id="prev" title="上一张"> </a>
@@ -202,7 +209,7 @@
       </div>
 
       <h2>
-        推荐小组
+        热门小组
         <span>
           <a href="<?php echo $this->createUrl('/group'); ?>" title="全部" target="_self">（全部）</a>
         </span>
@@ -258,6 +265,32 @@
         <input class="inp2" />  
         <a class="a1" href="#">搜索</a>
       </div> -->
+       <?php if(!Yii::app()->user->isGuest){?>
+        <div class="side-user gclear">
+            <div class="user-header gclear">
+                <div class="user-info">
+                    <a href="<?php echo $this->createUrl('/kongjian/info'); ?>"><img width="50" height="50" alt="<?php echo Yii::app()->user->nickname; ?>" src="<?php echo $this->createUrl(IMAGES_USER_PHOTO.Yii::app()->user->photo);?>" /></a>
+                    <a href="<?php echo $this->createUrl('/kongjian/info'); ?>"><?php echo Yii::app()->user->nickname; ?></a>
+
+                </div>
+                <div class="user-num">
+                    <p class="user-focus-num">
+                        <span><?php echo Yii::app()->user->groupCount; ?></span>
+                        <a href="<?php echo $this->createUrl('group/mine'); ?>">创建的小组</a>
+                    </p>
+                    <p class="focused">
+                        <span><?php echo Yii::app()->user->topicCount; ?></span>
+                        <a href="<?php echo $this->createUrl('group/mytopic'); ?>">发起的话题</a>
+                    </p>
+                </div>
+                <b class="garrow_up arrow1"></b>
+                <b class="garrow_up arrow2"></b>
+            </div>
+            <div class="user-asks">
+                <div class="user_into"><a href="<?php echo Yii::app()->createUrl('kongjian/index',array('uid'=>Yii::app()->user->id)); ?>">进入个人动态</a></div>
+            </div>
+        </div>
+      <?php } ?>
       <div class="xshd" style="padding-top:0;">
         <h2>活跃用户</h2>
       </div>
@@ -270,7 +303,7 @@
                   <?php if($v->id <= 100){ ?>
                   <div style="position:absolute;right:0;bottom:0;width:15px;height:15px;background:red;overflow:hidden;"><img style="width:15px;height:15px;" src="/images/vip.jpg" /></div>
                   <?php } ?>
-                  <img alt="<?php echo $v->nickname; ?>" src="<?php echo IMAGES_USER_PHOTO.$v->photo;?>" /></a>
+                  <img alt="<?php echo $v->nickname; ?>" src="<?php echo $this->createUrl(IMAGES_USER_PHOTO.$v->photo);?>" /></a>
                 <div class="zx"></div>
               </ol>
               <p><a href="<?php echo $v->kongjian; ?>"><?php echo $v->nickname; ?></a></p>
