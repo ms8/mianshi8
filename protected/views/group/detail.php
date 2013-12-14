@@ -79,7 +79,7 @@
         <div class="right6">最近加入</div>
         <div class="xiaozu">
             <?php foreach ($newMember as $key => $value) {?>
-            <div class="xiaozu1"> <a href="<?php echo Yii::app()->createUrl('kongjian/index',array('uid'=>$value->memberOne->id)); ?>"><img src="<?php echo  IMAGES_USER_PHOTO.$value->memberOne->photo; ?>" width="48" height="48" /></a> <br />
+            <div class="xiaozu1"> <a href="<?php echo Yii::app()->createUrl('kongjian/index',array('uid'=>$value->memberOne->id)); ?>"><img src="<?php echo  Yii::app()->baseUrl.IMAGES_USER_PHOTO.$value->memberOne->photo; ?>" width="48" height="48" /></a> <br />
                 <a href="<?php echo Yii::app()->createUrl('kongjian/index',array('uid'=>$value->memberOne->id)); ?>"><?php echo Helper::truncate_utf8_string($value->memberOne->nickname,5)  ?></a> </div>
             <?php }  ?>
 
