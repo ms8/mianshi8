@@ -116,10 +116,13 @@
           #wrapper {
               clear: both;
               background-color: #fff;
-              width: 400px;
               height: 280px;
               overflow: hidden;
               position: relative;
+          }
+          .wrapperIn{
+              float: left;
+              width: 320px;;
           }
           #carousel img {
               display: block;
@@ -146,28 +149,45 @@
           #pager {
               margin-left: 0px;
               position: absolute;
-              top: 158px;
-              left: 80px;
+              top: 180px;
               bottom: 10px;
+              width:320px;
+              background-color: #5a5a5a;
+              opacity: 0.7;
+              padding: 10px 0 ;;
           }
           #pager a {
               border: 2px solid #fff;
               border-radius: 10px;
               display: inline-block;
-              width: 10px;
-              height: 10px;
+              width: 6px;
+              height: 6px;
               margin: 0 5px 0 0;
+              background-color: rgba(255, 255, 255, 0.5);
           }
           #pager a:hover {
-              background-color: rgba(255, 255, 255, 0.5);
+              background-color: rgba(244, 244, 244, 0.48);
           }
           #pager a span {
               display: none;
           }
-          #pager a.selected {
-              background-color: #fff;
+          #pager a.selected span {
+              display: inline-block;
+              color: #E9E9E9;
+              position: absolute;
+              top:30px;
+              left: 20px;
+              font-size: 15px;;
           }
-          
+          #pager a.selected {
+              background-color: #ccff1b;
+          }
+          #article{
+              float: left;;
+              width:300px;
+              padding: 0 10px;;
+          }
+
           #donate-spacer {
               height: 100%;
           }
@@ -188,6 +208,13 @@
           #donate form {
               width: 100px;
           }
+          #article ul li h3 {
+              color: #666666;
+              font-size: 14px;
+              font-weight: 100;
+              line-height: 30px;
+              text-align: left;;
+          }
         </style>
         <h2>
               最新推荐
@@ -196,14 +223,28 @@
             </span>
         </h2>
         <div id="wrapper">
-            <div id="carousel">
-              <?php foreach ($ad as $key => $value) {?>
-                  <img onclick="window.location.href='<?php echo $value->url; ?>';" style="cursor:pointer;" src="<?php echo $value->imglink;  ?>" alt="<?php echo $value->title; ?>" width="500" height="280" />
-              <?php } ?>
+            <div class="wrapperIn">
+                <div id="carousel">
+                  <?php
+                    $adArr = array();
+                    foreach ($ad as $key => $value) {
+                        array_push($adArr,$value->title);
+                  ?>
+                      <img onclick="window.location.href='<?php echo $value->url; ?>';" style="cursor:pointer;" src="<?php echo $value->imglink;  ?>" alt="<?php echo $value->title; ?>" width="500" height="280" />
+                  <?php } ?>
+                </div>
+                <div id="pager"></div>
             </div>
-            <a href="#" id="prev" title="上一张"> </a>
-            <a href="#" id="next" title="下一张"> </a>
-            <div id="pager"></div>
+            <div id="article">
+                <ul>
+                    <?php foreach ($articleList as $key => $value) {?>
+                        <li>
+                            <h3><a target="_self" title="<?php echo $value->title; ?>" href="<?php echo $this->createUrl('/article/index', array('cateId'=>$value->id)); ?>"><?php echo $value->title; ?></a></h3>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
+
         </div>
 
       </div>
@@ -345,6 +386,33 @@
     </div>
   </div>
   <script type="text/javascript">
+      <?php
+          $adArr = array();
+          foreach ($ad as $key => $value) {
+                array_push($adArr,$value->title);
+      }?>
+      var adArr = <?php echo json_encode($adArr) ;?>;
+  $('#carousel').carouFredSel({
+      width: '100%',
+      items: {
+          visible: 3,
+          start: -1
+      },
+      scroll: {
+          items: 1,
+          duration: 1000,
+          timeoutDuration: 3000
+      },
+      prev: '#prev',
+      next: '#next',
+      pagination: {
+          container: '#pager',
+          deviation: 1,
+          anchorBuilder:function(nr, item) {
+              return '<a href="#'+nr+'"><span>'+adArr[nr]+'</span></a>';
+          }
+      }
+  });
   $('#login-form').ajaxForm({
     dataType:'json',
     success:function processJson(data) {
