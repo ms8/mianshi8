@@ -639,7 +639,7 @@ class GroupController extends Controller
     	$pager = new CPagination($count);    
     	$pager->pageSize = 20;             
     	$pager->applyLimit($criteria); 
-		$response=$topic->responseMany($criteria);
+//		$response=$topic->responseMany($criteria);
 
 		$model=new Response;
 		//话题回应
@@ -664,13 +664,14 @@ class GroupController extends Controller
 		      	 		$topic->create_time=time();//创建时间
 		      	 		$topic->response_num+=1;
 		      	 		$topic->save(false);
-		      	 		die(CJSON::encode(array('status'=>1,'id'=>$gid)));
+//		      	 		die(CJSON::encode(array('status'=>1,'id'=>$gid)));
 		      	 	}else{
-		      	 		die(CJSON::encode(array('status'=>0)));
+//		      	 		die(CJSON::encode(array('status'=>0)));
 		      	 	}
 		      	 }else{
 		      	 	die($ajaxRes);
 		      	 }
+
 			}
 		}
 
@@ -696,6 +697,9 @@ class GroupController extends Controller
 			'keywords'=>$topic->title,
 			'description'=>$topic->title,
 		);
+        //
+        $response=$topic->responseMany($criteria);
+        $model=new Response;
 		$this->render('topic',array('model'=>$topic,'response'=>$model,'responseList'=>$response,'pages'=>$pager,'hotTopic'=>$hotTopic,'newTopic'=>$newTopic));
 	}
 	//话题删除
