@@ -248,6 +248,11 @@
 </script>
 <?php }else{?>
 <script>
+    //提交验证
+    $('#sub').live('click',function(){
+        $('#response_topic').submit();
+        return false;
+    });
  $('#response_topic').ajaxForm({
     dataType:'json',
     success:function processJson(data) {
