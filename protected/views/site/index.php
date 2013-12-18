@@ -151,7 +151,7 @@
               position: absolute;
               top: 180px;
               bottom: 10px;
-              width:320px;
+              width:640px;
               background-color: #5a5a5a;
               opacity: 0.7;
               padding: 10px 0 ;;
@@ -182,10 +182,10 @@
           #pager a.selected {
               background-color: #ccff1b;
           }
-          #article{
-              float: left;;
-              width:300px;
-              padding: 0 10px;;
+          .article{
+              clear: both;;
+              width:640px;
+              margin-bottom: 18px;
           }
 
           #donate-spacer {
@@ -216,39 +216,44 @@
               text-align: left;;
           }
         </style>
-        <h2>
-              最新推荐
-            <span>
-              <a href="<?php echo Yii::app()->createUrl('/article'); ?>" title="全部" target="_self">（全部）</a>
-            </span>
-        </h2>
         <div id="wrapper">
-            <div class="wrapperIn">
-                <div id="carousel">
-                  <?php
-                    $adArr = array();
-                    foreach ($ad as $key => $value) {
-                        array_push($adArr,$value->title);
-                  ?>
-                      <img onclick="window.location.href='<?php echo $value->url; ?>';" style="cursor:pointer;" src="<?php echo $value->imglink;  ?>" alt="<?php echo $value->title; ?>" width="500" height="280" />
-                  <?php } ?>
-                </div>
-                <div id="pager"></div>
+            <div id="carousel">
+              <?php
+                $adArr = array();
+                foreach ($ad as $key => $value) {
+                    array_push($adArr,$value->title);
+              ?>
+                  <img onclick="window.location.href='<?php echo $value->url; ?>';" style="cursor:pointer;" src="<?php echo $value->imglink;  ?>" alt="<?php echo $value->title; ?>" width="640" height="250" />
+              <?php } ?>
             </div>
-            <div id="article">
-                <ul>
-                    <?php foreach ($articleList as $key => $value) {?>
-                        <li>
-                            <h3><a target="_self" title="<?php echo $value->title; ?>" href="<?php echo $this->createUrl('/article/index', array('cateId'=>$value->id)); ?>"><?php echo $value->title; ?></a></h3>
-                        </li>
-                    <?php } ?>
-                </ul>
-            </div>
-
+            <div id="pager"></div>
         </div>
 
       </div>
-
+       <h2>
+            最新推荐
+            <span>
+              <a href="<?php echo Yii::app()->createUrl('/article'); ?>" title="全部" target="_self">（全部）</a>
+            </span>
+      </h2>
+      <div class="xiaozu">
+            <ul>
+                <?php foreach ($articleSortList as $key => $v) {?>
+                    <dl>
+                        <a href="<?php echo $this->createUrl('article/index',array('cateId'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>" target="_self">
+                            <img alt="<?php echo $v['name']; ?>" src="<?php echo $this->createUrl(IMAGES_ARTICLE_PHOTO.$v['img']); ?>" /></a>
+                        <dt>
+                            <a href="<?php echo $this->createUrl('group/detail',array('id'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>" target="_self"><?php echo $v['name']; ?></a>
+<!--                            （<font>--><?php //echo $v->topicCount; ?><!--</font>）-->
+                        </dt>
+                        <dd><?php echo Helper::truncate_utf8_string($v['des'],20); ?></dd>
+                    </dl>
+<!--                    <li>-->
+<!--                        <h3><a target="_self" title="--><?php //echo $value->title; ?><!--" href="--><?php //echo $this->createUrl('/article/index', array('cateId'=>$value->id)); ?><!--">--><?php //echo $value->title; ?><!--</a></h3>-->
+<!--                    </li>-->
+                <?php } ?>
+            </ul>
+      </div>
       <h2>
         热门小组
         <span>

@@ -40,6 +40,13 @@ class SiteController extends Controller
 		$groupListNew = Group::model()->findAll(array('condition'=>'status = 1','order'=>'id desc','limit'=>20));
 		// 最热话题
 		$topicList = Topic::model()->findAll(array('condition'=>'status != 2','order'=>'istop asc,id desc','limit'=>10));
+        // 文章类别
+        $articleSort = Cate::model()->findAll(array('condition'=>'status = 1 and type = 1','order'=>'id desc','limit'=>8));
+        $articleSortList = array();
+        foreach ($articleSort as $key => $value){
+            $articleDetailList = Article::model()->findAll(array('condition'=>'status = 1 and cateId = '.$value->id,'order'=>'id desc','limit'=>8));
+            array_push($articleSortList,array("id"=>$value->id,"img"=>$value->img,"name"=>$value->name,"title"=>$value->title,"des"=>$value->des,"data"=>$articleDetailList));
+        }
 		// 最新文章
 		$articleList = Article::model()->findAll(array('condition'=>'status = 1','order'=>'id desc','limit'=>8));
 
@@ -51,7 +58,7 @@ class SiteController extends Controller
 			'keywords'=>Helper::siteConfig()->seo_keywords,
 			'description'=>Helper::siteConfig()->seo_description,
 		);
-		$this->render('index',compact('model','groupList','memberList','groupListNew','topicList','articleList','ad'));
+		$this->render('index',compact('model','groupList','memberList','groupListNew','topicList','articleList','articleSortList','ad'));
 	}
 
 	public function actionDown(){

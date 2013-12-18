@@ -15,4 +15,6 @@ define('IMAGES_PATH','/assets/default/images/');
 define('IMAGES_USER_PHOTO','/upload/user_photo/');
 //前台小组图片
 define('IMAGES_GROUP_PHOTO','/upload/group_photo/');
+//文章图片
+define('IMAGES_ARTICLE_PHOTO','/upload/article/');
 ?>
