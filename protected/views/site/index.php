@@ -223,7 +223,7 @@
                 foreach ($ad as $key => $value) {
                     array_push($adArr,$value->title);
               ?>
-                  <img onclick="window.location.href='<?php echo $value->url; ?>';" style="cursor:pointer;" src="<?php echo $value->imglink;  ?>" alt="<?php echo $value->title; ?>" width="640" height="250" />
+                  <img onclick="window.location.href='<?php echo $value->url; ?>';" style="cursor:pointer;" src="<?php echo $this->createUrl($value->imglink);  ?>" alt="<?php echo $value->title; ?>" width="640" height="250" />
               <?php } ?>
             </div>
             <div id="pager"></div>
@@ -237,22 +237,28 @@
             </span>
       </h2>
       <div class="xiaozu">
-            <ul>
-                <?php foreach ($articleSortList as $key => $v) {?>
-                    <dl>
+            <?php foreach ($articleSortList as $key => $v) {?>
+                <div class="xiaozu_dl">
+                    <div class="xiaozu_dl_first">
                         <a href="<?php echo $this->createUrl('article/index',array('cateId'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>" target="_self">
                             <img alt="<?php echo $v['name']; ?>" src="<?php echo $this->createUrl(IMAGES_ARTICLE_PHOTO.$v['img']); ?>" /></a>
-                        <dt>
+                        <div class="xiaozu_dt">
                             <a href="<?php echo $this->createUrl('group/detail',array('id'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>" target="_self"><?php echo $v['name']; ?></a>
 <!--                            （<font>--><?php //echo $v->topicCount; ?><!--</font>）-->
-                        </dt>
-                        <dd><?php echo Helper::truncate_utf8_string($v['des'],20); ?></dd>
-                    </dl>
+                        </div>
+                        <div class="xiaozu_dd"><?php echo Helper::truncate_utf8_string($v['des'],20); ?></div>
+                    </div>
+                    <div class="xiaozu_dl_list">
+                        <ul>
+
+                        </ul>
+                    </div>
+                </div>
 <!--                    <li>-->
 <!--                        <h3><a target="_self" title="--><?php //echo $value->title; ?><!--" href="--><?php //echo $this->createUrl('/article/index', array('cateId'=>$value->id)); ?><!--">--><?php //echo $value->title; ?><!--</a></h3>-->
 <!--                    </li>-->
-                <?php } ?>
-            </ul>
+            <?php } ?>
+
       </div>
       <h2>
         热门小组

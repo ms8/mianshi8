@@ -68,6 +68,7 @@ class ArticleController extends Controller
 			$model->attributes=$_POST['Article'];
 			$model->create_time=time();
 			$model->update_time=time();
+            $model->pid=0;//pid 不知道干什么用，默认设置o
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
