@@ -65,10 +65,10 @@
     <div class="httop3">
         <div class="httop21">
             <div class="logo2"> 
-                <a href="<?php echo Yii::app()->createUrl('group'); ?>"><?php echo  Helper::siteConfig()->site_name; ?>阅读</a>
+                <a href="<?php echo Yii::app()->createUrl('group'); ?>"><?php echo  Helper::siteConfig()->site_name; ?>学院</a>
             </div>
             <div class="link2">
-               阅读的最大理由是想摆脱平庸，早一天就多一份人生的精彩；迟一天就多一天平庸的困扰——余秋雨
+               分享 互助 成长
             </div>
             <script type="text/javascript">
                 $("#search").click(
