@@ -250,7 +250,11 @@
                     </div>
                     <div class="xiaozu_dl_list">
                         <ul>
-
+                            <?php foreach ($v['data'] as $key => $value) {?>
+                               <li>
+                                    <h3><a target="_self" title="<?php echo $value->title; ?>" href="<?php echo $this->createUrl('/article/index', array('cateId'=>$value->id)); ?>"><?php echo $value->title; ?></a></h3>
+                               </li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>
@@ -267,16 +271,27 @@
         </span>
       </h2>
       <div class="xiaozu">
-        <?php foreach($groupList as $k=>$v){ ?>
-          <dl>
-            <a href="<?php echo $this->createUrl('group/detail',array('id'=>$v->id)); ?>" title="<?php echo $v->name; ?>" target="_self">
-              <img alt="<?php echo $v->name; ?>" src="<?php echo $v->imgLink; ?>" /></a>
-            <dt>
-              <a href="<?php echo $this->createUrl('group/detail',array('id'=>$v->id)); ?>" title="<?php echo $v->name; ?>" target="_self"><?php echo $v->name; ?></a>
-              （<font><?php echo $v->topicCount; ?></font>）
-            </dt>
-            <dd><?php echo Helper::truncate_utf8_string($v->des,20); ?></dd>
-          </dl>
+        <?php foreach($groupSortList as $k=>$v){ ?>
+          <div class="xiaozu_dl">
+              <div class="xiaozu_dl_first">
+                <a href="<?php echo $this->createUrl('group/detail',array('id'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>" target="_self">
+                  <img alt="<?php echo $v['name']; ?>" src="<?php echo $v['imgLink']; ?>" /></a>
+                <div class="xiaozu_dt">
+                  <a href="<?php echo $this->createUrl('group/detail',array('id'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>" target="_self"><?php echo $v['name']; ?></a>
+    <!--              （<font>--><?php //echo $v['topicCount']; ?><!--</font>）-->
+                </div>
+                  <div class="xiaozu_dd"><?php echo Helper::truncate_utf8_string($v['des'],20); ?></div>
+              </div>
+              <div class="xiaozu_dl_list">
+                  <ul>
+                      <?php foreach ($v['data'] as $key => $value) {?>
+                          <li>
+                              <h3><a href="<?php echo $this->createUrl('/group/topic',array('id'=>$value->id)); ?>" title="<?php echo $value->title; ?>" target="_self"><?php echo $value->title; ?></a></h3>
+                          </li>
+                      <?php } ?>
+                  </ul>
+              </div>
+          </div>
         <?php } ?>
       </div>
       

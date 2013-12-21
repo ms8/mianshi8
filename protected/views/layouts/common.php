@@ -15,7 +15,7 @@
 
     Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/js/artDialog/skins/idialog.css');
     Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/artDialog/artDialog.min.js');
-    
+    Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.form.js');
     Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/common.js');
     Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.CSS_PATH.'common.css');
     Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/red.css');
