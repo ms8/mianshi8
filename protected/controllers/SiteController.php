@@ -33,13 +33,12 @@ class SiteController extends Controller
 		$model=new LoginForm;
 
 		// 推荐小组
-		$groupList = Group::model()->findAll(array('condition'=>'status = 1','order'=>'sort desc','limit'=>20));
+		$groupList = Group::model()->findAll(array('condition'=>'status = 1','order'=>'sort desc','limit'=>8));
         $groupSortList = array();
         foreach ($groupList as $key => $value){
             $criteria = new CDbCriteria();
             $criteria->order = "hot desc,create_time desc";
             $groupTopicList=$value->topicMany($criteria);
-//            $articleDetailList = Article::model()->findAll(array('condition'=>'status = 1 and cateId = '.$value->id,'order'=>'id desc','limit'=>6));
             array_push($groupSortList,array("id"=>$value->id,"imgLink"=>$value->imgLink,"name"=>$value->name,"title"=>$value->topicCount,"des"=>$value->des,"data"=>$groupTopicList));
         }
 

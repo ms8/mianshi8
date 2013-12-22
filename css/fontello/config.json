@@ -1,0 +1,46 @@
+{
+  "name": "fontawesome",
+  "css_prefix_text": "icon-",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "4843d0d6050dd508d4c101a334f46db2",
+      "css": "emo-shoot",
+      "code": 59394,
+      "src": "fontelico"
+    },
+    {
+      "uid": "8b80d36d4ef43889db10bc1f0dc9a862",
+      "css": "user",
+      "code": 59392,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "c1f1975c885aa9f3dad7810c53b82074",
+      "css": "lock",
+      "code": 59393,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "d10920db2e79c997c5e783279291970c",
+      "css": "dot-3",
+      "code": 59397,
+      "src": "entypo"
+    },
+    {
+      "uid": "0cd7be54280d9ffbe0f48342c011268e",
+      "css": "cc-remix",
+      "code": 59395,
+      "src": "entypo"
+    },
+    {
+      "uid": "006ab50770cd7183b27004f856b989e4",
+      "css": "target",
+      "code": 59396,
+      "src": "websymbols"
+    }
+  ]
+}

@@ -4,12 +4,13 @@
         <div class="top1">
 <!--          <div class="top11">--><?php //echo  Helper::siteConfig()->site_name; ?><!--</div>-->
           <div class="top12">
+            <div class="top122"><i class="icon-emo-shoot"></i><i class="icon-dot-3"></i><i class="icon-dot-3"></i><i class="icon-target"></i></div>
             <div class="top121"><?php echo  Helper::siteConfig()->site_slogan; ?></div>
 <!--            <div class="top122">欢迎光临，已有<b style="color:red;">--><?php //echo $mcount = Member::model()->count(); ?><!--</b>位<b style="color:red;">成员</b>入驻！</div>-->
             <div class="top123">
-              <a href="<?php echo Yii::app()->
+              <a class="btn" href="<?php echo Yii::app()->
                 createUrl('public/register'); ?> ">
-                加入我们&nbsp;<font>注册</font></a>
+                加入我们(注册)</a>
             </div>
           </div>
         </div>
@@ -33,30 +34,29 @@
                         'htmlOptions'=>array('class'=>'login'),
                         )); ?>
           <div class="login1">
-            帐 号
             <?php echo $form->
-            textField($model,'username',array('class'=>'inp1','value'=>'')); ?>
+            textField($model,'username',array('class'=>'inp1','value'=>'','placeholder'=>'用户名')); ?>
+              <i class="icon-user"></i>
           </div>
           <div class="login1">
-            密 码
             <?php echo $form->
-            passwordField($model,'password',array('class'=>'inp1')); ?>
+            passwordField($model,'password',array('class'=>'inp1','placeholder'=>'密码')); ?>
+            <i class="icon-lock"></i>
             <!-- <a href="#">忘记密码？</a> -->
           </div>
           <div class="login2">
             <?php echo $form->
             checkBox($model,'rememberMe',array()); ?>
             <span>记住我</span>
-            <a href="javascript:void(0)" class="green_btn">
-              <img src="<?php echo  Yii::app()->baseUrl.IMAGES_PATH; ?>login.jpg" /></a>
-            <a style="margin:5px 0 0 5px; background:none;" href="
+            <button  type="submit" class="btn">登陆</button>
+            <a style="margin:5px 0 0 10px; background:none;" href="
             <?php
               $this->widget('ext.oauthlogin.OauthLogin',array(
                 'itemView'=>'qqurl', //效果样式
               ));
             ?>
             "><img src="images/connect_qq.png" /></a>
-            <a style="margin:5px 0 0 5px; background:none;" href="
+            <a style="margin:5px 0 0 10px; background:none;" href="
             <?php
               $this->widget('ext.oauthlogin.OauthLogin',array(
                 'itemView'=>'sinaurl', //效果样式
@@ -457,11 +457,6 @@
       }
     }
   });
-  $(".green_btn").click(
-      function(){
-        $('#login-form').submit();
-      }
-  )
 </script>
 <!-- Baidu Button BEGIN -->
 <script type="text/javascript" id="bdshare_js" data="type=slide&amp;img=0&amp;pos=right&amp;uid=0" ></script>

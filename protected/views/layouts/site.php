@@ -24,6 +24,7 @@
     Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/common.js');
     //Yii::app()->clientScript->registerCssFile('common.css');
     Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/red.css');
+    Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/fontello/css/fontawesome.css');
 ?>
 <script type="text/javascript">
 //    $(function() {

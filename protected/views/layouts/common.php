@@ -74,7 +74,10 @@
                 <a href="<?php echo Yii::app()->createUrl('group/exploretopic'); ?>">发现话题</a>
             </div>
             <div class="sousuo1">
-                <input id="search_inp" type="text" class="inp3" value="<?php echo isset($_GET['keyword'])?$_GET['keyword']:'小组、话题'; ?>" /><a id="search" href="javascript:void(0)" class="inp4"></a>
+                <form id="searchForm" action="<?php echo Yii::app()->baseUrl; ?>/group/search/" method="get">
+                    <input type="hidden" value="1" name="type" />
+                    <input id="search_inp" type="text" class="inp3" name="keyword" value="<?php echo isset($_GET['keyword'])?$_GET['keyword']:'小组、话题'; ?>" /><a id="search" href="javascript:void(0)" class="inp4"></a>
+                </form>
             </div>
             <script type="text/javascript">
                 $("#search").click(
@@ -84,7 +87,8 @@
                             alert('请输入要查询的关键词！');
                             return false;
                         }
-                        window.location.href = 'http://<?php echo Yii::app()->baseUrl; ?>/search/'+encodeURI(search);
+                        $("#searchForm").submit();
+                       // window.location.href = 'http://<?php echo Yii::app()->request->hostInfo.Yii::app()->baseUrl; ?>/group/search/'+encodeURI(search);
                     }
                 );
 

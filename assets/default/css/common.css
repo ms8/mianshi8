@@ -42,37 +42,63 @@ a:hover{ text-decoration:none; color:#fff; background: #3377aa; }
 .head1{ height:74px;width: 950px;margin: 0 auto;}
 .logo{ float:left; margin:12px 0 0 0;}
 .nav{ float:left; padding-top:23px;}
-.nav a{ font-size:20px; margin-left:20px; float: left;  height: 24px; background: transparent url(../../images/nav.png) no-repeat 100% 100%; overflow: hidden; clear: none;}
+.nav a{width: 35px; font-size:15px;color: #1E1E1E; margin-left:20px; float: left;  height: 24px; background: transparent url(../../images/nav.png) no-repeat 100% 100%; overflow: hidden; clear: none;}
 
-.nav a.shouye{background-position: -5px 0;}
+.nav a.shouye{background-position: -5px 0;color: #2A8A15;}
 .nav a.xiaozu{background-position: -73px 0;}
 .nav a.yuedu{background-position: -140px 0;}
 .nav a.tongcheng{background-position: -205px 0;}
 .nav a.xiaozhan{background-position: -277px 0;}
 .nav a.taoke{background-position: -343px 0;}
 
-.nav a:hover{ font-size:20px;  margin-left:20px;color:rgb(53, 136, 27);}
-.top{ height:134px; clear:both; overflow:hidden; height:134px;background: none repeat scroll 0 0 #F3F3F3;padding: 20px 0;}
+.nav a:hover{ font-size:17px;  margin-left:20px;color:rgb(53, 136, 27);}
+.top{ height:134px; clear:both; overflow:hidden; height:134px;background-image: linear-gradient(30deg, #dce6d2, #003333 );padding: 30px 0;}
 .topInner{width: 950px;margin: 0 auto;}
-.top1{ float:left; width:580px; height:100%;margin-top: 50px;}
-.top2{ float:right; width:367px; height:100%;}
+.top1{ float:left; width:580px; height:100%;}
+.top2{ float:right; width:260px; height:100%;
+    background-color: #ECEFF1;
+    border-radius: 6px;
+    padding: 24px 23px 20px;
+    position: relative;
+    top: -20px;
+}
 .top11{ float:left; font-size:21px; color:#666666; padding:55px 67px 0 50px; font-family:"YaHei";}
-.top12{ float:left;}
-.top121{ font-size:20px; color:#666666;float: left;}
-.top122{ font-size:12px; color:#666666; padding:0 0 12px 0; }
+.top12{ float:left;margin-top: 20px;}
+.top121{ font-size:20px; color:#1E1E1E;float: left;}
+.top122{ font-size:20px; color:#666666; padding:0 0 12px 0; }
+.top122  [class^="icon-"]:before,.top122 [class*=" icon-"]:before {width: 2em;}
+.top122 .icon-emo-shoot{font-size: 25px;}
+.top122 .icon-target{font-size: 30px;}
+.top122  [class="icon-dot-3"]:before{width: 0.7em;}
+.top122  [class="icon-target"]:before{width: 1em;}
 .top123{width:200px; float:left;}
 
-.top123 a{width:90px; height:27px; text-align:center; background:#478d17; line-height:27px; padding:0 10px; float:left; font-size:14px; color:#FFF; margin:0 10px 0 0; border-radius:5px 5px 5px 5px;}
-.top123 a font{font-size:12px; color:#FFF;}
+/*.top123 a{width:90px; height:27px; text-align:center; background:#478d17; line-height:27px; padding:0 10px; float:left; font-size:14px; color:#FFF; margin:0 10px 0 0; border-radius:5px 5px 5px 5px;}*/
+.top123 .btn{padding: 6px 10px;}
 
-.top123 a:hover{width:90px; height:27px; text-align:center;  background:#70ad47; line-height:27px; padding:0 10px; float:left; font-size:14px; color:#FFF; margin:0 10px 0 0; border-radius:5px 5px 5px 5px;}
+/*.top123 a:hover{width:90px; height:27px; text-align:center;  background:#70ad47; line-height:27px; padding:0 10px; float:left; font-size:14px; color:#FFF; margin:0 10px 0 0; border-radius:5px 5px 5px 5px;}*/
 
-.login{ padding:23px 0 0 23px;}
-.inp1{ height:21px; width:204px;}
-.login1{ padding:0 0 10px 0;line-height:23px;}
-.login2 input{float:left; margin:7px 3px 0 36px;}
-.login2 span{float:left; margin:5px 3px 0 0;}
-.login2 a{float:left; margin:0 0 0 0;}
+.inp1{   border-color: rgba(0, 0, 0, 0);
+    font-size: 15px;
+    padding-bottom: 11px;
+    padding-top: 11px;
+    text-indent: 3px;
+    width: 260px;
+    border-radius: 6px;
+    box-shadow: none;
+    color: #34495E;
+}
+.inp1:focus{border-color: #1ABC9C;}
+.login1{ padding:0 0 10px 0;line-height:23px;position: relative;    text-align: right;}
+.login1 i{ color: #BFC9CA;
+    font-size: 16px;
+    position: absolute;
+    right: 13px;
+    top: 14px;
+    transition: all 0.25s ease 0s;}
+.login2 input{float:left; margin:7px 3px 0 0px;}
+.login2 span{float:left; margin:3px 10px 0 0;}
+.login2 a,.login2 button{float:left; margin:0 0 0 10px;}
 .wz1{ font-size:20px; padding:10px 0; font-family:Helvetica,Arial,sans-serif;}
 .con1{ clear:both; overflow:hidden;width:950px;margin: 0 auto;}
 .left1{ text-align:center; width:654px; overflow:hidden; float:left;}
@@ -417,4 +443,19 @@ _top:expression(eval(document.documentElement.scrollTop+document.documentElement
 .user_into {
     padding:10px;
     text-align: right;
+}
+.btn {
+    background: none repeat scroll 0 0 #478D17;
+    border: medium none;
+    box-shadow: none;
+    color: #FFFFFF;
+    font-size: 15px;
+    text-decoration: none;
+    text-shadow: none;
+    transition: all 0.25s ease 0s;
+    padding: 4px 10px;
+    border-radius:6px ;
+}
+.btn:hover{
+    background-color: #00aa00;
 }
