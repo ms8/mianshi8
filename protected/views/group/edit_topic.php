@@ -122,30 +122,33 @@
     
 </div>
 <script>
- $('#addtopic_group').ajaxForm({
-    dataType:'json',
-    success:function processJson(data) {
-      var items = [];
-      $.each(data,function(key, val){var tem=[key,val];items.push(tem)});
-      var length = items.length;
-      if(data.status != 1){       
-        //items[i][0]错误节点名称
-        //items[i][1]对应错误提示
-        for(var i=0;i<length;i++){
-          alert(items[i][1]);
-          return false;
-        }
-      }else{
-        alert('修改成功');
-         location.href = "<?php echo Yii::app()->createUrl('group/topic'); ?>/"+data.id; 
-      }
-    }
-  });
-$("#sub").click(
-  function(){
-    $('#addtopic_group').submit();
-    return false;
-  }
-);
+ $(function(){
+     $('#addtopic_group').ajaxForm({
+         dataType:'json',
+         success:function processJson(data) {
+             var items = [];
+             $.each(data,function(key, val){var tem=[key,val];items.push(tem)});
+             var length = items.length;
+             if(data.status != 1){
+                 //items[i][0]错误节点名称
+                 //items[i][1]对应错误提示
+                 for(var i=0;i<length;i++){
+                     alert(items[i][1]);
+                     return false;
+                 }
+             }else{
+                 alert('修改成功');
+                 location.href = "<?php echo Yii::app()->createUrl('group/topic'); ?>/"+data.id;
+             }
+         }
+     });
+     $("#sub").live("click",
+         function(){
+             $('#addtopic_group').submit();
+             return false;
+         }
+     );
+ })
+
 </script>
 

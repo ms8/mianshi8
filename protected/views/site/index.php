@@ -4,12 +4,13 @@
         <div class="top1">
 <!--          <div class="top11">--><?php //echo  Helper::siteConfig()->site_name; ?><!--</div>-->
           <div class="top12">
+            <div class="top122"><i class="icon-emo-shoot"></i><i class="icon-dot-3"></i><i class="icon-dot-3"></i><i class="icon-target"></i></div>
             <div class="top121"><?php echo  Helper::siteConfig()->site_slogan; ?></div>
 <!--            <div class="top122">欢迎光临，已有<b style="color:red;">--><?php //echo $mcount = Member::model()->count(); ?><!--</b>位<b style="color:red;">成员</b>入驻！</div>-->
             <div class="top123">
-              <a href="<?php echo Yii::app()->
+              <a class="btn" href="<?php echo Yii::app()->
                 createUrl('public/register'); ?> ">
-                加入我们&nbsp;<font>注册</font></a>
+                加入我们(注册)</a>
             </div>
           </div>
         </div>
@@ -33,30 +34,29 @@
                         'htmlOptions'=>array('class'=>'login'),
                         )); ?>
           <div class="login1">
-            帐 号
             <?php echo $form->
-            textField($model,'username',array('class'=>'inp1','value'=>'')); ?>
+            textField($model,'username',array('class'=>'inp1','value'=>'','placeholder'=>'用户名')); ?>
+              <i class="icon-user"></i>
           </div>
           <div class="login1">
-            密 码
             <?php echo $form->
-            passwordField($model,'password',array('class'=>'inp1')); ?>
+            passwordField($model,'password',array('class'=>'inp1','placeholder'=>'密码')); ?>
+            <i class="icon-lock"></i>
             <!-- <a href="#">忘记密码？</a> -->
           </div>
           <div class="login2">
             <?php echo $form->
             checkBox($model,'rememberMe',array()); ?>
             <span>记住我</span>
-            <a href="javascript:void(0)" class="green_btn">
-              <img src="<?php echo  Yii::app()->baseUrl.IMAGES_PATH; ?>login.jpg" /></a>
-            <a style="margin:5px 0 0 5px; background:none;" href="
+            <button  type="submit" class="btn">登陆</button>
+            <a style="margin:5px 0 0 10px; background:none;" href="
             <?php
               $this->widget('ext.oauthlogin.OauthLogin',array(
                 'itemView'=>'qqurl', //效果样式
               ));
             ?>
             "><img src="images/connect_qq.png" /></a>
-            <a style="margin:5px 0 0 5px; background:none;" href="
+            <a style="margin:5px 0 0 10px; background:none;" href="
             <?php
               $this->widget('ext.oauthlogin.OauthLogin',array(
                 'itemView'=>'sinaurl', //效果样式
@@ -223,7 +223,7 @@
                 foreach ($ad as $key => $value) {
                     array_push($adArr,$value->title);
               ?>
-                  <img onclick="window.location.href='<?php echo $value->url; ?>';" style="cursor:pointer;" src="<?php echo $value->imglink;  ?>" alt="<?php echo $value->title; ?>" width="640" height="250" />
+                  <img onclick="window.location.href='<?php echo $value->url; ?>';" style="cursor:pointer;" src="<?php echo $this->createUrl($value->imglink);  ?>" alt="<?php echo $value->title; ?>" width="640" height="250" />
               <?php } ?>
             </div>
             <div id="pager"></div>
@@ -237,22 +237,32 @@
             </span>
       </h2>
       <div class="xiaozu">
-            <ul>
-                <?php foreach ($articleSortList as $key => $v) {?>
-                    <dl>
+            <?php foreach ($articleSortList as $key => $v) {?>
+                <div class="xiaozu_dl">
+                    <div class="xiaozu_dl_first">
                         <a href="<?php echo $this->createUrl('article/index',array('cateId'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>" target="_self">
                             <img alt="<?php echo $v['name']; ?>" src="<?php echo $this->createUrl(IMAGES_ARTICLE_PHOTO.$v['img']); ?>" /></a>
-                        <dt>
+                        <div class="xiaozu_dt">
                             <a href="<?php echo $this->createUrl('group/detail',array('id'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>" target="_self"><?php echo $v['name']; ?></a>
 <!--                            （<font>--><?php //echo $v->topicCount; ?><!--</font>）-->
-                        </dt>
-                        <dd><?php echo Helper::truncate_utf8_string($v['des'],20); ?></dd>
-                    </dl>
+                        </div>
+                        <div class="xiaozu_dd"><?php echo Helper::truncate_utf8_string($v['des'],20); ?></div>
+                    </div>
+                    <div class="xiaozu_dl_list">
+                        <ul>
+                            <?php foreach ($v['data'] as $key => $value) {?>
+                               <li>
+                                    <h3><a target="_self" title="<?php echo $value->title; ?>" href="<?php echo $this->createUrl('/article/index', array('cateId'=>$value->id)); ?>"><?php echo $value->title; ?></a></h3>
+                               </li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                </div>
 <!--                    <li>-->
 <!--                        <h3><a target="_self" title="--><?php //echo $value->title; ?><!--" href="--><?php //echo $this->createUrl('/article/index', array('cateId'=>$value->id)); ?><!--">--><?php //echo $value->title; ?><!--</a></h3>-->
 <!--                    </li>-->
-                <?php } ?>
-            </ul>
+            <?php } ?>
+
       </div>
       <h2>
         热门小组
@@ -261,16 +271,27 @@
         </span>
       </h2>
       <div class="xiaozu">
-        <?php foreach($groupList as $k=>$v){ ?>
-          <dl>
-            <a href="<?php echo $this->createUrl('group/detail',array('id'=>$v->id)); ?>" title="<?php echo $v->name; ?>" target="_self">
-              <img alt="<?php echo $v->name; ?>" src="<?php echo $v->imgLink; ?>" /></a>
-            <dt>
-              <a href="<?php echo $this->createUrl('group/detail',array('id'=>$v->id)); ?>" title="<?php echo $v->name; ?>" target="_self"><?php echo $v->name; ?></a>
-              （<font><?php echo $v->topicCount; ?></font>）
-            </dt>
-            <dd><?php echo Helper::truncate_utf8_string($v->des,20); ?></dd>
-          </dl>
+        <?php foreach($groupSortList as $k=>$v){ ?>
+          <div class="xiaozu_dl">
+              <div class="xiaozu_dl_first">
+                <a href="<?php echo $this->createUrl('group/detail',array('id'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>" target="_self">
+                  <img alt="<?php echo $v['name']; ?>" src="<?php echo $v['imgLink']; ?>" /></a>
+                <div class="xiaozu_dt">
+                  <a href="<?php echo $this->createUrl('group/detail',array('id'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>" target="_self"><?php echo $v['name']; ?></a>
+    <!--              （<font>--><?php //echo $v['topicCount']; ?><!--</font>）-->
+                </div>
+                  <div class="xiaozu_dd"><?php echo Helper::truncate_utf8_string($v['des'],20); ?></div>
+              </div>
+              <div class="xiaozu_dl_list">
+                  <ul>
+                      <?php foreach ($v['data'] as $key => $value) {?>
+                          <li>
+                              <h3><a href="<?php echo $this->createUrl('/group/topic',array('id'=>$value->id)); ?>" title="<?php echo $value->title; ?>" target="_self"><?php echo $value->title; ?></a></h3>
+                          </li>
+                      <?php } ?>
+                  </ul>
+              </div>
+          </div>
         <?php } ?>
       </div>
       
@@ -436,11 +457,6 @@
       }
     }
   });
-  $(".green_btn").click(
-      function(){
-        $('#login-form').submit();
-      }
-  )
 </script>
 <!-- Baidu Button BEGIN -->
 <script type="text/javascript" id="bdshare_js" data="type=slide&amp;img=0&amp;pos=right&amp;uid=0" ></script>

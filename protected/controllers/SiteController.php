@@ -33,7 +33,15 @@ class SiteController extends Controller
 		$model=new LoginForm;
 
 		// 推荐小组
-		$groupList = Group::model()->findAll(array('condition'=>'status = 1','order'=>'sort desc','limit'=>20));
+		$groupList = Group::model()->findAll(array('condition'=>'status = 1','order'=>'sort desc','limit'=>8));
+        $groupSortList = array();
+        foreach ($groupList as $key => $value){
+            $criteria = new CDbCriteria();
+            $criteria->order = "hot desc,create_time desc";
+            $groupTopicList=$value->topicMany($criteria);
+            array_push($groupSortList,array("id"=>$value->id,"imgLink"=>$value->imgLink,"name"=>$value->name,"title"=>$value->topicCount,"des"=>$value->des,"data"=>$groupTopicList));
+        }
+
 		// 活跃用户
 		$memberList = Member::model()->findAll(array('condition'=>'','order'=>'last_login_time desc','limit'=>20));
 		// 最新创建小组
@@ -44,7 +52,7 @@ class SiteController extends Controller
         $articleSort = Cate::model()->findAll(array('condition'=>'status = 1 and type = 1','order'=>'id desc','limit'=>8));
         $articleSortList = array();
         foreach ($articleSort as $key => $value){
-            $articleDetailList = Article::model()->findAll(array('condition'=>'status = 1 and cateId = '.$value->id,'order'=>'id desc','limit'=>8));
+            $articleDetailList = Article::model()->findAll(array('condition'=>'status = 1 and cateId = '.$value->id,'order'=>'id desc','limit'=>6));
             array_push($articleSortList,array("id"=>$value->id,"img"=>$value->img,"name"=>$value->name,"title"=>$value->title,"des"=>$value->des,"data"=>$articleDetailList));
         }
 		// 最新文章
@@ -58,7 +66,7 @@ class SiteController extends Controller
 			'keywords'=>Helper::siteConfig()->seo_keywords,
 			'description'=>Helper::siteConfig()->seo_description,
 		);
-		$this->render('index',compact('model','groupList','memberList','groupListNew','topicList','articleList','articleSortList','ad'));
+		$this->render('index',compact('model','groupList','memberList','groupListNew','topicList','articleList','articleSortList','groupSortList','ad'));
 	}
 
 	public function actionDown(){
