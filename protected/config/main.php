@@ -25,6 +25,10 @@ return array(
 	),
 
 	'modules'=>array(
+        'gii'=>array(
+            'class'=>'system.gii.GiiModule',
+            'password'=>'1',
+        ),
 		'srbac' => array(
 	        'userclass'=>'Admins',
 	        'userid'=>'userid',

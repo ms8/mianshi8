@@ -189,3 +189,7 @@ ul.yiiPager a:link{ padding: 2px 5px; font-weight: normal;text-decoration: none;
 
 input[type="button"], input[type="submit"], input[type="reset"], input[type="file"]::-webkit-file-upload-button{ margin-left: 5px;}
 .grid-view table.items tr.odd input, #id input{ border:1px;}
+
+
+.labelForRadio{display:inline-block;width:auto;float:none;}
+.checkbox{display:inline-block;width:auto;float:none; width:100px;}
