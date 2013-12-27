@@ -23,9 +23,9 @@
     <div class="httop1">
         <div class="httop11">
             <a href="<?php echo Yii::app()->baseUrl;?>/">首页</a>
-                <a href="<?php echo Yii::app()->createUrl('/group'); ?>">小组</a>
+                <a href="<?php echo Yii::app()->createUrl('/group'); ?>">公司</a>
                 <a href="<?php echo Yii::app()->createUrl('/article'); ?>">学院</a>
-                <a href="<?php echo Yii::app()->createUrl('/tongcheng'); ?>">活动</a>
+                <!--<a href="<?php //echo Yii::app()->createUrl('/tongcheng'); ?>">活动</a>-->
                 <!--<a href="<?php echo Yii::app()->createUrl('/tupian'); ?>">美图</a>-->
                <!--<a href="<?php echo Yii::app()->createUrl('/taoke'); ?>">淘客</a>-->
         </div>
