@@ -42,7 +42,7 @@ class Config extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('site_name, site_url, seo_description, seo_keywords,site_copyright', 'length', 'max'=>255),
+			array('site_name, site_url, seo_description, seo_keywords,site_copyright', 'length', 'max'=>2550),
 			array('site_logo', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
