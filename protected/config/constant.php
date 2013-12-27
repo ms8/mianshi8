@@ -17,4 +17,6 @@ define('IMAGES_USER_PHOTO','/upload/user_photo/');
 define('IMAGES_GROUP_PHOTO','/upload/group_photo/');
 //文章图片
 define('IMAGES_ARTICLE_PHOTO','/upload/article/');
+//文章分类图片
+define('IMAGES_FENLEI_PHOTO','/upload/fenlei/');
 ?>

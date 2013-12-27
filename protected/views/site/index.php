@@ -1,3 +1,108 @@
+<style type="text/css">
+    #wrapper {
+        clear: both;
+        background-color: #fff;
+        height: 280px;
+        overflow: hidden;
+        position: relative;
+    }
+    .wrapperIn{
+        float: left;
+        width: 320px;;
+    }
+    #carousel img {
+        display: block;
+        float: left;
+    }
+    #prev, #next {
+        background-color: rgba(255, 255, 255, 0.7);
+        display: block;
+        height: 450px;
+        width: 50%;
+        top: 0;
+        position: absolute;
+    }
+    #prev:hover, #next:hover {
+        background-color: #fff;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+    #prev {
+        left: -250px;
+    }
+    #next {
+        right: -250px;
+    }
+    #pager {
+        margin-left: 0px;
+        position: absolute;
+        top: 200px;
+        bottom: 10px;
+        width:640px;
+        /*background-color: #95a5a6;*/
+        /*background-image: linear-gradient(30deg, #dce6d2, #003333 );*/
+        /*opacity: 0.7;*/
+        padding: 10px 0 ;;
+    }
+    #pager a {
+        border: 3px solid #5c809c;
+        border-radius: 10px;
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        margin: 0 5px 0 0;
+        background-color: #dce6d2;
+    }
+    #pager a:hover {
+        background-color: rgba(244, 244, 244, 0.48);
+    }
+    #pager a span {
+        display: none;
+    }
+        /*#pager a.selected span {*/
+        /*display: inline-block;*/
+        /*color: #E9E9E9;*/
+        /*position: absolute;*/
+        /*top:30px;*/
+        /*left: 20px;*/
+        /*font-size: 15px;;*/
+        /*}*/
+    #pager a.selected {
+        background-color: #59aa1b;
+    }
+    .article{
+        clear: both;;
+        width:640px;
+        margin-bottom: 18px;
+    }
+
+    #donate-spacer {
+        height: 100%;
+    }
+    #donate {
+        border-top: 1px solid #999;
+        width: 750px;
+        padding: 50px 75px;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+    #donate p, #donate form {
+        margin: 0;
+        float: left;
+    }
+    #donate p {
+        width: 650px;
+    }
+    #donate form {
+        width: 100px;
+    }
+    #article ul li h3 {
+        color: #666666;
+        font-size: 14px;
+        font-weight: 100;
+        line-height: 30px;
+        text-align: left;;
+    }
+</style>
 <?php if(Yii::app()->user->isGuest){?>
   <div class="top">
       <div class="topInner">
@@ -109,113 +214,8 @@
   <div class="con1">
     <div class="left1">
 
-
+        <!--
       <div class="gaungg">
-
-        <style type="text/css">
-          #wrapper {
-              clear: both;
-              background-color: #fff;
-              height: 280px;
-              overflow: hidden;
-              position: relative;
-          }
-          .wrapperIn{
-              float: left;
-              width: 320px;;
-          }
-          #carousel img {
-              display: block;
-              float: left;
-          }
-          #prev, #next {
-              background-color: rgba(255, 255, 255, 0.7);
-              display: block;
-              height: 450px;
-              width: 50%;
-              top: 0;
-              position: absolute;
-          }
-          #prev:hover, #next:hover {
-              background-color: #fff;
-              background-color: rgba(255, 255, 255, 0.8);
-          }
-          #prev {
-              left: -250px;
-          }
-          #next {
-              right: -250px;
-          }
-          #pager {
-              margin-left: 0px;
-              position: absolute;
-              top: 180px;
-              bottom: 10px;
-              width:640px;
-              background-color: #5a5a5a;
-              opacity: 0.7;
-              padding: 10px 0 ;;
-          }
-          #pager a {
-              border: 2px solid #fff;
-              border-radius: 10px;
-              display: inline-block;
-              width: 6px;
-              height: 6px;
-              margin: 0 5px 0 0;
-              background-color: rgba(255, 255, 255, 0.5);
-          }
-          #pager a:hover {
-              background-color: rgba(244, 244, 244, 0.48);
-          }
-          #pager a span {
-              display: none;
-          }
-          #pager a.selected span {
-              display: inline-block;
-              color: #E9E9E9;
-              position: absolute;
-              top:30px;
-              left: 20px;
-              font-size: 15px;;
-          }
-          #pager a.selected {
-              background-color: #ccff1b;
-          }
-          .article{
-              clear: both;;
-              width:640px;
-              margin-bottom: 18px;
-          }
-
-          #donate-spacer {
-              height: 100%;
-          }
-          #donate {
-              border-top: 1px solid #999;
-              width: 750px;
-              padding: 50px 75px;
-              margin: 0 auto;
-              overflow: hidden;
-          }
-          #donate p, #donate form {
-              margin: 0;
-              float: left;
-          }
-          #donate p {
-              width: 650px;
-          }
-          #donate form {
-              width: 100px;
-          }
-          #article ul li h3 {
-              color: #666666;
-              font-size: 14px;
-              font-weight: 100;
-              line-height: 30px;
-              text-align: left;;
-          }
-        </style>
         <div id="wrapper">
             <div id="carousel">
               <?php
@@ -228,8 +228,8 @@
             </div>
             <div id="pager"></div>
         </div>
-
       </div>
+      -->
        <h2>
             最新推荐
             <span>
@@ -241,7 +241,7 @@
                 <div class="xiaozu_dl">
                     <div class="xiaozu_dl_first">
                         <a href="<?php echo $this->createUrl('article/index',array('cateId'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>" target="_self">
-                            <img alt="<?php echo $v['name']; ?>" src="<?php echo $this->createUrl(IMAGES_ARTICLE_PHOTO.$v['img']); ?>" /></a>
+                            <img alt="<?php echo $v['name']; ?>" src="<?php echo $this->createUrl(IMAGES_FENLEI_PHOTO.$v['img']); ?>" /></a>
                         <div class="xiaozu_dt">
                             <a href="<?php echo $this->createUrl('group/detail',array('id'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>" target="_self"><?php echo $v['name']; ?></a>
 <!--                            （<font>--><?php //echo $v->topicCount; ?><!--</font>）-->
@@ -294,7 +294,7 @@
           </div>
         <?php } ?>
       </div>
-      
+      <!--
       <h2>
         最热话题
         <span>
@@ -325,6 +325,7 @@
           </dl>
         <?php } ?>
       </div>
+      -->
 
     </div>
     <div class="right1">
@@ -371,7 +372,7 @@
                   <div style="position:absolute;right:0;bottom:0;width:15px;height:15px;background:red;overflow:hidden;"><img style="width:15px;height:15px;" src="/images/vip.jpg" /></div>
                   <?php } ?>
                   <img alt="<?php echo $v->nickname; ?>" src="<?php echo $this->createUrl(IMAGES_USER_PHOTO.$v->photo);?>" /></a>
-                <div class="zx"></div>
+<!--                <div class="zx"></div>-->
               </ol>
               <p><a href="<?php echo $v->kongjian; ?>"><?php echo $v->nickname; ?></a></p>
             </li>

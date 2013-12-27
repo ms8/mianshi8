@@ -105,13 +105,11 @@
         <?php echo $content ?>
         <div class="footer">
             <div style="overflow:hidden;">
-                <div>开源联盟：
                 <?php $links = Links::model()->findAll(array('condition'=>'status = 1','order'=>'sort desc')); ?>
                 <?php if(!empty($links)){ ?>
                     <?php foreach($links as $v){ ?>
                         <a href="<?php echo $v->url; ?>"><?php echo $v->name; ?></a>
                     <?php } ?>
-                    </div>
                 <?php } ?>
             </div>
             <div class="footer1">
