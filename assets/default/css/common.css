@@ -240,6 +240,9 @@ a:hover{ text-decoration:none; color:#fff; background: #3377aa; }
 .right73 a:hover{ background-color:#6ebfc3; color:#fff;}
 .bgcl1{ background:#fafafa;}
 
+.right_zp a{ float:left;padding:0 4px; border-radius:3px 3px 3px 3px; margin-right:10px; margin-bottom:13px; display:inline-block;}
+
+
 /*我加入的小组*/
 .left6{ height:27px; line-height:27px; font-size:14px; color:#111111;}
 .left7{ clear:both; border-top:1px solid #dddddd; overflow:hidden; padding-top:20px;}
@@ -376,7 +379,7 @@ a:hover{ text-decoration:none; color:#fff; background: #3377aa; }
 .ad1{ display: none;}
 
 .mynav{ overflow:hidden; padding-top:3px; background:#fff6ee; width:950px; margin:0px auto 25px auto; border-bottom:1px solid #faeee4;}
-.mynav a{ float:left; padding:0 20px; line-height25px; margin-left:20px; margin-top:3px;}
+.mynav a{ float:left; padding:0 20px; line-height:25px; margin-left:20px; margin-top:3px;}
 .mynav a:hover{ background:#fff; color:#3377AA;}
 .bai{ background:#fff;}
 

@@ -250,7 +250,7 @@ class GroupController extends Controller
         	$count=$model->topicCount($criteria);
 
         	$pager = new CPagination($count);    
-        	$pager->pageSize = 20;             
+        	$pager->pageSize = 20;
         	$pager->applyLimit($criteria); 
 
 			$topic=$model->topicMany($criteria);	
@@ -407,29 +407,22 @@ class GroupController extends Controller
 	      	 		$mmember->gid=$model->id;
 	      	 		$mmember->create_time=time();//创建时间
 	      	 		$mmember->save();
-//	      	 		die(CJSON::encode(array('status'=>1)));
-                    $result = CJSON::encode(array('status'=>1));
-
+	      	 		die(CJSON::encode(array('status'=>1)));
 	      	 	}else{
-//	      	 		die(CJSON::encode(array('status'=>0)));
-                    $result = CJSON::encode(array('status'=>0));
+	      	 		die(CJSON::encode(array('status'=>0)));
 	      	 	}
-                //echo $result;
-                $model=$this->isLogin();
-                $this->render('mine',array('model'=>$model));
+                echo $result;
 	      	 }else{
 	      	 	die($ajaxRes);
 	      	 }
 
-		}else{
-            $this->pageKeyword=array(
-                'title'=>'创建小组'.'-'.Helper::siteConfig()->site_name,
-                'keywords'=>'创建小组',
-                'description'=>'创建小组',
-            );
-            $this->render('create',array('model'=>$model));
-        }
-
+		}
+        $this->pageKeyword=array(
+            'title'=>'创建小组'.'-'.Helper::siteConfig()->site_name,
+            'keywords'=>'创建小组',
+            'description'=>'创建小组',
+        );
+        $this->render('create',array('model'=>$model));
 	}
 
 	//创建小组
@@ -534,33 +527,27 @@ class GroupController extends Controller
 	      	 	
 	      	 	if($model->save(false)){
 	      	 		scoreAction::setScore(Yii::app()->user->id,'fatie','add');
-//	      	 		die(CJSON::encode(array('status'=>1,'id'=>$gid)));
-                    $result = CJSON::encode(array('status'=>1,'id'=>$gid));
+	      	 		die(CJSON::encode(array('status'=>1,'id'=>$gid)));
 	      	 	}else{
-//	      	 		die(CJSON::encode(array('status'=>0)));
-                    $result = CJSON::encode(array('status'=>0));
+	      	 		die(CJSON::encode(array('status'=>0)));
 	      	 	}	
 	      	 }else{
 	      	 	die($ajaxRes);
 	      	 }
-            $this->actionDetail();
-		}else{
-
-
-		$newMember= Mmember::model()->findAll(
-			      array(
-			        "condition" => "gid = ".$group->id,
-			        "limit"=>10,
-					"order"=>'create_time desc',
-			      )
-			 	);
-		$this->pageKeyword=array(
-			'title'=>'增加话题'.'-'.Helper::siteConfig()->site_name,
-			'keywords'=>'增加话题',
-			'description'=>'增加话题',
-		);
-		$this->render('add_topic',array('model'=>$model,'group'=>$group,'newMember'=>$newMember));
-        }
+		}
+        $newMember= Mmember::model()->findAll(
+            array(
+                "condition" => "gid = ".$group->id,
+                "limit"=>10,
+                "order"=>'create_time desc',
+            )
+        );
+        $this->pageKeyword=array(
+            'title'=>'增加话题'.'-'.Helper::siteConfig()->site_name,
+            'keywords'=>'增加话题',
+            'description'=>'增加话题',
+        );
+        $this->render('add_topic',array('model'=>$model,'group'=>$group,'newMember'=>$newMember));
 	}
 	//编辑话题
 	public function actionEditTopic(){

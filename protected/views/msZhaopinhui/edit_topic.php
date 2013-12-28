@@ -1,5 +1,5 @@
 <div class="top3">
-      发布话题
+      修改话题
 </div>
 
 <div class="con clear">
@@ -13,7 +13,7 @@
             <div class="left2c">
                 <div class="left2c1">标题:</div>
                 <div class="left2c21 bgcl2">
-                    <?php echo $form->textField($model,'title',array('class'=>'inptopic','value'=>'')); ?>
+                    <?php echo $form->textField($model,'title',array('class'=>'inptopic')); ?>
                 </div>
             </div>
             <div class="left2c">
@@ -74,13 +74,8 @@
             <div class="xiaozu1"> <a href="#"><img src="<?php echo  IMAGES_PATH; ?>tu6.jpg" /></a> <br />
                 <a href="#">wow小白小组</a> (11263) </div>
         </div> -->
-    <!--     <div class="right6">最近加入</div>
-        <div class="xiaozu">
-          <?php foreach ($newMember as $key => $value) {?>
-            <div class="xiaozu1"> <a href="#"><img src="<?php echo  IMAGES_USER_PHOTO.$value->memberOne->photo; ?>" width="48" height="48" /></a> <br />
-                <a href="#"><?php echo $value->memberOne->nickname  ?></a> </div>
-            <?php }  ?> -->
-        <div class="right6"> <a href="<?php echo Yii::app()->createUrl('group/detail',array('id'=>$group->id)); ?>">返回>> <?php echo $group->name;  ?></a></div>
+ 
+        <div class="right6"> <a href="<?php echo Yii::app()->createUrl('group/topic',array('id'=>$model->id)); ?>">返回>> <?php echo $model->title;  ?></a></div>
  
           <!--   <div class="xiaozu1"> <a href="#"><img src="<?php echo  IMAGES_PATH; ?>tu6.jpg" /></a> <br />
                 <a href="#">wow小白小组</a> </div>
@@ -127,44 +122,33 @@
     
 </div>
 <script>
-    //提交验证
-//    $('#sub').live('click',function(){
-//        $('#addtopic_group').submit();
-//        return false;
-//    });
+ $(function(){
+     $('#addtopic_group').ajaxForm({
+         dataType:'json',
+         success:function processJson(data) {
+             var items = [];
+             $.each(data,function(key, val){var tem=[key,val];items.push(tem)});
+             var length = items.length;
+             if(data.status != 1){
+                 //items[i][0]错误节点名称
+                 //items[i][1]对应错误提示
+                 for(var i=0;i<length;i++){
+                     alert(items[i][1]);
+                     return false;
+                 }
+             }else{
+                 alert('修改成功');
+                 location.href = "<?php echo Yii::app()->createUrl('group/topic'); ?>/"+data.id;
+             }
+         }
+     });
+     $("#sub").live("click",
+         function(){
+             $('#addtopic_group').submit();
+             return false;
+         }
+     );
+ })
 
- $('#addtopic_group').ajaxForm({
-    dataType:'json',
-    success:function processJson(data) {
-      var items = [];
-      $.each(data,function(key, val){var tem=[key,val];items.push(tem)});
-      var length = items.length;
-      if(data.status != 1){       
-        //items[i][0]错误节点名称
-        //items[i][1]对应错误提示
-        for(var i=0;i<length;i++){
-          alert(items[i][1]);
-          return false;
-        }
-      }else{
-
-        var istijiao = $("#sub").attr('istijiao');
-        if(istijiao == 2){
-          return false;
-        }else{
-          $("#sub").attr('istijiao','2');
-        };
-
-        alert('提交成功');
-        location.href = "<?php echo Yii::app()->createUrl('group/detail'); ?>/"+data.id; 
-      }
-    }
-  });
-$("#sub").click(
-  function(){
-    $('#addtopic_group').submit();
-    return false;
-  }
-);
 </script>
 

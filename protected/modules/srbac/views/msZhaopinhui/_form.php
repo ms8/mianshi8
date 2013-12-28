@@ -21,11 +21,6 @@
 		<?php echo $form->error($model,'name'); ?>
 	</div>
 
-<!--	<div class="row">-->
-<!--		--><?php ////echo $form->labelEx($model,'activity_date'); ?>
-		<?php //echo $form->textField($model,'activity_date'); ?>
-<!--		--><?php ////echo $form->error($model,'activity_date'); ?>
-<!--	</div>-->
     <?php echo $form->labelEx($model,'activity_date');
     $this->widget('application.extensions.timepicker.timepicker', array(
         'model'=>$model,
@@ -40,11 +35,15 @@
 		<?php echo $form->error($model,'activity_address'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'status'); ?>
-		<?php echo $form->textField($model,'status',array('size'=>1,'maxlength'=>1)); ?>
-		<?php echo $form->error($model,'status'); ?>
-	</div>
+
+    <div class="row">
+        <label for="MsZhaopinhui_status">是否有效</label>
+        <input id="MsZhaopinhui_status" type="hidden" name="MsZhaopinhui[status]" >
+        <select name="enable" id="enable" >
+            <option value="1" selected>是</option>
+            <option value="0">否</option>
+        </select>
+    </div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'description'); ?>
@@ -52,17 +51,21 @@
 		<?php echo $form->error($model,'description'); ?>
 	</div>
 
-<!--    --><?php //echo $form->labelEx($model,'createtime');
-//    $this->widget('application.extensions.timepicker.timepicker', array(
-//        'model'=>$model,
-//        'name'=>'createtime',
-//    ));
-//    ?>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
-	</div>
+    <div class="row buttons">
+        <?php if($model->isNewRecord) {?>
+            <input type="submit" value="新建"  class="btn" id="createBt">
+        <?php }else {?>
+            <input type="submit" value="保存"  class="btn" id="createBt">
+        <?php }?>
+    </div>
 
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+
+<script type="text/javascript">
+    $("#createBt").live("click",function(){
+        var enable = $("#enable  option:selected").val();
+        $("#MsZhaopinhui_status").val(enable);
+    });
+</script>

@@ -61,6 +61,7 @@
     <div class="httop1">
         <div class="httop11">
             <a href="<?php echo Yii::app()->baseUrl;?>/">首页</a>
+            <a href="<?php echo Yii::app()->createUrl('/mszhaopinhui'); ?>">招聘会</a>
             <a href="<?php echo Yii::app()->createUrl('/group'); ?>">小组</a>
             <a href="<?php echo Yii::app()->createUrl('/article'); ?>">学院</a>
             <a href="<?php echo Yii::app()->createUrl('/tongcheng'); ?>">活动</a>
@@ -92,6 +93,7 @@
                     <a href="<?php echo Yii::app()->createUrl('/tongcheng'); ?>">我的面试吧</a>
                 <?php }else{?>
                     <a class="shouye" href="<?php echo Yii::app()->baseUrl;?>/">首页</a>
+                    <a href="<?php echo Yii::app()->createUrl('/mszhaopinhui'); ?>">招聘会</a>
                     <a href="<?php echo Yii::app()->createUrl('/group'); ?>">小组</a>
                     <a href="<?php echo Yii::app()->createUrl('/article'); ?>">学院</a>
                     <a href="<?php echo Yii::app()->createUrl('/tongcheng'); ?>">活动</a>
