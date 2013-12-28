@@ -64,11 +64,6 @@
             <a href="<?php echo Yii::app()->createUrl('/mszhaopinhui'); ?>">招聘会</a>
             <a href="<?php echo Yii::app()->createUrl('/group'); ?>">公司</a>
             <a href="<?php echo Yii::app()->createUrl('/article'); ?>">学院</a>
-<<<<<<< Updated upstream
-            <!--<a href="<?php //echo Yii::app()->createUrl('/tongcheng'); ?>">活动</a>-->
-=======
-            <!-- <a href="<?php //echo Yii::app()->createUrl('/tongcheng'); ?>">活动</a>-->
->>>>>>> Stashed changes
         </div>
         <div class="httop12">
             <!-- <a href="javascript:void(0)">提醒
@@ -94,22 +89,13 @@
                     <a class="shouye" href="<?php echo Yii::app()->baseUrl;?>/">首页</a>
                     <a href="<?php echo Yii::app()->createUrl('/mszhaopinhui'); ?>">招聘会</a>
                     <a href="<?php echo Yii::app()->createUrl('/group'); ?>">公司</a>
-<<<<<<< Updated upstream
-                    <a href="<?php echo Yii::app()->createUrl('/article'); ?>">学院</a>
-=======
-                    <a href="<?php echo Yii::app()->createUrl('/article'); ?>">面试达人</a>
->>>>>>> Stashed changes
                     
                 <?php }else{?>
                     <a class="shouye" href="<?php echo Yii::app()->baseUrl;?>/">首页</a>
                     <a href="<?php echo Yii::app()->createUrl('/mszhaopinhui'); ?>">招聘会</a>
                     <a href="<?php echo Yii::app()->createUrl('/group'); ?>">公司</a>
                     <a href="<?php echo Yii::app()->createUrl('/article'); ?>">学院</a>
-<<<<<<< Updated upstream
-                    <!--<a href="<?php echo Yii::app()->createUrl('/tongcheng'); ?>">活动</a>-->
-=======
-                   <!-- <a href="<?php //echo Yii::app()->createUrl('/tongcheng'); ?>">活动</a>-->
->>>>>>> Stashed changes
+
                 <?php }?>
             </div>
             <div class="sousuo">
