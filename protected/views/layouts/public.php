@@ -22,12 +22,15 @@
     </div> -->
     <div class="httop1">
         <div class="httop11">
-            <a href="<?php echo Yii::app()->baseUrl;?>/">首页</a>
-                <a href="<?php echo Yii::app()->createUrl('/group'); ?>">公司</a>
-                <a href="<?php echo Yii::app()->createUrl('/article'); ?>">学院</a>
+            <ul class="nav">
+                <li><a href="<?php echo Yii::app()->baseUrl;?>/">首页</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl('/mszhaopinhui'); ?>">招聘会</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl('/group'); ?>">公司</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl('/article'); ?>">学院</a></li>
                 <!--<a href="<?php //echo Yii::app()->createUrl('/tongcheng'); ?>">活动</a>-->
                 <!--<a href="<?php echo Yii::app()->createUrl('/tupian'); ?>">美图</a>-->
                <!--<a href="<?php echo Yii::app()->createUrl('/taoke'); ?>">淘客</a>-->
+            </ul>
         </div>
         <?php if(Yii::app()->user->isGuest){?>
         <div class="httop12">
@@ -50,9 +53,10 @@
         <?php }?>
 
     </div>
+    <div class="loginHead">
       
 <?php echo $content ?>
-
+    </div>
     <div class="con">
     <div class="footer">
             <div class="footer1">

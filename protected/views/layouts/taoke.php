@@ -26,13 +26,16 @@
 <body>
     <div class="httop1">
         <div class="httop11">
-            <a href="/">首页</a>
-                <a href="<?php echo Yii::app()->createUrl('/group'); ?>">小组</a>
-                <a href="<?php echo Yii::app()->createUrl('/article'); ?>">学院</a>
-                <a href="<?php echo Yii::app()->createUrl('/tongcheng'); ?>">活动</a>
+            <ul class="nav">
+                <li><a href="/">首页</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl('/group'); ?>">小组</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl('/mszhaopinhui'); ?>">招聘会</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl('/group'); ?>">公司</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl('/article'); ?>">学院</a></li>
+<!--                <li><a href="--><?php //echo Yii::app()->createUrl('/tongcheng'); ?><!--">活动</a></li>-->
                 <!--<a href="<?php echo Yii::app()->createUrl('/tupian'); ?>">美图</a>-->
                <!--<a href="<?php echo Yii::app()->createUrl('/taoke'); ?>">淘客</a>-->
-
+            </ul>
         </div>
         <?php if(Yii::app()->user->isGuest){?>
         <div class="httop12">
@@ -64,7 +67,7 @@
         <?php }?>
 
     </div>  
-    <div class="httop4">
+    <div class="httop4  loginHead">
         <div class="httop21">
             <div class="logo3"> 
                 <a href="<?php echo Yii::app()->createUrl('group'); ?>"><?php echo  Helper::siteConfig()->site_name; ?>商城</a>

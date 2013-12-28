@@ -26,11 +26,13 @@
 <body>
     <div class="httop1">
         <div class="httop11">
-            <a href="<?php echo Yii::app()->baseUrl;?>/">首页</a>
-               <a href="<?php echo Yii::app()->createUrl('/group'); ?>">公司</a>
-                <a href="<?php echo Yii::app()->createUrl('/article'); ?>">学院</a>
+            <ul class="nav">
+                <li><a href="<?php echo Yii::app()->baseUrl;?>/">首页</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl('/mszhaopinhui'); ?>">招聘会</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl('/group'); ?>">公司</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl('/article'); ?>">学院</a></li>
                <!-- <a href="<?php //echo Yii::app()->createUrl('/tongcheng'); ?>">活动</a>-->
-				
+	        </ul>
         </div>
         <?php if(Yii::app()->user->isGuest){?>
         <div class="httop12">
@@ -62,7 +64,7 @@
         <?php }?>
 
     </div>  
-    <div class="httop3">
+    <div class="httop3  loginHead">
         <div class="httop21">
             <div class="logo2"> 
                 <a href="<?php echo Yii::app()->createUrl('group'); ?>"><?php echo  Helper::siteConfig()->site_name; ?>学院</a>

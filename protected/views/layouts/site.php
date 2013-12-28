@@ -22,7 +22,7 @@
     Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/artDialog/artDialog.min.js');
 
     Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/common.js');
-    //Yii::app()->clientScript->registerCssFile('common.css');
+//    Yii::app()->clientScript->registerCssFile('common.css');
     Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/red.css');
     Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/fontello/css/fontawesome.css');
 ?>
@@ -56,14 +56,15 @@
 
 <body>
 
-<div>
     <?php if(!Yii::app()->user->isGuest){?>
     <div class="httop1">
         <div class="httop11">
-            <a href="<?php echo Yii::app()->baseUrl;?>/">首页</a>
-            <a href="<?php echo Yii::app()->createUrl('/mszhaopinhui'); ?>">招聘会</a>
-            <a href="<?php echo Yii::app()->createUrl('/group'); ?>">公司</a>
-            <a href="<?php echo Yii::app()->createUrl('/article'); ?>">学院</a>
+            <ul class="nav">
+                <li><a href="<?php echo Yii::app()->baseUrl;?>/">首页</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl('/mszhaopinhui'); ?>">招聘会</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl('/group'); ?>">公司</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl('/article'); ?>">学院</a></li>
+            </ul>
         </div>
         <div class="httop12">
             <!-- <a href="javascript:void(0)">提醒
@@ -78,7 +79,7 @@
         </div>
     </div>
     <?php }?>
-    	<div class="head1">
+    	<div class="head1 <?php if(!Yii::app()->user->isGuest){echo 'loginHead';}?>">
         	<div class="logo">
             	<a href="<?php echo Yii::app()->baseUrl;?>/">
                 	<img src="<?php echo Yii::app()->baseUrl;?>/upload/sitelogo/<?php echo  Helper::siteConfig()->site_logo; ?>" />
@@ -132,7 +133,6 @@
                 </div>
             </div>
         </div>
-    </div>
 
 </body>
 </html>
