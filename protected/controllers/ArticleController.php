@@ -57,10 +57,11 @@ class ArticleController extends Controller
 		$article->save(false);
 		//上一篇
 		$prev=Article::model()->findAll(array("condition" => "id<".$article->id." and cateId=".$article->cateId." and status = 1","limit"=>1,'order'=>'create_time desc'));
-		$prev=$prev[0];
+//		$prev=$prev[0];
+        if(!empty($prev)){$prev = $prev[0];}
 		//下一篇
 		$next=Article::model()->findAll(array("condition" => "id>".$article->id." and cateId=".$article->cateId." and status = 1","limit"=>1,'order'=>'create_time asc'));
-		$next=$next[0];
+		if(!empty($next)){$next = $next[0];}
 
 		$xin = Article::model()->findAll(array('order'=>'create_time desc','limit'=>10));
 		$re = Article::model()->findAll(array('order'=>'click desc','limit'=>10));

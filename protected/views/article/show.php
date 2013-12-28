@@ -18,8 +18,13 @@
                 <a href="#" title="辰木" target="_self">辰木</a>
                 授权（辰木）发表，文章著作权为原作者所有</span> -->
                 <div class="botom">
-                	<div class="prev" >上一篇:<a href="<?php echo $prev->id?$this->createUrl('/article/show', array('id'=>$prev->id)):'javascript:void(0)'; ?>" title="" target="_self"><?php echo $prev->title?$prev->title:'没有了'; ?></a></div>
-                    <div  class="next" >下一篇:<a href="<?php echo $next->id?$this->createUrl('/article/show', array('id'=>$next->id)):'javascript:void(0)'; ?>" title="" target="_self"><?php echo $next->title?$next->title:'没有了'; ?></a></div>
+                	<div class="prev" >上一篇:<?php if(empty($prev)){echo "没有了";}else{?>
+                        <a href="<?php echo $prev->id?$this->createUrl('/article/show', array('id'=>$prev->id)):'javascript:void(0)'; ?>" title="" target="_self"><?php echo $prev->title; ?></a>
+                      <?php } ?></div>
+                    <div  class="next" >下一篇:<?php if(empty($next)){echo "没有了";}else{?>
+                        <a href="<?php echo $next->id?$this->createUrl('/article/show', array('id'=>$next->id)):'javascript:void(0)'; ?>" title="" target="_self"><?php echo $next->title; ?></a>
+                        <?php } ?></div>
+
                 </div>
             </div>
             <div class="gdtitle">更多相关阅读</div>

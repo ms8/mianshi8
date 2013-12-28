@@ -252,7 +252,7 @@
                         <ul>
                             <?php foreach ($v['data'] as $key => $value) {?>
                                <li>
-                                    <h3><a target="_self" title="<?php echo $value->title; ?>" href="<?php echo $this->createUrl('/article/index', array('cateId'=>$value->id)); ?>"><?php echo $value->title; ?></a></h3>
+                                    <h3><a target="_self" title="<?php echo $value->title; ?>" href="<?php echo $this->createUrl('/article/show/'.$value->id); ?>"><?php echo $value->title; ?></a></h3>
                                </li>
                             <?php } ?>
                         </ul>
