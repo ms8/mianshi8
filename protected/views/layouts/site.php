@@ -4,12 +4,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="robots" content="all" />
 <meta name="author" content="mianshi8@qq.com" />
-<meta name="Copyright" content="ebenchu" />
+<meta name="Copyright" content="mianshi8" />
 <title><?php echo $this->pageKeyword['title'];  ?></title>
 <meta name="keywords" content="<?php echo $this->pageKeyword['keywords'];  ?>" >
 <meta name="description" content="<?php echo $this->pageKeyword['description'];  ?>" >
-<meta property="qc:admins" content="5336456477652563056375" />
-<meta property="wb:webmaster" content="028cd7d60c45f425" />
+<meta property="qc:admins" content="" />
+<meta property="wb:webmaster" content="" />
 <link href="favicon.ico" type="image/x-icon" rel=icon>
 <link href="favicon.ico" type="image/x-icon" rel="shortcut icon">
 <link href="favicon.ico" type="image/x-icon" rel="shortcut icon">
@@ -62,9 +62,9 @@
         <div class="httop11">
             <a href="<?php echo Yii::app()->baseUrl;?>/">首页</a>
             <a href="<?php echo Yii::app()->createUrl('/mszhaopinhui'); ?>">招聘会</a>
-            <a href="<?php echo Yii::app()->createUrl('/group'); ?>">小组</a>
+            <a href="<?php echo Yii::app()->createUrl('/group'); ?>">公司</a>
             <a href="<?php echo Yii::app()->createUrl('/article'); ?>">学院</a>
-            <a href="<?php echo Yii::app()->createUrl('/tongcheng'); ?>">活动</a>
+            <!--<a href="<?php //echo Yii::app()->createUrl('/tongcheng'); ?>">活动</a>-->
         </div>
         <div class="httop12">
             <!-- <a href="javascript:void(0)">提醒
@@ -88,26 +88,27 @@
             <div class="nav">
                 <?php if(!Yii::app()->user->isGuest){?>
                     <a class="shouye" href="<?php echo Yii::app()->baseUrl;?>/">首页</a>
-                    <a href="<?php echo Yii::app()->createUrl('/group'); ?>">动态</a>
-                    <a href="<?php echo Yii::app()->createUrl('/article'); ?>">面试达人</a>
-                    <a href="<?php echo Yii::app()->createUrl('/tongcheng'); ?>">我的面试吧</a>
+                    <a href="<?php echo Yii::app()->createUrl('/mszhaopinhui'); ?>">招聘会</a>
+                    <a href="<?php echo Yii::app()->createUrl('/group'); ?>">公司</a>
+                    <a href="<?php echo Yii::app()->createUrl('/article'); ?>">学院</a>
+                    
                 <?php }else{?>
                     <a class="shouye" href="<?php echo Yii::app()->baseUrl;?>/">首页</a>
                     <a href="<?php echo Yii::app()->createUrl('/mszhaopinhui'); ?>">招聘会</a>
-                    <a href="<?php echo Yii::app()->createUrl('/group'); ?>">小组</a>
+                    <a href="<?php echo Yii::app()->createUrl('/group'); ?>">公司</a>
                     <a href="<?php echo Yii::app()->createUrl('/article'); ?>">学院</a>
-                    <a href="<?php echo Yii::app()->createUrl('/tongcheng'); ?>">活动</a>
+                    <!--<a href="<?php echo Yii::app()->createUrl('/tongcheng'); ?>">活动</a>-->
                 <?php }?>
             </div>
             <div class="sousuo">
-                <input type="text" value="小组、话题" class="inp3" id="search_inp"><a class="inp4" href="javascript:void(0)" id="search"></a>
+                <input type="text" value="公司、小组、话题" class="inp3" id="search_inp"><a class="inp4" href="javascript:void(0)" id="search"></a>
             </div>
 
         </div>
         <?php echo $content ?>
         <div class="footer">
             <div style="overflow:hidden;">
-                <div>开源联盟：
+                <div>友情链接：
                 <?php $links = Links::model()->findAll(array('condition'=>'status = 1','order'=>'sort desc')); ?>
                 <?php if(!empty($links)){ ?>
                     <?php foreach($links as $v){ ?>

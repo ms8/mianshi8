@@ -27,9 +27,9 @@
     <div class="httop1">
         <div class="httop11">
             <a href="<?php echo Yii::app()->baseUrl;?>/">首页</a>
-               <a href="<?php echo Yii::app()->createUrl('/group'); ?>">小组</a>
+               <a href="<?php echo Yii::app()->createUrl('/group'); ?>">公司</a>
                 <a href="<?php echo Yii::app()->createUrl('/article'); ?>">学院</a>
-                <a href="<?php echo Yii::app()->createUrl('/tongcheng'); ?>">活动</a>
+               <!-- <a href="<?php //echo Yii::app()->createUrl('/tongcheng'); ?>">活动</a>-->
 				
         </div>
         <?php if(Yii::app()->user->isGuest){?>
@@ -74,7 +74,7 @@
                 $("#search").click(
                     function(){
                         search = $("#search_inp").val();
-                        if(search == '' || search == '小组、话题'){
+                        if(search == '' || search == '公司、小组、话题'){
                             alert('请输入要查询的关键词！');
                             return false;
                         }
@@ -85,7 +85,7 @@
                 $("#search_inp").focus(
                     function(){
                         search = $("#search_inp").val();
-                        if(search == '小组、话题'){
+                        if(search == '公司、小组、话题'){
                             $(this).val('');
                         }
                     }
@@ -95,7 +95,7 @@
                     function(){
                         search = $("#search_inp").val();
                         if(search == ''){
-                            $(this).val('小组、话题');
+                            $(this).val('公司、小组、话题');
                         }
                     }
                 );
