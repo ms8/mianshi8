@@ -48,7 +48,7 @@ class Group extends CActiveRecord
 		return array(
 			array('name', 'required','message'=>'小组名称不能为空！'),
 			array('des', 'required','message'=>'小组介绍不能为空！'),
-			array('type', 'required','message'=>'小组类型不能为空！'),
+			//array('type', 'required','message'=>'小组类型不能为空！'),
 			array('tag', 'required','message'=>'标签不能为空！'),
 			array('logo,alias, sort, pnum, create_time, status,uid', 'required'),
 			array('tid, sort, pnum, status, type', 'numerical', 'integerOnly'=>true),
