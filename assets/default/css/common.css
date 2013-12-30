@@ -43,9 +43,9 @@ a:hover{ text-decoration:none; color:#fff; background: #3377aa; }
 .loginHead{padding-top: 40px;}
 .logo{ float:left; margin:12px 0 0 0;}
 .head1 .nav{ float:left; padding-top:23px;margin-left: 10px;}
-.httop11 .nav a{height: 30px;width: 45px;}
-.nav a{width: 45px; font-size:15px;color: #1E1E1E; padding:10px 10px 0 10px; float: left;  height: 24px; background: transparent url(../../images/nav.png) no-repeat 100% 100%; overflow: hidden; clear: none;}
-.httop11 .nav li{float: left;}
+.httop11 .nav a,.httop12 .nav a{height: 30px;width: 45px;}
+.nav a{width: 45px; font-size:15px;color: #1E1E1E; padding:10px 10px 0 10px; float: left;  height: 24px;  overflow: hidden; clear: none;}
+.httop11 .nav li,.httop12 .nav li{float: left;}
 .httop11 .nav li:hover{background-color: #596959;}
 .nav a.shouye{background-position: -5px 0;color: #2A8A15;}
 .nav a.xiaozu{background-position: -73px 0;}
@@ -55,7 +55,7 @@ a:hover{ text-decoration:none; color:#fff; background: #3377aa; }
 .nav a.taoke{background-position: -343px 0;}
 
 .httop11 .nav a:hover{ color: #ffffff;}
-.head1 .nav a:hover{ color: #2A8A15;}
+.head1 .nav a:hover{ color: #2A8A15;background-color: #ffffff;}
 .top{ height:134px; clear:both; overflow:hidden; height:134px;background-color:#f3f3f3;
     /*background-image: linear-gradient(0deg, #e7f1dd, #d3e4cf);*/
     /*background-image: linear-gradient(30deg, #dce6d2, #003333 );*/
@@ -71,7 +71,7 @@ a:hover{ text-decoration:none; color:#fff; background: #3377aa; }
     /*top: -20px;*/
 }
 .top11{ float:left; font-size:21px; color:#666666; padding:55px 67px 0 50px; font-family:"YaHei";}
-.top12{ float:left;margin-top: 20px;}
+.top12{ float:left;margin-top: 50px;}
 .top121{ font-size:20px; color:#1E1E1E;float: left;}
 .top122{ font-size:20px; color:#666666; padding:0 0 12px 0; }
 .top122  [class^="icon-"]:before,.top122 [class*=" icon-"]:before {width: 2em;}
@@ -177,8 +177,8 @@ a:hover{ text-decoration:none; color:#fff; background: #3377aa; }
 .httop1 a{ color:#d5d5d5;}
 .httop11{ float:left;text-align: center;padding-left: 50px;}
 /*.httop11 a{ margin-right:25px;}*/
-.httop12{ float:right;padding-right: 50px;}
-.httop12 a{ margin-left:25px;}
+.httop12{ float:right;padding-right: 50px;text-align: center;}
+/*.httop12 a{ margin-left:25px;}*/
 .httop2{ height:71px; line-height:71px; background:#f0f6f3; }
 .httop3{ height:71px; line-height:71px; background:#F6F6F1; }
 .httop4{ height:71px; line-height:71px; background:#F8F8F8; }

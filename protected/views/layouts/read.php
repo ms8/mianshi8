@@ -35,32 +35,40 @@
 	        </ul>
         </div>
         <?php if(Yii::app()->user->isGuest){?>
-        <div class="httop12">
-            <a style="float:right;background:none; margin:0 0 0 5px;padding:0;" href="<?php
-          $this->widget('ext.oauthlogin.OauthLogin',array(
-            'itemView'=>'sinaurl', //效果样式
-          ));
-        ?>"><img style="margin-top:5px;" src="<?php echo Yii::app()->baseUrl;?>/images/connect_sina_weibo.png" /></a>
-            <a style="float:right;background:none; margin:0 0 0 5px;padding:0;" href="<?php
-          $this->widget('ext.oauthlogin.OauthLogin',array(
-            'itemView'=>'qqurl', //效果样式
-          ));
-        ?>"><img style="margin-top:5px;" src="<?php echo Yii::app()->baseUrl;?>/images/connect_qq.png" /></a>
-            <a style="float:right;" href="<?php echo Yii::app()->createUrl('public/login'); ?>">登陆</a>
-            <a style="float:right;" href="<?php echo Yii::app()->createUrl('public/register'); ?>">注册</a>
-        </div>
+            <div class="httop12">
+                <ul class="nav">
+                    <li><a style="float:right;" href="<?php echo Yii::app()->createUrl('public/login'); ?>">登陆</a></li>
+                    <li><a style="float:right;" href="<?php echo Yii::app()->createUrl('public/register'); ?>">注册</a></li>
+                    <li>
+                        <a style="float:right;background:none; padding: 10px 0;width: 30px;" href="<?php
+                        $this->widget('ext.oauthlogin.OauthLogin',array(
+                            'itemView'=>'qqurl', //效果样式
+                        ));
+                        ?>"><img style="margin-top:5px;" src="<?php echo Yii::app()->baseUrl;?>/images/connect_qq.png" /></a>
+                    </li>
+                    <li>
+                        <a style="float:right;background:none;padding: 10px 0;width: 30px;" href="<?php
+                        $this->widget('ext.oauthlogin.OauthLogin',array(
+                            'itemView'=>'sinaurl', //效果样式
+                        ));
+                        ?>"><img style="margin-top:5px;" src="<?php echo Yii::app()->baseUrl;?>/images/connect_sina_weibo.png" /></a>
+                    </li>
+
+            </div>
         <?php }else{?>
-        <div class="httop12">
-            <!-- <a href="javascript:void(0)">提醒
-                <span class="num">
-                <span>1</span>
-                <i></i>
-                </span>
-            </a> -->
-            <a href="<?php echo Yii::app()->createUrl('kongjian/index',array('uid'=>Yii::app()->user->id)); ?>">欢迎您：<?php echo Yii::app()->user->nickname;?></a>
-            <a href="<?php echo Yii::app()->createUrl('kongjian/info'); ?>">设置</a>
-            <a href="<?php echo Yii::app()->createUrl('public/logout'); ?>">退出</a>
-        </div>
+            <div class="httop12">
+                <!-- <a href="javascript:void(0)">提醒
+                    <span class="num">
+                    <span>1</span>
+                    <i></i>
+                    </span>
+                </a> -->
+                <ul class="nav">
+                    <li><a href="<?php echo Yii::app()->createUrl('kongjian/index',array('uid'=>Yii::app()->user->id)); ?>" style="width: auto;">欢迎您：<?php echo Yii::app()->user->nickname;?></a></li>
+                    <li><a href="<?php echo Yii::app()->createUrl('kongjian/info'); ?>">设置</a></li>
+                    <li><a href="<?php echo Yii::app()->createUrl('public/logout'); ?>">退出</a></li>
+                </ul>
+            </div>
         <?php }?>
 
     </div>  
