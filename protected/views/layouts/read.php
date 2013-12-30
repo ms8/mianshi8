@@ -75,7 +75,7 @@
     <div class="httop3  loginHead">
         <div class="httop21">
             <div class="logo2"> 
-                <a href="<?php echo Yii::app()->createUrl('group'); ?>">学院</a>
+                <a href="<?php echo Yii::app()->createUrl('article'); ?>">学院</a>
             </div>
             <div class="link2">
                分享 互助 成长
