@@ -109,7 +109,7 @@
         <div class="top1">
 <!--          <div class="top11">--><?php //echo  Helper::siteConfig()->site_name; ?><!--</div>-->
           <div class="top12">
-            <div class="top122"><i class="icon-emo-shoot"></i><i class="icon-dot-3"></i><i class="icon-dot-3"></i><i class="icon-target"></i></div>
+<!--            <div class="top122"><i class="icon-emo-shoot"></i><i class="icon-dot-3"></i><i class="icon-dot-3"></i><i class="icon-target"></i></div>-->
             <div class="top121"><?php echo  Helper::siteConfig()->site_slogan; ?></div>
 <!--            <div class="top122">欢迎光临，已有<b style="color:red;">--><?php //echo $mcount = Member::model()->count(); ?><!--</b>位<b style="color:red;">成员</b>入驻！</div>-->
             <div class="top123">
@@ -214,22 +214,7 @@
   <div class="con1">
     <div class="left1">
 
-        <!--
-      <div class="gaungg">
-        <div id="wrapper">
-            <div id="carousel">
-              <?php
-                $adArr = array();
-                foreach ($ad as $key => $value) {
-                    array_push($adArr,$value->title);
-              ?>
-                  <img onclick="window.location.href='<?php echo $value->url; ?>';" style="cursor:pointer;" src="<?php echo $this->createUrl($value->imglink);  ?>" alt="<?php echo $value->title; ?>" width="640" height="250" />
-              <?php } ?>
-            </div>
-            <div id="pager"></div>
-        </div>
-      </div>
-      -->
+
        <h2>
             最新推荐
             <span>
@@ -294,38 +279,7 @@
           </div>
         <?php } ?>
       </div>
-      <!--
-      <h2>
-        最热话题
-        <span>
-          <a href="<?php echo $this->createUrl('/group/exploretopic'); ?>" title="全部" target="_self">（全部）</a>
-        </span>
-      </h2>
-      <div class="huat">
-        <?php foreach($topicList as $k=>$v){ ?>
-          <dl class="pad" style="clear:both;">
-            <a href="<?php echo $this->createUrl('/kongjian/index',array('uid'=>$v->memberOne->id)); ?>" title="<?php echo $v->memberOne->nickname; ?>" target="_self">
-              <img alt="" src="<?php echo $v->memberOne->imgLink; ?>" /></a>
-            <dt>
-              <a href="<?php echo $this->createUrl('/group/topic',array('id'=>$v->id)); ?>" title="<?php echo $v->title; ?>" target="_self"><?php echo $v->title; ?></a>
-            </dt>
-            <dd style="color:#999;">
-              <a style="float:left;" href="<?php echo $this->createUrl('/kongjian/index',array('uid'=>$v->memberOne->id)); ?>" title="<?php echo $v->memberOne->nickname; ?>" target="_self"><?php echo $v->memberOne->nickname; ?></a>
-              <a style="float:left; margin-left:5px; _display:inline-block;" href="<?php echo $v->groupOne->link; ?>"><?php echo $v->groupOne->name; ?></a>
-              <span style="float:left; margin-left:5px; _display:inline-block;margin-top:2px"><?php if($v->status > 2){ echo "<b style='color:red; font-weight:100;'>($v->statusName)</b>"; }; ?></span>
-              <span style="float:right;">
-                <?php echo $v->fabutime; ?> 阅读 <?php echo $v->hot; ?> 评论 <?php echo $v->responseCount; ?>
-              </span>
-            </dd>
-            <dd>
-              <p>
-                <?php echo Helper::truncate_utf8_string(strip_tags($v->content),80); ?>
-              </p>
-            </dd>
-          </dl>
-        <?php } ?>
-      </div>
-      -->
+
 
     </div>
     <div class="right1">
@@ -413,33 +367,6 @@
     </div>
   </div>
   <script type="text/javascript">
-      <?php
-          $adArr = array();
-          foreach ($ad as $key => $value) {
-                array_push($adArr,$value->title);
-      }?>
-      var adArr = <?php echo json_encode($adArr) ;?>;
-  $('#carousel').carouFredSel({
-      width: '100%',
-      items: {
-          visible: 3,
-          start: -1
-      },
-      scroll: {
-          items: 1,
-          duration: 1000,
-          timeoutDuration: 3000
-      },
-      prev: '#prev',
-      next: '#next',
-      pagination: {
-          container: '#pager',
-          deviation: 1,
-          anchorBuilder:function(nr, item) {
-              return '<a href="#'+nr+'"><span>'+adArr[nr]+'</span></a>';
-          }
-      }
-  });
   $('#login-form').ajaxForm({
     dataType:'json',
     success:function processJson(data) {

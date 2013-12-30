@@ -73,9 +73,11 @@
                 <i></i>
                 </span>
             </a> -->
-            <a href="<?php echo Yii::app()->createUrl('kongjian/index',array('uid'=>Yii::app()->user->id)); ?>">欢迎您：<?php echo Yii::app()->user->nickname;?></a>
-            <a href="<?php echo Yii::app()->createUrl('kongjian/info'); ?>">设置</a>
-            <a href="<?php echo Yii::app()->createUrl('public/logout'); ?>">退出</a>
+            <ul class="nav">
+                <li><a href="<?php echo Yii::app()->createUrl('kongjian/index',array('uid'=>Yii::app()->user->id)); ?>" style="width: auto;">欢迎您：<?php echo Yii::app()->user->nickname;?></a></li>
+                <li><a href="<?php echo Yii::app()->createUrl('kongjian/info'); ?>">设置</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl('public/logout'); ?>">退出</a></li>
+           </ul>
         </div>
     </div>
     <?php }?>
