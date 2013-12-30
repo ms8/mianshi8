@@ -1,5 +1,5 @@
     <div class="top3">
-    	我的小组话题
+    	我的话题
     </div>
 	<div class="con clear">
     	<div class="left2">

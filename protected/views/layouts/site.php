@@ -74,9 +74,11 @@
                 <i></i>
                 </span>
             </a> -->
-            <a href="<?php echo Yii::app()->createUrl('kongjian/index',array('uid'=>Yii::app()->user->id)); ?>">欢迎您：<?php echo Yii::app()->user->nickname;?></a>
-            <a href="<?php echo Yii::app()->createUrl('kongjian/info'); ?>">设置</a>
-            <a href="<?php echo Yii::app()->createUrl('public/logout'); ?>">退出</a>
+            <ul class="nav">
+                <li><a href="<?php echo Yii::app()->createUrl('kongjian/index',array('uid'=>Yii::app()->user->id)); ?>" style="width: auto;">欢迎您：<?php echo Yii::app()->user->nickname;?></a></li>
+                <li><a href="<?php echo Yii::app()->createUrl('kongjian/info'); ?>">设置</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl('public/logout'); ?>">退出</a></li>
+           </ul>
         </div>
     </div>
     <?php }?>
@@ -91,7 +93,7 @@
                     <a class="shouye" href="<?php echo Yii::app()->baseUrl;?>/">首页</a>
                     <a href="<?php echo Yii::app()->createUrl('/mszhaopinhui'); ?>">招聘会</a>
                     <a href="<?php echo Yii::app()->createUrl('/group'); ?>">公司</a>
-                    
+                    <a href="<?php echo Yii::app()->createUrl('/article'); ?>">学院</a>
                 <?php }else{?>
                     <a class="shouye" href="<?php echo Yii::app()->baseUrl;?>/">首页</a>
                     <a href="<?php echo Yii::app()->createUrl('/mszhaopinhui'); ?>">招聘会</a>
@@ -101,7 +103,7 @@
                 <?php }?>
             </div>
             <div class="sousuo">
-                <input type="text" value="公司、小组、话题" class="inp3" id="search_inp"><a class="inp4" href="javascript:void(0)" id="search"></a>
+                <input type="text" value="公司、话题" class="inp3" id="search_inp"><a class="inp4" href="javascript:void(0)" id="search"></a>
             </div>
 
         </div>

@@ -2,17 +2,17 @@
     <h1 class="fl"><?php echo $model->name; ?></h1>
     <span class="fl">
         <?php if($model->mark==1){?>
-            我是这个小组的成员 > <a href="javascript:void(0)" id="<?php echo $model->id;?>" class="delGroup">退出小组</a> 
+            我是这个公司的成员 > <a href="javascript:void(0)" id="<?php echo $model->id;?>" class="delGroup">退出公司</a>
         <?php }elseif($model->mark==2){?>
-            我是小组组长
+            我是公司创始人
         <?php }else{?>
-             <a href="javascript:void(0)" id="<?php echo $model->id;?>" class="addGroup">加入小组</a> 
+             <a href="javascript:void(0)" id="<?php echo $model->id;?>" class="addGroup">加入公司</a>
         <?php } ?>
     </span> </div>
 <div class="con clear">
     <div class="leftx">
         <div class="leftxa">
-            <div class="lxat">创建于<?php echo date('Y-m-d',$model->create_time) ?>    组长： <a href="<?php echo $this->createUrl('/kongjian/index',array('uid'=>$model->memberOne->id)); ?>"><?php echo $model->memberOne->nickname; ?></a> </div>
+            <div class="lxat">创建于<?php echo date('Y-m-d',$model->create_time) ?>    创始人： <a href="<?php echo $this->createUrl('/kongjian/index',array('uid'=>$model->memberOne->id)); ?>"><?php echo $model->memberOne->nickname; ?></a> </div>
             <div class="lxatcon"> 
                 <?php echo $model->des; ?>
             </div>
@@ -212,7 +212,7 @@
            }
     });
     $('.delGroup').click(function(){
-        var r=confirm("确定要退出该小组吗？");
+        var r=confirm("确定要退出该公司吗？");
         if (r!=true)
         {
              return false;
@@ -245,7 +245,7 @@
         if(action){
              location.href = "<?php echo Yii::app()->createUrl('group/addtopic',array('id'=>$model->id)); ?>"; 
         }else{
-            alert('您还没有加入该小组，加入该小组后才能发言！');
+            alert('您还没有加入该公司，加入该公司后才能发言！');
         }
     });
 

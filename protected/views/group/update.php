@@ -1,5 +1,5 @@
     <div class="top3">
-        修改小组:<?php echo $model->name; ?>
+        修改公司:<?php echo $model->name; ?>
     </div>
     <div class="con clear">
             <?php $form=$this->beginWidget('CActiveForm', array(
@@ -38,19 +38,19 @@
                 </div>
             </div> -->
             <div class="left2c">
-                <div class="left2c1">小组名称:</div>
+                <div class="left2c1">公司名称:</div>
                 <div class="left2c21 bgcl2">
                     <?php echo $form->textField($model,'name',array('class'=>'inp6')); ?>
                 </div>
             </div>
             <div class="left2c">
-                <div class="left2c1">小组介绍:</div>
+                <div class="left2c1">公司介绍:</div>
                 <div class="left2c21 bgcl2">
                    <?php echo $form->textArea($model,'des',array('class'=>'text1')); ?>
                 </div>
             </div>
             <div class="left2c">
-                <div class="left2c1">小组标签:</div>
+                <div class="left2c1">公司标签:</div>
                 <div class="left2c21 bgcl2">
                     <?php echo $form->textField($model,'tag',array('class'=>'inp6')); ?>
                     <div class="tag1">
@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="left2c">
-                <div class="left2c1">小组图标:</div>
+                <div class="left2c1">公司图标:</div>
 
                 <div style="padding-left:5px; float:left;">
                     <?php if($model->isNewRecord){ ?>
@@ -105,7 +105,7 @@
             </div>
         <?php $this->endWidget(); ?>
         <div class="right5a">
-            <div class="right5a1"><a href="<?php echo $model->link; ?>"><< 返回小组</a></div>
+            <div class="right5a1"><a href="<?php echo $model->link; ?>"><< 返回公司</a></div>
         </div>
         
     </div>
@@ -126,7 +126,7 @@ $('#create_group').ajaxForm({
             return false;
         }
       }else{
-        alert('修改小组信息成功');
+        alert('修改公司信息成功');
         window.location.href="<?php echo Yii::app()->createUrl('group/mine'); ?>";
       }
     }
