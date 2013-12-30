@@ -87,9 +87,9 @@ class GroupController extends Controller
 
 
 		$this->pageKeyword=array(
-			'title'=>'我的小组话题-'.Helper::siteConfig()->site_name,
-			'keywords'=>'我的小组话题',
-			'description'=>'我的小组话题',
+			'title'=>'我的话题-'.Helper::siteConfig()->site_name,
+			'keywords'=>'我的话题',
+			'description'=>'我的话题',
 		);
 
 		$this->render('index',array('topic'=>$topic,'pages'=>$pager));
@@ -207,9 +207,9 @@ class GroupController extends Controller
         }
         //seo设置
 		$this->pageKeyword=array(
-			'title'=>'发现小组'.'-'.Helper::siteConfig()->site_name,
-			'keywords'=>'发现小组',
-			'description'=>'发现小组',
+			'title'=>'发现公司'.'-'.Helper::siteConfig()->site_name,
+			'keywords'=>'发现公司',
+			'description'=>'发现公司',
 		);
         
 		$this->render('explore',array('list'=>$artList,'tag'=>$tag));
@@ -222,7 +222,7 @@ class GroupController extends Controller
 		$model 	=Group::model()->find('id = :id and status = 1', array(':id'=>$id));
 
 		if(!$model){
-			throw new CHttpException(404,'您访问的小组不存在');
+			throw new CHttpException(404,'您访问的公司不存在');
 		}else{
 			//读取登陆用户状态
 			$m=$this->islogin();
@@ -285,7 +285,7 @@ class GroupController extends Controller
 				$model=Mmember::model()->find('gid = :gid and mid = :mid', array(':gid'=>$gid,':mid'=>$mid));
 				if($model){
 					$status['status']='3';
-					$status['info']='您已经加入该组！';
+					$status['info']='您已经加入该公司！';
 				}else{
 					$group=Group::model()->find('id = :id and status = 1', array(':id'=>$gid));
 					if(empty($group)){
@@ -326,7 +326,7 @@ class GroupController extends Controller
 				$model=Mmember::model()->find('gid = :gid and mid = :mid', array(':gid'=>$gid,':mid'=>$mid));
 				if(empty($model)){
 					$status['status']='3';
-					$status['info']='您尚未加入该组！';
+					$status['info']='您尚未加入该公司！';
 				}else{
 					if($model->delete()){
 						$group=Group::model()->find('id = :id and status = 1', array(':id'=>$gid));
@@ -354,9 +354,9 @@ class GroupController extends Controller
 			$model=$this->isLogin();	
 		}
 		$this->pageKeyword=array(
-			'title'=>'我加入的小组'.'-'.Helper::siteConfig()->site_name,
-			'keywords'=>'我加入的小组',
-			'description'=>'我加入的小组',
+			'title'=>'我加入的公司'.'-'.Helper::siteConfig()->site_name,
+			'keywords'=>'我加入的公司',
+			'description'=>'我加入的公司',
 		);
 		$this->render('mine',array('model'=>$model));
 	}
@@ -367,9 +367,9 @@ class GroupController extends Controller
 			throw new CHttpException ('404', '您访问的页面不存在');  
 		}else{
 			$this->pageKeyword=array(
-				'title'=>'申请创建小组'.'-'.Helper::siteConfig()->site_name,
-				'keywords'=>'申请创建小组',
-				'description'=>'申请创建小组',
+				'title'=>'申请创建公司'.'-'.Helper::siteConfig()->site_name,
+				'keywords'=>'申请创建公司',
+				'description'=>'申请创建公司',
 			);
 			$this->render('apply'); 
 		}
@@ -418,9 +418,9 @@ class GroupController extends Controller
 
 		}
         $this->pageKeyword=array(
-            'title'=>'创建小组'.'-'.Helper::siteConfig()->site_name,
-            'keywords'=>'创建小组',
-            'description'=>'创建小组',
+            'title'=>'创建公司'.'-'.Helper::siteConfig()->site_name,
+            'keywords'=>'创建公司',
+            'description'=>'创建公司',
         );
         $this->render('create',array('model'=>$model));
 	}
@@ -466,9 +466,9 @@ class GroupController extends Controller
     	 }
 		}
 		$this->pageKeyword=array(
-			'title'=>'修改小组'.'-'.Helper::siteConfig()->site_name,
-			'keywords'=>'修改小组',
-			'description'=>'修改小组',
+			'title'=>'修改公司'.'-'.Helper::siteConfig()->site_name,
+			'keywords'=>'修改公司',
+			'description'=>'修改公司',
 		);
 		$this->render('update',array('model'=>$model));
 	}
@@ -735,8 +735,8 @@ class GroupController extends Controller
 
 		$this->pageKeyword=array(
 			'title'=>'搜索-'.Helper::siteConfig()->site_name,
-			'keywords'=>'搜索小组,搜索话题',
-			'description'=>'搜索小组,搜索话题',
+			'keywords'=>'搜索公司,搜索话题',
+			'description'=>'搜索公司,搜索话题',
 		);		
 
 		$this->render('search',compact('model','datas','keyword','type'));

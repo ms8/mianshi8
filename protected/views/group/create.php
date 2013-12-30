@@ -1,5 +1,5 @@
     <div class="top3">
-        创建小组
+        创建公司
     </div>
     <div class="con clear">
             <?php $form=$this->beginWidget('CActiveForm', array(
@@ -38,19 +38,19 @@
                 </div>
             </div> -->
             <div class="left2c">
-                <div class="left2c1">小组名称:</div>
+                <div class="left2c1">公司名称:</div>
                 <div class="left2c21 bgcl2">
                     <?php echo $form->textField($model,'name',array('class'=>'inp6','value'=>'')); ?>
                 </div>
             </div>
             <div class="left2c">
-                <div class="left2c1">小组介绍:</div>
+                <div class="left2c1">公司介绍:</div>
                 <div class="left2c21 bgcl2">
                    <?php echo $form->textArea($model,'des',array('class'=>'text1')); ?>
                 </div>
             </div>
             <div class="left2c">
-                <div class="left2c1">小组标签:</div>
+                <div class="left2c1">公司标签:</div>
                 <div class="left2c21 bgcl2">
                     <?php echo $form->textField($model,'tag',array('class'=>'inp6','value'=>'')); ?>
                     <div class="tag1">
@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="left2c">
-                <div class="left2c1">小组图标:</div>
+                <div class="left2c1">公司图标:</div>
 
                 <div style="padding-left:5px; float:left;">
                     <?php if($model->isNewRecord){ ?>
@@ -105,11 +105,10 @@
             </div>
         <?php $this->endWidget(); ?>
         <div class="right5a">
-            <div class="right5a1">小组创建  · · · · · ·</div>
-            <div class="right5a2">小组需要审核通过后才能完成创建,管理员会在3日内审核 申请, 审核结果会用邮通知你,请耐心等待。</div>
-            <div class="right5a1">小组标签  · · · · · ·</div>
-            <div class="right5a2">小组可以有不超过5个的标签，用来描述小组的目的。标签作为关键词可以被用户搜索到。 多个标签之间用空格分隔开。 </div>
-            <div class="right5a2">比如，"Philip K. Dick小组"可以用 "作者 作家 科幻 科学幻想 迪克"， "关中辰木" 可以用 "本地 同城 西北 陕西 西安"。小组名称本身可以被搜索，就不用再加在标签里了。 小组的名称、介绍、标签在创立后都可以随时更改。 </div>
+            <div class="right5a1">公司创建  · · · · · ·</div>
+            <div class="right5a2">公司需要审核通过后才能完成创建,管理员会在3日内审核 申请, 审核结果会用邮通知你,请耐心等待。我们也会邀请在这家公司工作过的伙伴来为你解答疑问。</div>
+            <div class="right5a1">公司标签  · · · · · ·</div>
+            <div class="right5a2">公司可以有不超过5个的标签，用来描述公司。标签作为关键词可以被用户搜索到。 多个标签之间用空格分隔开。 </div>
         </div>
         
     </div>
@@ -136,7 +135,7 @@ $('#create_group').ajaxForm({
             return false;
         }
       }else{
-        alert('创建小组成功');
+        alert('创建公司成功');
         window.location.href="<?php echo Yii::app()->createUrl('group/mine'); ?>";
       }
     }

@@ -67,7 +67,7 @@
     <div class="httop3  loginHead">
         <div class="httop21">
             <div class="logo2"> 
-                <a href="<?php echo Yii::app()->createUrl('group'); ?>"><?php echo  Helper::siteConfig()->site_name; ?>学院</a>
+                <a href="<?php echo Yii::app()->createUrl('group'); ?>">学院</a>
             </div>
             <div class="link2">
                分享 互助 成长
@@ -76,7 +76,7 @@
                 $("#search").click(
                     function(){
                         search = $("#search_inp").val();
-                        if(search == '' || search == '公司、小组、话题'){
+                        if(search == '' || search == '公司、话题'){
                             alert('请输入要查询的关键词！');
                             return false;
                         }
@@ -87,7 +87,7 @@
                 $("#search_inp").focus(
                     function(){
                         search = $("#search_inp").val();
-                        if(search == '公司、小组、话题'){
+                        if(search == '公司、话题'){
                             $(this).val('');
                         }
                     }
@@ -97,7 +97,7 @@
                     function(){
                         search = $("#search_inp").val();
                         if(search == ''){
-                            $(this).val('公司、小组、话题');
+                            $(this).val('公司、话题');
                         }
                     }
                 );

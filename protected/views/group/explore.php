@@ -1,8 +1,8 @@
     <div class="top3">
         <?php if(empty($_GET['gid'])){?>
-          发现小组
+          发现公司
         <?php }else{?>
-        <?php  echo $tag->title.'相关的小组'; ?>
+        <?php  echo $tag->title.'相关的公司'; ?>
         <?php } ?>
     </div>
     <div class="con clear">
@@ -26,7 +26,7 @@
                               <?php if($value->mark==1){?>
                                    √已加入
                               <?php }else{?>
-                                   <a href="javascript:void(0)" class="addGroup" id="<?php echo $value->id;  ?>">+加入小组</a>
+                                   <a href="javascript:void(0)" class="addGroup" id="<?php echo $value->id;  ?>">+加入公司</a>
                               <?php } ?>
                           </div>
                         </div>
@@ -37,7 +37,7 @@
             <?php } ?>
 
         <?php }else{?>
-          暂时没有找到相关的小组
+          暂时没有找到相关的公司
         <?php } ?>
       
         </div>

@@ -187,7 +187,7 @@
                   <div>
                     <a href="<?php echo $this->createUrl('/kongjian/info'); ?>">我的信息</a>
                     <a href="<?php echo $this->createUrl('/kongjian/index',array('uid'=>Yii::app()->user->id)); ?>">我的空间</a>
-                    <a href="<?php echo $this->createUrl('group/mine'); ?>">我的公司、小组</a>
+                    <a href="<?php echo $this->createUrl('group/mine'); ?>">我的公司</a>
                     <a href="<?php echo $this->createUrl('group/mytopic'); ?>">我的话题</a></br>
                     <a href="<?php echo Yii::app()->createUrl('public/logout'); ?>">退出</a>
                   </div>
@@ -196,7 +196,7 @@
               <div style="clear:both; overflow:hidden;border-top:1px solid #cccccc; border-bottom:1px solid #cccccc;margin:7px 0 5px 0; padding:5px 0;">
                 <div style="float:left; width:70px; height:50px; border-right:1px solid #cccccc; text-align:center; line-height:20px;">
                   <?php echo Yii::app()->user->groupCount; ?><br />
-                  <a href="<?php echo $this->createUrl('group/mine'); ?>">创建的公司、小组</a>
+                  <a href="<?php echo $this->createUrl('group/mine'); ?>">创建的公司</a>
                 </div>
                 <div style="float:left; width:70px; height:50px; border-right:1px solid #cccccc; text-align:center; line-height:20px;">
                   <?php echo Yii::app()->user->topicCount; ?><br />
@@ -231,7 +231,7 @@
       </div>
       -->
        <h2>
-            最新推荐
+            文章推荐
             <span>
               <a href="<?php echo Yii::app()->createUrl('/article'); ?>" title="全部" target="_self">（全部）</a>
             </span>
@@ -265,7 +265,7 @@
 
       </div>
       <h2>
-        热门小组
+        热门公司
         <span>
           <a href="<?php echo $this->createUrl('/group'); ?>" title="全部" target="_self">（全部）</a>
         </span>
@@ -344,7 +344,7 @@
                 <div class="user-num">
                     <p class="user-focus-num">
                         <span><?php echo Yii::app()->user->groupCount; ?></span>
-                        <a href="<?php echo $this->createUrl('group/mine'); ?>">创建的小组</a>
+                        <a href="<?php echo $this->createUrl('group/mine'); ?>">创建的公司</a>
                     </p>
                     <p class="focused">
                         <span><?php echo Yii::app()->user->topicCount; ?></span>

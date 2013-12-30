@@ -1,4 +1,4 @@
-<div class="top3"><?php if($type == 1){ echo '小组'; }else{ echo '话题'; } ?>搜索:<?php echo $keyword; ?></div>
+<div class="top3"><?php if($type == 1){ echo '公司'; }else{ echo '话题'; } ?>搜索:<?php echo $keyword; ?></div>
 <div class="con clear">
     <?php if($type == 1){ ?>
     <div class="leftx">
@@ -16,7 +16,7 @@
     <?php }else{ ?>
     <!--话题列表-->
     <div class="leftx">
-        <div class="search1"> <a class="nobg" href="<?php echo Yii::app()->baseUrl;?>/search/<?php echo $keyword; ?>">小组</a> <a href="<?php echo Yii::app()->baseUrl;?>/search/<?php echo $keyword; ?>?type=2">话题</a> </div>
+        <div class="search1"> <a class="nobg" href="<?php echo Yii::app()->baseUrl;?>/search/<?php echo $keyword; ?>">公司</a> <a href="<?php echo Yii::app()->baseUrl;?>/search/<?php echo $keyword; ?>?type=2">话题</a> </div>
         <?php foreach($datas as $v){ ?>
         <div class="left31">
             <div class="left32s"><a href="<?php echo $v->link; ?>"><?php echo $v->title; ?></a></div>

@@ -1,12 +1,12 @@
     <div class="top3">
-        我<?php if($model->groupCount>0){?>管理/<?php }?>加入的小组
+        我<?php if($model->groupCount>0){?>管理/<?php }?>加入的公司
     </div>
     <div class="con clear">
         <div class="left2">
         <?php if($model->groupCount>0){?>
           <div class="left2">
                 <div class="left6">
-                    我管理的<?php echo $model->groupCount;  ?>个小组
+                    我管理的<?php echo $model->groupCount;  ?>个公司
                 </div>
                 <div class="left7">
                     <?php foreach ($model->groupMany as $key => $value) {?>
@@ -24,7 +24,7 @@
 
         <div class="left2">
             <div class="left6">
-                我加入的<?php echo $model->mGroupCount(array('condition'=>'uid !='.$model->id));  ?>个小组
+                我加入的<?php echo $model->mGroupCount(array('condition'=>'uid !='.$model->id));  ?>个公司
             </div>
             <div class="left7">
                 <?php foreach ($model->mGroup(array('condition'=>'mGroup.uid !='.$model->id)) as $key => $value) {?>

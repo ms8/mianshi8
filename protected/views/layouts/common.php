@@ -67,26 +67,26 @@
     <div class="httop2  loginHead">
         <div class="httop21">
             <div class="logo1"> 
-                <a href="<?php echo Yii::app()->createUrl('group'); ?>"><?php echo  Helper::siteConfig()->site_name; ?>小组</a>
+                <a href="<?php echo Yii::app()->createUrl('group'); ?>">公司</a>
             </div>
             <div class="link1">
                  <?php  if(!Yii::app()->user->isGuest){?>
-                     <a href="<?php echo Yii::app()->createUrl('group'); ?>">我的小组话题</a>
+                     <a href="<?php echo Yii::app()->createUrl('group'); ?>">我的话题</a>
                  <?php  } ?>
-                <a href="<?php echo Yii::app()->createUrl('group/explore'); ?>">发现小组</a>
+                <a href="<?php echo Yii::app()->createUrl('group/explore'); ?>">发现公司</a>
                 <a href="<?php echo Yii::app()->createUrl('group/exploretopic'); ?>">发现话题</a>
             </div>
             <div class="sousuo1">
                 <form id="searchForm" action="<?php echo Yii::app()->baseUrl; ?>/group/search/" method="get">
                     <input type="hidden" value="1" name="type" />
-                    <input id="search_inp" type="text" class="inp3" name="keyword" value="<?php echo isset($_GET['keyword'])?$_GET['keyword']:'小组、话题'; ?>" /><a id="search" href="javascript:void(0)" class="inp4"></a>
+                    <input id="search_inp" type="text" class="inp3" name="keyword" value="<?php echo isset($_GET['keyword'])?$_GET['keyword']:'公司、话题'; ?>" /><a id="search" href="javascript:void(0)" class="inp4"></a>
                 </form>
             </div>
             <script type="text/javascript">
                 $("#search").click(
                     function(){
                         search = $("#search_inp").val();
-                        if(search == '' || search == '小组、话题'){
+                        if(search == '' || search == '公司、话题'){
                             alert('请输入要查询的关键词！');
                             return false;
                         }
@@ -98,7 +98,7 @@
                 $("#search_inp").focus(
                     function(){
                         search = $("#search_inp").val();
-                        if(search == '公司、小组、话题'){
+                        if(search == '公司、话题'){
                             $(this).val('');
                         }
                     }
@@ -108,7 +108,7 @@
                     function(){
                         search = $("#search_inp").val();
                         if(search == ''){
-                            $(this).val('公司、小组、话题');
+                            $(this).val('公司、话题');
                         }
                     }
                 );
