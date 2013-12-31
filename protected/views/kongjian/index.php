@@ -1,11 +1,6 @@
 <div class="ger">
     <div class="ger_l">
-        <div class="ger_tou">
-            <span>
-            <a href="<?php echo $this->createUrl('/kongjian/index',array('uid'=>$member->id)); ?>"><img width="48" height="48" alt="<?php echo $member->nickname; ?>" src="<?php echo $member->imgLink; ?>" /></a>
-            </span>
-            <h1><?php echo $member->nickname; ?></h1>
-        </div>
+
         <div class="tie">
             <h2><?php echo $member->nickname; ?>发布的帖子...</h2>
             <ul>

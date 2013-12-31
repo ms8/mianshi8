@@ -58,11 +58,17 @@ class SWFUploadAction extends CAction
      $filename = substr(strrchr($this->filepath,'/'),1);
      $this->filepath = str_replace('\\','/',$this->filepath);
      $filedir = str_replace(array("/$filename",Yii::app()->params['uploadDir']),'',$this->filepath);
-        
-     if(!is_dir(Yii::app()->params['uploadDir'].$filedir))
+
+     if(!is_dir($filedir))
      {
-           mkdir(Yii::app()->params['uploadDir'].$filedir, 0777,true); 
+         mkdir($filedir, 0777,true);
      }
+     //***********原有写法***************
+//       if(!is_dir(Yii::app()->params['uploadDir'].$filedir))
+//       {
+//           mkdir(Yii::app()->params['uploadDir'].$filedir, 0777,true);
+//       }
+     //***********原有写法***************
      $file->saveAs($this->filepath);
      $_SESSION['temp_file'] = $this->filepath;
 

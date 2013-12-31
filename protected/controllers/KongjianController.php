@@ -20,7 +20,7 @@ class KongjianController extends Controller
 		  //上传图片
 		  'upload'=>array(
 		    'class'=>'application.extensions.swfupload.SWFUploadAction',
-		    'filepath'=>Yii::app()->baseUrl.'/upload/'.$path.$fileName.'.EXT',
+		    'filepath'=>$path.$fileName.'.EXT',
 		    //注意这里是绝对路径,.EXT是文件后缀名替代符号
 		    //'onAfterUpload'=>array($this,'saveFile'),
 		  )
@@ -38,7 +38,8 @@ class KongjianController extends Controller
 		Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.CSS_PATH.'common.css');
 		Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.CSS_PATH.'kongjian.css');
 		$this->filePath=array(
-	      1=>Yii::app()->baseUrl.'/user_photo/'.date('Y-m-d').'/',//套系(从upload目录开始)
+	     // 1=>Yii::app()->baseUrl.'/upload/user_photo/'.date('Y-m-d').'/',//套系(从upload目录开始)
+            1=>'upload/user_photo/'.date('Y-m-d').'/',//套系(从upload目录开始)
 		);
 	}
 
