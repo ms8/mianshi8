@@ -651,9 +651,9 @@ class GroupController extends Controller
 		      	 		$topic->create_time=time();//创建时间
 		      	 		$topic->response_num+=1;
 		      	 		$topic->save(false);
-//		      	 		die(CJSON::encode(array('status'=>1,'id'=>$gid)));
+		      	 		die(CJSON::encode(array('status'=>1)));
 		      	 	}else{
-//		      	 		die(CJSON::encode(array('status'=>0)));
+		      	 		die(CJSON::encode(array('status'=>0)));
 		      	 	}
 		      	 }else{
 		      	 	die($ajaxRes);
