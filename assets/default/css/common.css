@@ -42,7 +42,7 @@ a:hover{ text-decoration:none; color:#fff; background: #3377aa; }
 .head1{ height:74px;width: 950px;margin: 0 auto;}
 .loginHead{padding-top: 40px;}
 .logo{ float:left; margin:12px 0 0 0;}
-.head1 .nav{ float:left; padding-top:15px;margin-left: 15px;}
+.head1 .nav{ float:left; padding-top:15px;}
 .httop11 .nav a,.httop12 .nav a{height: 30px;width: 45px;}
 .nav a{width: 45px; font-size:15px;color: #1E1E1E; padding:10px 10px 0 10px; float: left;  height: 24px;  overflow: hidden; clear: none;}
 .httop11 .nav li,.httop12 .nav li{float: left;}
@@ -394,6 +394,7 @@ a:hover{ text-decoration:none; color:#fff; background: #3377aa; }
 .bai{ background:#fff;}
 
 .logo a:hover,.xiaozu1 a:hover{ background: none; color: #3377aa;}
+.logo img {width: 145px;}
 .gotop_btn {
 	background:url(../images/back-to-top.png) no-repeat scroll 0 0 transparent;
 	bottom:100px;
