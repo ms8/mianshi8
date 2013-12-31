@@ -44,7 +44,7 @@
       
         </div>
         <!-- 发现小组右侧 -->
-        <?php $this->renderPartial('_explore_right'); ?>
+        <?php $this->renderPartial('_explore_right',array('tagSelected'=>$tagSelected)); ?>
         
     </div>
 

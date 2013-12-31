@@ -59,11 +59,40 @@ class MsZpdetailController extends Controller
         );
         $total = $model->count($criteria);
         $pager = new CPagination($total);
-        $pager->pageSize = 2;
+        $pager->pageSize = 20;
         $pager->applyLimit($criteria);
         $models = $model->findAll($criteria);
 
-        $this->render('explore',array('zpdetail'=>$models,'pages'=>$pager));
+        $this->render('explore',array('zpdetail'=>$models,'pages'=>$pager,'tagSelected'=>null));
+    }
+
+    public function actionListByTag($tagCode,$zpId){
+        $this->zph = MsZhaopinhui::model()->findByPk($zpId);
+
+        $criteria = new CDbCriteria();
+        $sql = "SELECT detail.companyId, detail.name, detail.position, detail.description "
+            ." from ms_zpdetail detail,ms_zpdetail_tag tag "
+            ."where tag.tag_code=:tagCode and tag.zp_detailid=detail.id and zpId=:zpId";
+        $model=Yii::app()->db->createCommand($sql." LIMIT :offset,:limit");
+        $pager = new CPagination(count($model));
+        $pager->pageSize = 20;
+        $pager->applylimit($criteria);
+        $model->bindValue(':zpId', $zpId);
+        $model->bindValue(':tagCode', $tagCode);
+        $model->bindValue(':offset', $pager->currentPage*$pager->pageSize);
+        $model->bindValue(':limit', $pager->pageSize);
+        $models=$model->queryAll();
+
+        $zpds = array();
+        foreach($models as $m){
+            $model=new MsZpdetail();
+            $model->companyId = $m['companyId'];
+            $model->name = $m['name'];
+            $model->position = $m['position'];
+            $model->description = $m['description'];
+            $zpds[] = $model;
+        }
+        $this->render('explore',array('zpdetail'=>$zpds,'pages'=>$pager,'tagSelected'=>$tagCode));
     }
 
 	/**

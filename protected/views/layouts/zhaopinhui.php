@@ -75,7 +75,7 @@
     <div class="httop2  loginHead">
         <div class="httop21">
             <div class="logo1"> 
-                <a href="<?php echo Yii::app()->createUrl('group'); ?>">招聘会</a>
+                <a href="<?php echo Yii::app()->createUrl('mszhaopinhui'); ?>">招聘会</a>
             </div>
 
             <div class="sousuo1">

@@ -158,12 +158,13 @@ class MsZhaopinhuiController extends Controller
         $models = $model->findAll($criteria);
 
         $dataProvider = array();
-        $this->render('explore',array('zhaopinhuis'=>$models,'pages'=>$pager,'dataProvider'=>$dataProvider));
+        $this->render('explore',array('zhaopinhuis'=>$models,'pages'=>$pager,
+            'dataProvider'=>$dataProvider,'tagSelected'=>null));
 	}
 
     public function actionListByTag($tagCode){
         $criteria = new CDbCriteria();
-        $sql = "SELECT zph.id,zph.name,zph.activity_date,zph.activity_address"
+        $sql = "SELECT distinct zph.id,zph.name,zph.activity_date,zph.activity_address"
             ." from ms_zhaopinhui zph,ms_zpdetail detail,ms_zpdetail_tag tag "
             ."where tag.tag_code=:tagCode and tag.zp_detailid=detail.id and detail.zpId=zph.id";
         $model=Yii::app()->db->createCommand($sql." LIMIT :offset,:limit");
@@ -184,7 +185,7 @@ class MsZhaopinhuiController extends Controller
             $model->activity_date = $m['activity_date'];
             $zphs[] = $model;
         }
-        $this->render('explore',array('zhaopinhuis'=>$zphs,'pages'=>$pager));
+        $this->render('explore',array('zhaopinhuis'=>$zphs,'pages'=>$pager,'tagSelected'=>$tagCode));
     }
 
 	/**

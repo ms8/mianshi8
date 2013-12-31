@@ -429,7 +429,7 @@ _top:expression(eval(document.documentElement.scrollTop+document.documentElement
 }
 .user-info a {
     float: left;
-    max-height: 36px;
+    max-height: 50px;
     max-width: 55px;
     overflow: hidden;
     word-break: break-all;
@@ -471,4 +471,10 @@ _top:expression(eval(document.documentElement.scrollTop+document.documentElement
 }
 .btn:hover{
     background-color: #00aa00;
+}
+
+.a_selected{
+    background-color: #3377aa;
+    color: #ffffff;
+    text-decoration: none;
 }

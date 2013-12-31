@@ -60,7 +60,7 @@
     <div class="httop2  loginHead">
         <div class="httop21">
             <div class="logo1"> 
-                <a href="<?php echo Yii::app()->createUrl('group'); ?>"><?php echo  $this->zph->name ?></a>
+                <a href="<?php echo Yii::app()->createUrl('mszpdetail/detail',array('id'=> $this->zph->id)) ?>"><?php echo  $this->zph->name ?></a>
             </div>
 
             <div class="sousuo1">
