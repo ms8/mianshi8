@@ -103,8 +103,48 @@
                 <?php }?>
             </div>
             <div class="sousuo">
-                <input type="text" value="公司、话题" class="inp3" id="search_inp"><a class="inp4" href="javascript:void(0)" id="search"></a>
+                <form id="searchForm" action="<?php echo Yii::app()->baseUrl; ?>/group/search/" method="get">
+                    <input type="hidden" value="1" name="type" />
+                    <input id="search_inp" type="text" class="inp3" name="keyword"
+                           value="<?php echo isset($_GET['keyword'])?$_GET['keyword']:'公司、话题'; ?>" />
+                    <a id="search" href="javascript:void(0)" class="inp4"></a>
+                </form>
+
+<!--                <input type="text" value="公司、话题" class="inp3" id="search_inp">-->
+<!--                <a class="inp4" href="javascript:void(0)" id="search"></a>-->
+
             </div>
+
+            <script type="text/javascript">
+                $("#search").click(
+                    function(){
+                        search = $("#search_inp").val();
+                        if(search == '' || search == '公司、话题'){
+                            alert('请输入要查询的关键词！');
+                            return false;
+                        }
+                        $("#searchForm").submit();
+                    }
+                );
+
+                $("#search_inp").focus(
+                    function(){
+                        search = $("#search_inp").val();
+                        if(search == '公司、话题'){
+                            $(this).val('');
+                        }
+                    }
+                );
+
+                $("#search_inp").blur(
+                    function(){
+                        search = $("#search_inp").val();
+                        if(search == ''){
+                            $(this).val('公司、话题');
+                        }
+                    }
+                );
+            </script>
 
         </div>
         <?php echo $content ?>

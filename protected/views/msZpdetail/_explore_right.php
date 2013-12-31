@@ -6,9 +6,10 @@
             <?php foreach($tagList as $v){ ?>
                 <div class="right_zp">
                     <a <?php if($tagSelected != null && $tagSelected == $v->code) {?>
-                            class="a_selected"
+                        class="a_selected"
                         <?php }?>
-                        href="<?php echo $this->createUrl('/mszhaopinhui/listbytag',array('tagCode'=>$v->code)); ?>"><?php echo $v->name; ?></a>
+                        href="<?php echo $this->createUrl('/mszpdetail/listbytag',
+                        array('tagCode'=>$v->code,'zpId'=>$this->zph->id)); ?>"><?php echo $v->name; ?></a>
                 </div>
             <?php } ?>
         </div>

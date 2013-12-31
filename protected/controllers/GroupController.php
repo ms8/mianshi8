@@ -176,10 +176,10 @@ class GroupController extends Controller
 
 	        $artList = Group::model()->findAll($criteria);
 		}else{
-			$tag=Tag::model()->find('id = :id', array(':id'=>$gid));
+			//$tag=Tag::model()->find('id = :id', array(':id'=>$gid));
 			
 			$criteria = new CDbCriteria();
-			$criteria->addSearchCondition('tag',$tag->title);
+			$criteria->addSearchCondition('tid',$gid);
 			$criteria->addCondition("status = :status"); 
 			// $criteria->addCondition("type = :type"); 
 	   		$criteria->params[':status']=1;//启用
@@ -651,9 +651,9 @@ class GroupController extends Controller
 		      	 		$topic->create_time=time();//创建时间
 		      	 		$topic->response_num+=1;
 		      	 		$topic->save(false);
-//		      	 		die(CJSON::encode(array('status'=>1,'id'=>$gid)));
+		      	 		die(CJSON::encode(array('status'=>1)));
 		      	 	}else{
-//		      	 		die(CJSON::encode(array('status'=>0)));
+		      	 		die(CJSON::encode(array('status'=>0)));
 		      	 	}
 		      	 }else{
 		      	 	die($ajaxRes);
