@@ -228,7 +228,7 @@
                         <a href="<?php echo $this->createUrl('article/index',array('cateId'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>" target="_self">
                             <img alt="<?php echo $v['name']; ?>" src="<?php echo $this->createUrl(IMAGES_FENLEI_PHOTO.$v['img']); ?>" /></a>
                         <div class="xiaozu_dt">
-                            <a href="<?php echo $this->createUrl('group/detail',array('id'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>" target="_self"><?php echo $v['name']; ?></a>
+                            <a href="<?php echo $this->createUrl('article/index',array('cateId'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>" target="_self"><?php echo $v['name']; ?></a>
 <!--                            （<font>--><?php //echo $v->topicCount; ?><!--</font>）-->
                         </div>
                         <div class="xiaozu_dd"><?php echo Helper::truncate_utf8_string($v['des'],20); ?></div>
