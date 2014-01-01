@@ -60,13 +60,22 @@ class SiteController extends Controller
 
 		//首页幻灯
 //		$ad = Ad::model()->findAll(array('condition'=>'status = 1','order'=>'sort desc','limit'=>8));
+        //最新招聘会
+        $criteriaZPH = new CDbCriteria();
+        $criteriaZPH->select='*';
+        $criteriaZPH->limit=8;
+        $criteriaZPH->condition = "status='1' and unix_timestamp(activity_date) >=unix_timestamp(:systime)";
+        $criteriaZPH->params = array(
+            ':systime'=>date('Y-m-d H:i:s'),
+        );
+        $zhaopinhui = MsZhaopinhui::model()->findAll($criteriaZPH);
 
 		$this->pageKeyword=array(
 			'title'=>Helper::siteConfig()->seo_title,
 			'keywords'=>Helper::siteConfig()->seo_keywords,
 			'description'=>Helper::siteConfig()->seo_description,
 		);
-		$this->render('index',compact('model','memberList','groupListNew','articleList','articleSortList','groupSortList'));
+		$this->render('index',compact('model','memberList','groupListNew','articleList','articleSortList','groupSortList','zhaopinhui'));
 	}
 
 	public function actionDown(){
