@@ -4,6 +4,7 @@
     <div class="mynav">
         <a <?php if($this->action->id == 'info'){ ?>class="bai"<?php } ?> href="<?php echo $this->createUrl('/kongjian/info'); ?>">基本设置</a>
         <a <?php if($this->action->id == 'changepwd'){ ?>class="bai"<?php } ?> href="<?php echo $this->createUrl('/kongjian/changepwd'); ?>">修改密码</a>
+        <a <?php if($this->action->id == 'jianli'){ ?>class="bai"<?php } ?> href="<?php echo $this->createUrl('/kongjian/jianli'); ?>">我的简历</a>
 		<a <?php if($this->action->id == 'myscore'){ ?>class="bai"<?php } ?> href="<?php echo $this->createUrl('/kongjian/myscore'); ?>">我的积分</a>
     </div>
     <div class="con clear">

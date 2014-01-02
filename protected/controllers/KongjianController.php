@@ -58,6 +58,11 @@ class KongjianController extends Controller
 		$this->render('index', compact('member','topics'));
 	}
 
+    public function actionJianli(){
+        $jianlis = MsJianli::model()->findAll('userId=:userId',array(':userId'=>Yii::app()->user->id));
+        $this->render('jianli', array('jianlis'=>$jianlis,'message'=>''));
+    }
+
 	public function actionInfo(){
 		$model=Member::model()->find('id = '.Yii::app()->user->id);
 		if(!empty($_POST['Member'])){
@@ -138,5 +143,85 @@ class KongjianController extends Controller
 
   }
 
+    /**
+     * 上传简历
+     */
+    public function actionJianliupload(){
+        $model=new MsJianli();
+        $fileName = $_FILES["jianlifile"]["name"];
+        $message = "";
 
+        $dir_path = "upload/jianli/".date('Y-m-d').'/';
+
+        list($s1, $s2) = explode(' ', microtime());
+        $fileName_store = (float)sprintf('%.0f', (floatval($s1) + floatval($s2)) * 1000);
+        $fileName_store.=rand(0,9999);
+        $type = strstr($fileName, '.');
+        $type = strtolower($type);
+
+        $file_path = $dir_path.$fileName_store.$type;
+        if($fileName==null || $fileName=='' || Yii::app()->user->isGuest){
+            $message = '请选择要上传的文件';
+            return;
+        }else{
+            if(!is_dir($dir_path)){
+                mkdir($dir_path, 0777,true);
+            }
+            $model->name = $fileName;
+            $model->filepath = $file_path;
+            $model->userId = Yii::app()->user->id;
+            $model->createtime = date("Y-m-d H:i:s");
+            $model->updatetime = $model->createtime;
+
+            $picsize = $_FILES['jianlifile']['size'];
+            if ($picsize > 2*1024000) {
+                $message =  '图片大小不能超过2M';
+            }else{
+                if ($type != ".doc" && $type != ".docx"  && $type != ".wps" ) {
+                    $message =  '请上传word文档^_^';
+                }else{
+                    move_uploaded_file($_FILES["jianlifile"]["tmp_name"],$file_path);
+                    $model->save();
+                }
+            }
+        }
+        $jianlis = MsJianli::model()->findAll('userId=:userId',array(':userId'=>Yii::app()->user->id));
+        $this->render('jianli', array('jianlis'=>$jianlis,'message'=>$message));
+    }
+
+    function actionJianlidownload($id){
+        //$file_dir = chop($file_dir);//去掉路径中多余的空格
+        $jianli = MsJianli::model()->findByPk($id);
+        if($jianli != null){
+            $filePath = $jianli->filepath;
+            //判断要下载的文件是否存在
+            if(!file_exists($filePath)){
+                echo '对不起,你要下载的文件不存在。';
+                return false;
+            }else{
+                $file_size = filesize($filePath);
+
+                header("Content-type: application/octet-stream");
+                header("Accept-Ranges: bytes");
+                header("Accept-Length: $file_size");
+                header("Content-Disposition: attachment; filename=".$jianli->name);
+
+                $fp = fopen($filePath,"r");
+                $buffer_size = 1024;
+                $cur_pos = 0;
+
+                while(!feof($fp)&&$file_size-$cur_pos>$buffer_size)
+                {
+                    $buffer = fread($fp,$buffer_size);
+                    echo $buffer;
+                    $cur_pos += $buffer_size;
+                }
+
+                $buffer = fread($fp,$file_size-$cur_pos);
+                echo $buffer;
+                fclose($fp);
+            }
+        }//end if($jianli != null)
+        return true;
+    }
 }
