@@ -8,7 +8,7 @@
                     <a <?php if($tagSelected != null && $tagSelected == $v->code) {?>
                             class="a_selected"
                         <?php }?>
-                        href="<?php echo $this->createUrl('/mszhaopinhui/listbytag',array('tagCode'=>$v->code)); ?>"><?php echo $v->name; ?></a>
+                        href="<?php echo $this->createUrl('/mszhaopinhui/listbytag',array('tagCode'=>$v->name)); ?>"><?php echo $v->name; ?></a>
                 </div>
             <?php } ?>
         </div>

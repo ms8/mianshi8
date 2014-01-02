@@ -9,49 +9,15 @@
                     招聘会时间：<?php echo $this->zph->activity_date ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     地址： <?php echo $this->zph->activity_address?>
                 </div>
-                <div class="lxatcon">
-                    <?php echo $this->zph->description; ?>
-                </div>
             </div>
 
             <div class="huatilist" style="margin-top: 30px;">
+
                 <div class="huatilist1">
-                    <div class="huatilist2" style="width: 280px">参会公司</div>
-                    <div class="huatilist3" style="width: 170px">职位</div>
-                    <div class="huatilist4" style="width: 240px">简介</div>
-                </div>
-                <?php foreach ($zpdetail as $key => $value) {?>
-                    <div class="huatilist1">
-                        <div class="huatilist2" style="width: 280px">
-                            <a href="#">
-                                <?php  echo $value->name ?>
-                            </a>
-                        </div>
-                        <div class="huatilist3"  style="width: 170px">
-                            <?php  echo $value->position ?>
-                        </div>
-                        <div class="huatilist4"  style="width: 240px">
-                            <?php  echo $value->description ?>
-                        </div>
-                    </div>
-                <?php  }  ?>
-
-                <div id="pager">
-                    <?php
-                    $this->widget('CLinkPager',array(
-                            'header'=>'',
-                            'firstPageLabel' => '首页',
-                            'lastPageLabel' => '末页',
-                            'prevPageLabel' => '上一页',
-                            'nextPageLabel' => '下一页',
-                            'pages' => $pages,
-                            'cssFile'=>Yii::app()->baseUrl.CSS_PATH.'pager.css',
-                            'maxButtonCount'=>5
-                        )
-                    );
-                    ?>
+                    <div class="huatilist2">招聘职位详情</div>
                 </div>
 
+                <?php echo $this->zph->description; ?>
             </div>
       
         </div>

@@ -48,22 +48,24 @@ class MsZpdetailController extends Controller
 //	}
 
     public function actionDetail($id){
+//        $this->zph = MsZhaopinhui::model()->findByPk($id);
+//        $model=new MsZpdetail();
+//
+//        $criteria = new CDbCriteria();
+//        $criteria->select='*';
+//        $criteria->condition = "zpId=:zpid";
+//        $criteria->params = array(
+//            ':zpid'=>$id,
+//        );
+//        $total = $model->count($criteria);
+//        $pager = new CPagination($total);
+//        $pager->pageSize = 20;
+//        $pager->applyLimit($criteria);
+//        $models = $model->findAll($criteria);
+//
+//        $this->render('explore',array('zpdetail'=>$models,'pages'=>$pager,'tagSelected'=>null));
         $this->zph = MsZhaopinhui::model()->findByPk($id);
-        $model=new MsZpdetail();
-
-        $criteria = new CDbCriteria();
-        $criteria->select='*';
-        $criteria->condition = "zpId=:zpid";
-        $criteria->params = array(
-            ':zpid'=>$id,
-        );
-        $total = $model->count($criteria);
-        $pager = new CPagination($total);
-        $pager->pageSize = 20;
-        $pager->applyLimit($criteria);
-        $models = $model->findAll($criteria);
-
-        $this->render('explore',array('zpdetail'=>$models,'pages'=>$pager,'tagSelected'=>null));
+        $this->render('explore',array('tagSelected'=>null));
     }
 
     public function actionListByTag($tagCode,$zpId){

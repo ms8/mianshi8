@@ -164,16 +164,21 @@ class MsZhaopinhuiController extends Controller
 
     public function actionListByTag($tagCode){
         $criteria = new CDbCriteria();
-        $sql = "SELECT distinct zph.id,zph.name,zph.activity_date,zph.activity_address"
-            ." from ms_zhaopinhui zph,ms_zpdetail detail,ms_zpdetail_tag tag "
-            ."where tag.tag_code=:tagCode and tag.zp_detailid=detail.id and detail.zpId=zph.id";
+//        $sql = "SELECT distinct zph.id,zph.name,zph.activity_date,zph.activity_address"
+//            ." from ms_zhaopinhui zph,ms_zpdetail detail,ms_zpdetail_tag tag "
+//            ."where tag.tag_code=:tagCode and tag.zp_detailid=detail.id and detail.zpId=zph.id";
+        //用like查询
+        $sql = "SELECT id,name,activity_date,activity_address"
+        ." from ms_zhaopinhui where description like concat('%',".":tagCode".",'%')"
+        ." and unix_timestamp(activity_date) >=unix_timestamp(:systime)";
         $model=Yii::app()->db->createCommand($sql." LIMIT :offset,:limit");
         $pager = new CPagination(count($model));
-        $pager->pageSize = 2;
+        $pager->pageSize = 20;
         $pager->applylimit($criteria);
         $model->bindValue(':tagCode', $tagCode);
         $model->bindValue(':offset', $pager->currentPage*$pager->pageSize);
         $model->bindValue(':limit', $pager->pageSize);
+        $model->bindValue(':systime',date('Y-m-d H:i:s'));
         $models=$model->queryAll();
 
         $zphs = array();
