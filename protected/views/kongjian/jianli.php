@@ -43,7 +43,9 @@
 
         <?php }else{?>
             <div class="top3">
-                你还没上传简历哦~速度上传简历吧，可以上传word格式文档或者~我们免费帮您投递~
+                你还没上传简历哦~速度上传简历吧，可以上传word格式文档
+                <br>或者avi,mpeg1,mpeg2,mpeg4,wmv,mp4格式的视频文件简介
+                <br>~我们免费帮您投递~
             </div>
         <?php
         } if($message != null && $message != ''){ ?>
