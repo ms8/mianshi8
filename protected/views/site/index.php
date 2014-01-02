@@ -231,7 +231,10 @@
                             <a href="<?php echo $this->createUrl('article/index',array('cateId'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>" target="_self"><?php echo $v['name']; ?></a>
 <!--                            （<font>--><?php //echo $v->topicCount; ?><!--</font>）-->
                         </div>
-                        <div class="xiaozu_dd"><?php echo Helper::truncate_utf8_string($v['des'],20); ?></div>
+                        <div class="xiaozu_dd">
+                            <?php echo Helper::truncate_utf8_string($v['des'],30); ?>
+<!--                            <a href="--><?php //echo $this->createUrl('article/index',array('cateId'=>$v['id'])); ?><!--" title="--><?php //echo $v['name']; ?><!--" target="_self">详情</a>-->
+                        </div>
                     </div>
                     <div class="xiaozu_dl_list">
                         <ul>
@@ -265,7 +268,7 @@
                   <a href="<?php echo $this->createUrl('group/detail',array('id'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>" target="_self"><?php echo $v['name']; ?></a>
     <!--              （<font>--><?php //echo $v['topicCount']; ?><!--</font>）-->
                 </div>
-                  <div class="xiaozu_dd"><?php echo Helper::truncate_utf8_string($v['des'],20); ?></div>
+                  <div class="xiaozu_dd"><?php echo Helper::truncate_utf8_string($v['des'],30); ?></div>
               </div>
               <div class="xiaozu_dl_list">
                   <ul>
@@ -333,6 +336,22 @@
           <?php } ?>
         </ul>
       </div>
+      <div class="xshd">
+            <h2>最新招聘会</h2>
+            · · ·
+        <span>
+          (
+          <a href="<?php echo $this->createUrl('/mszhaopinhui'); ?>">更多</a>
+          )
+        </span>
+        </div>
+      <?php foreach($zhaopinhui as $k=>$v){ ?>
+            <div class="right2">
+                <a href="<?php echo Yii::app()->createUrl('mszpdetail/detail',array('id'=>$v->id)); ?>">
+                    <?php  echo $v->name ?>
+                </a>
+            </div>
+      <?php } ?>
       <div class="xshd">
         <h2>最新创建公司</h2>
         · · ·
