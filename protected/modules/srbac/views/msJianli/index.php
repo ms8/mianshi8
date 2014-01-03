@@ -7,14 +7,18 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Create MsJianli', 'url'=>array('create')),
-	array('label'=>'Manage MsJianli', 'url'=>array('admin')),
+	array('label'=>'创建简历', 'url'=>array('create')),
+	array('label'=>'管理简历', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Ms Jianlis</h1>
+<h1>简历列表</h1>
 
-<?php $this->widget('zii.widgets.CListView', array(
-	'dataProvider'=>$dataProvider,
-	'itemView'=>'_view',
-)); ?>
+<?php
+$dataProvider->pagination->pageSize=15;
+$this->widget('zii.widgets.grid.CGridView', array(
+    'dataProvider'=>$dataProvider,
+    'ajaxUpdate'=>false,
+    'template'=>'{pager}{summary}{items}{pager}',
+));
+?>

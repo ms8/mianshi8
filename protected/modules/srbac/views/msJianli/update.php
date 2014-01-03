@@ -9,10 +9,10 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List MsJianli', 'url'=>array('index')),
-	array('label'=>'Create MsJianli', 'url'=>array('create')),
-	array('label'=>'View MsJianli', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage MsJianli', 'url'=>array('admin')),
+	array('label'=>'简历列表', 'url'=>array('index')),
+	array('label'=>'创建简历', 'url'=>array('create')),
+	array('label'=>'查看简历详细信息', 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>'管理简历', 'url'=>array('admin')),
 );
 ?>
 

@@ -8,8 +8,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List MsJianli', 'url'=>array('index')),
-	array('label'=>'Create MsJianli', 'url'=>array('create')),
+	array('label'=>'简历列表', 'url'=>array('index')),
+	array('label'=>'创建简历', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -26,14 +26,14 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Ms Jianlis</h1>
+<h1>管理简历</h1>
 
 <p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
+如果需要查询某一天上传的简历，可以在上传时间中输入例如2014-01-05按回车键查找所有当天上传的简历信息
 </p>
 
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
+<?php echo CHtml::link('高级选项','#',array('class'=>'search-button')); ?>
+<?php echo CHtml::link('下载列表中所有简历','#',array('onclick'=>'downloadAll()')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
@@ -59,3 +59,9 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		),
 	),
 )); ?>
+
+<script>
+    function downloadAll(){
+        alert('11');
+    }
+</script>

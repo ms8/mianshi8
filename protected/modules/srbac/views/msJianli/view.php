@@ -8,11 +8,11 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List MsJianli', 'url'=>array('index')),
-	array('label'=>'Create MsJianli', 'url'=>array('create')),
-	array('label'=>'Update MsJianli', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete MsJianli', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage MsJianli', 'url'=>array('admin')),
+	array('label'=>'简历列表', 'url'=>array('index')),
+	array('label'=>'创建简历', 'url'=>array('create')),
+	array('label'=>'更新简历', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'删除简历', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'管理简历', 'url'=>array('admin')),
 );
 ?>
 

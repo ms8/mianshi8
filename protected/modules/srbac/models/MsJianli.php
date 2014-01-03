@@ -72,12 +72,12 @@ class MsJianli extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-			'userId' => 'User',
-			'filepath' => 'Filepath',
-			'description' => 'Description',
-			'createtime' => 'Createtime',
-			'updatetime' => 'Updatetime',
+			'name' => '简历名称',
+			'userId' => '所属用户ID',
+			'filepath' => '保存路径',
+			'description' => '备注',
+			'createtime' => '上传时间',
+			'updatetime' => '更新时间',
 		);
 	}
 
