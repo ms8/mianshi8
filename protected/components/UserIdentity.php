@@ -22,14 +22,13 @@ class UserIdentity extends CUserIdentity
 	public function authenticate()
 	{
 		$user = Member::model()->find('username = :username', array(':username'=>$this->username));
-		
-		if($this->isjiami){
-			$password = $this->password;
-		}else{
-			$password = md5($this->password.$user->salt);
-		}
 
 		if(!empty($user)){
+            if($this->isjiami){
+                $password = $this->password;
+            }else{
+                $password = md5($this->password.$user->salt);
+            }
 			if($user->password!=$password){
 				$this->errorCode=self::ERROR_USERNAME_INVALID;
 			}else{

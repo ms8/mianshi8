@@ -19,4 +19,6 @@ define('IMAGES_GROUP_PHOTO','/upload/group_photo/');
 define('IMAGES_ARTICLE_PHOTO','/upload/article/');
 //文章分类图片
 define('IMAGES_FENLEI_PHOTO','/upload/fenlei/');
+//工具图标
+define('IMAGES_TOOLICON_PHOTO','images/toolIcon/');
 ?>

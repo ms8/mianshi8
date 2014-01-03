@@ -58,9 +58,69 @@ class KongjianController extends Controller
 		$this->render('index', compact('member','topics'));
 	}
 
+    public function actionDeletejianli(){
+        $id = $_POST['id'];
+        $jianli = MsJianli::model()->findByPk($id);
+        $json_str = CJSON::encode(array('result'=>'false'));
+        if($jianli != null){
+            unlink($jianli->filepath);
+            $count = MsJianli::model()->deleteByPk($id);
+            if($count >0){
+                $json_str = CJSON::encode(array('result'=>'ok'));
+            }
+        }
+
+        echo $json_str;
+    }
+
     public function actionJianli(){
+        $message = "";
+        if(!empty($_FILES['jianlifile'])){ //上传简历
+            $model=new MsJianli();
+            $fileName = $_FILES["jianlifile"]["name"];
+
+
+            $dir_path = "upload/jianli/".date('Y-m-d').'/';
+
+            list($s1, $s2) = explode(' ', microtime());
+            $fileName_store = (float)sprintf('%.0f', (floatval($s1) + floatval($s2)) * 1000);
+            $fileName_store.=rand(0,9999);
+            $type = strstr($fileName, '.');
+            $type = strtolower($type);
+
+            $file_path = $dir_path.$fileName_store.$type;
+            if($fileName==null || $fileName=='' || Yii::app()->user->isGuest){
+                $message = '请选择要上传的文件';
+                return;
+            }else{
+                if(!is_dir($dir_path)){
+                    mkdir($dir_path, 0777,true);
+                }
+                $model->name = $fileName;
+                $model->filepath = $file_path;
+                $model->userId = Yii::app()->user->id;
+                $model->createtime = date("Y-m-d H:i:s");
+                $model->updatetime = $model->createtime;
+
+                $picsize = $_FILES['jianlifile']['size'];
+                if ($picsize > 2*1024000) {
+                    $message =  '图片大小不能超过2M';
+                }else{
+                    if ($type != ".doc" && $type != ".docx"  && $type != ".wps"
+                        && $type != ".avi"  && $type != ".mpeg1" && $type != ".mpeg2"
+                        && $type != ".mpeg4"  && $type != ".wmv" && $type != ".mp4" ) {
+                        $message =  '请上传word文档或者avi,mpeg1,mpeg2,mpeg4,wmv,mp4格式的视频文件^_^';
+                    }else{
+                        move_uploaded_file($_FILES["jianlifile"]["tmp_name"],$file_path);
+                        $model->save();
+                    }
+                }
+            }
+//            $jianlis = MsJianli::model()->findAll('userId=:userId',array(':userId'=>Yii::app()->user->id));
+//            $this->render('jianli', array('jianlis'=>$jianlis,'message'=>$message));
+        }
         $jianlis = MsJianli::model()->findAll('userId=:userId',array(':userId'=>Yii::app()->user->id));
-        $this->render('jianli', array('jianlis'=>$jianlis,'message'=>''));
+        $this->render('jianli', array('jianlis'=>$jianlis,'message'=>$message));
     }
 
 	public function actionInfo(){
@@ -146,48 +206,48 @@ class KongjianController extends Controller
     /**
      * 上传简历
      */
-    public function actionJianliupload(){
-        $model=new MsJianli();
-        $fileName = $_FILES["jianlifile"]["name"];
-        $message = "";
-
-        $dir_path = "upload/jianli/".date('Y-m-d').'/';
-
-        list($s1, $s2) = explode(' ', microtime());
-        $fileName_store = (float)sprintf('%.0f', (floatval($s1) + floatval($s2)) * 1000);
-        $fileName_store.=rand(0,9999);
-        $type = strstr($fileName, '.');
-        $type = strtolower($type);
-
-        $file_path = $dir_path.$fileName_store.$type;
-        if($fileName==null || $fileName=='' || Yii::app()->user->isGuest){
-            $message = '请选择要上传的文件';
-            return;
-        }else{
-            if(!is_dir($dir_path)){
-                mkdir($dir_path, 0777,true);
-            }
-            $model->name = $fileName;
-            $model->filepath = $file_path;
-            $model->userId = Yii::app()->user->id;
-            $model->createtime = date("Y-m-d H:i:s");
-            $model->updatetime = $model->createtime;
-
-            $picsize = $_FILES['jianlifile']['size'];
-            if ($picsize > 2*1024000) {
-                $message =  '图片大小不能超过2M';
-            }else{
-                if ($type != ".doc" && $type != ".docx"  && $type != ".wps" ) {
-                    $message =  '请上传word文档^_^';
-                }else{
-                    move_uploaded_file($_FILES["jianlifile"]["tmp_name"],$file_path);
-                    $model->save();
-                }
-            }
-        }
-        $jianlis = MsJianli::model()->findAll('userId=:userId',array(':userId'=>Yii::app()->user->id));
-        $this->render('jianli', array('jianlis'=>$jianlis,'message'=>$message));
-    }
+//    public function actionJianliupload(){
+//        $model=new MsJianli();
+//        $fileName = $_FILES["jianlifile"]["name"];
+//        $message = "";
+//
+//        $dir_path = "upload/jianli/".date('Y-m-d').'/';
+//
+//        list($s1, $s2) = explode(' ', microtime());
+//        $fileName_store = (float)sprintf('%.0f', (floatval($s1) + floatval($s2)) * 1000);
+//        $fileName_store.=rand(0,9999);
+//        $type = strstr($fileName, '.');
+//        $type = strtolower($type);
+//
+//        $file_path = $dir_path.$fileName_store.$type;
+//        if($fileName==null || $fileName=='' || Yii::app()->user->isGuest){
+//            $message = '请选择要上传的文件';
+//            return;
+//        }else{
+//            if(!is_dir($dir_path)){
+//                mkdir($dir_path, 0777,true);
+//            }
+//            $model->name = $fileName;
+//            $model->filepath = $file_path;
+//            $model->userId = Yii::app()->user->id;
+//            $model->createtime = date("Y-m-d H:i:s");
+//            $model->updatetime = $model->createtime;
+//
+//            $picsize = $_FILES['jianlifile']['size'];
+//            if ($picsize > 2*1024000) {
+//                $message =  '图片大小不能超过2M';
+//            }else{
+//                if ($type != ".doc" && $type != ".docx"  && $type != ".wps" ) {
+//                    $message =  '请上传word文档^_^';
+//                }else{
+//                    move_uploaded_file($_FILES["jianlifile"]["tmp_name"],$file_path);
+//                    $model->save();
+//                }
+//            }
+//        }
+//        $jianlis = MsJianli::model()->findAll('userId=:userId',array(':userId'=>Yii::app()->user->id));
+//        $this->render('jianli', array('jianlis'=>$jianlis,'message'=>$message));
+//    }
 
     function actionJianlidownload($id){
         //$file_dir = chop($file_dir);//去掉路径中多余的空格
