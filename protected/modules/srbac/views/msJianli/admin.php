@@ -33,7 +33,8 @@ $('.search-form form').submit(function(){
 </p>
 
 <?php echo CHtml::link('高级选项','#',array('class'=>'search-button')); ?>
-<?php echo CHtml::link('下载列表中所有简历','#',array('onclick'=>'downloadAll()')); ?>
+<?php //echo CHtml::link('下载列表中所有简历','compressJianli') ?>
+<?php //echo CHtml::link('下载列表中所有简历','"jianlidownload/$data->id"',array('onclick'=>'downloadAll()')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
@@ -46,7 +47,12 @@ $('.search-form form').submit(function(){
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'name',
+        array(            // display 'author.username' using an expression
+            'name'=>'name',
+            'type'=>'raw',
+            'value'=>'CHtml::link($data->name,"jianlidownload/$data->id")',
+        ),
+//		'name',
 		'userId',
 		'filepath',
 		'description',

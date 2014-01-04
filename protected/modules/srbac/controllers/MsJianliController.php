@@ -1,5 +1,7 @@
 <?php
 
+include("zip.php");
+
 class MsJianliController extends Controller
 {
 	/**
@@ -170,4 +172,47 @@ class MsJianliController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+    function actionJianlidownload(){
+        $id = key($_GET);
+        $jianli = MsJianli::model()->findByPk($id);
+        if($jianli != null){
+            $filePath = $jianli->filepath;
+            //判断要下载的文件是否存在
+            if(!file_exists($filePath)){
+                echo '对不起,你要下载的文件不存在。';
+                return false;
+            }else{
+                $file_size = filesize($filePath);
+
+                header("Content-type: application/octet-stream");
+                header("Accept-Ranges: bytes");
+                header("Accept-Length: $file_size");
+                header("Content-Disposition: attachment; filename=".$jianli->name);
+
+                $fp = fopen($filePath,"r");
+                $buffer_size = 1024;
+                $cur_pos = 0;
+
+                while(!feof($fp)&&$file_size-$cur_pos>$buffer_size)
+                {
+                    $buffer = fread($fp,$buffer_size);
+                    echo $buffer;
+                    $cur_pos += $buffer_size;
+                }
+
+                $buffer = fread($fp,$file_size-$cur_pos);
+                echo $buffer;
+                fclose($fp);
+            }
+        }//end if($jianli != null)
+        return true;
+    }
+
+    public function actionCompressJianli(){
+//        $zip = new PHPZip();
+//        $zip ->downloadZip("upload/jianli/2014-01-03", "compress.zip");//自动下载
+//        $zip = new PclZip("upload/jianli/2014-01-03");//压缩文件
+//        $zip->create("data/");
+    }
 }
