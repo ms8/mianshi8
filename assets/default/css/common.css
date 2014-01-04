@@ -34,7 +34,7 @@ table { border-collapse:collapse; }
 .clearit { clear:both; height:0; font-size:0; overflow:hidden; }
 .clear{ clear:both; overflow:hidden;}
 a { color:#3377aa; text-decoration:none; display: inline; }
-a:hover{ text-decoration:none; color:#fff; background: #3377aa; }
+a:hover{ text-decoration:underline; }
 .hidden{visibility:hidden;}
 .fl{ float:left;}
 .fr{ float:right;}
@@ -43,7 +43,7 @@ a:hover{ text-decoration:none; color:#fff; background: #3377aa; }
 .loginHead{padding-top: 40px;}
 .logo{ float:left; margin:12px 0 0 0;}
 .head1 .nav{ float:left; padding-top:15px;}
-.httop11 .nav a,.httop12 .nav a{height: 30px;width: 45px;}
+.httop11 .nav a,.httop12 .nav a{height: 30px;width: 45px;text-decoration:none;}
 .nav a{width: 45px; font-size:15px;color: #1E1E1E; padding:10px 10px 0 10px; float: left;  height: 24px;  overflow: hidden; clear: none;}
 .httop11 .nav li,.httop12 .nav li{float: left;}
 .httop11 .nav li:hover{background-color: #596959;}
@@ -117,7 +117,8 @@ a:hover{ text-decoration:none; color:#fff; background: #3377aa; }
 .left1 .xiaozu dl,.left1 .xiaozu .xiaozu_dl{width:320px; min-height: 66px; padding-bottom:20px; border-right:3px #fff solid; padding-top:15px; float:left;}
 .left1 .xiaozu img{width:90px; height:80px; float:left; overflow:hidden;border: 1px solid #e2e2e2;border-radius: 5px;}
 .left1 .xiaozu .xiaozu_dl .xiaozu_dl_first{height: 80px;}
-.left1 .xiaozu .xiaozu_dl .xiaozu_dl_list li{margin: 5px 0 0 13px;list-style-type: square;}
+.left1 .xiaozu .xiaozu_dl .xiaozu_dl_list{padding-right: 40px;}
+.left1 .xiaozu .xiaozu_dl .xiaozu_dl_list li{margin: 10px 0 0 15px;list-style-type: square;word-wrap: break-word;}
 .left1 .xiaozu dl dt,
 .left1 .xiaozu .xiaozu_dl .xiaozu_dt{width:210px; font-size:15px;font-weight: bold; text-align:left; margin:0 0 5px 10px; display:inline; color:#3377aa; float:left;}
 .left1 .xiaozu dl dt font,
@@ -125,7 +126,7 @@ a:hover{ text-decoration:none; color:#fff; background: #3377aa; }
 .left1 .xiaozu dl dt a:hover,
 .left1 .xiaozu .xiaozu_dl .xiaozu_dt a:hover{ background:#3377aa; color:#fff;}
 .left1 .xiaozu dl dd,
-.left1 .xiaozu .xiaozu_dl .xiaozu_dd{width:200px; font-size:12px; line-height:24px; margin-left:10px; display:inline; color:#666; float:left;}
+.left1 .xiaozu .xiaozu_dl .xiaozu_dd{width:180px; font-size:12px; line-height:24px; padding:0 10px; display:inline; color:#999999; float:left;}
 .left1 .gaungg{width:640px; height:280px; overflow:hidden; float:left; margin:0px 0 18px 0; display:inline; position: relative;}
 .left1 .huat{width:654px; margin-top:10px; display:inline; float:left;}
 .left1 .huat dl{ width:654px; float:left; padding-bottom:20px;}

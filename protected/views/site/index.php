@@ -222,18 +222,18 @@
             </span>
       </h2>
       <div class="xiaozu">
-            <?php foreach ($articleSortList as $key => $v) {?>
+            <?php foreach ($articleSortList as $k => $v) {?>
+              <?php if(($k + 1)%2 != 0) {?><div class="clear"><?php }?>
                 <div class="xiaozu_dl">
                     <div class="xiaozu_dl_first">
                         <a href="<?php echo $this->createUrl('article/index',array('cateId'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>" target="_self">
                             <img alt="<?php echo $v['name']; ?>" src="<?php echo $this->createUrl(IMAGES_FENLEI_PHOTO.$v['img']); ?>" /></a>
                         <div class="xiaozu_dt">
                             <a href="<?php echo $this->createUrl('article/index',array('cateId'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>" target="_self"><?php echo $v['name']; ?></a>
-<!--                            （<font>--><?php //echo $v->topicCount; ?><!--</font>）-->
                         </div>
                         <div class="xiaozu_dd">
-                            <?php echo Helper::truncate_utf8_string($v['des'],30); ?>
-<!--                            <a href="--><?php //echo $this->createUrl('article/index',array('cateId'=>$v['id'])); ?><!--" title="--><?php //echo $v['name']; ?><!--" target="_self">详情</a>-->
+                            <?php echo Helper::truncate_utf8_string($v['des'],20,false); ?>
+                            <a href="<?php echo $this->createUrl('article/index',array('cateId'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>" target="_self">……详情</a>
                         </div>
                     </div>
                     <div class="xiaozu_dl_list">
@@ -246,6 +246,7 @@
                         </ul>
                     </div>
                 </div>
+              <?php if(($k + 1)%2 == 0) {?></div><?php }?>
 <!--                    <li>-->
 <!--                        <h3><a target="_self" title="--><?php //echo $value->title; ?><!--" href="--><?php //echo $this->createUrl('/article/index', array('cateId'=>$value->id)); ?><!--">--><?php //echo $value->title; ?><!--</a></h3>-->
 <!--                    </li>-->
@@ -260,15 +261,18 @@
       </h2>
       <div class="xiaozu">
         <?php foreach($groupSortList as $k=>$v){ ?>
+          <?php if(($k + 1)%2 != 0) {?><div class="clear"><?php }?>
           <div class="xiaozu_dl">
               <div class="xiaozu_dl_first">
                 <a href="<?php echo $this->createUrl('group/detail',array('id'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>" target="_self">
                   <img alt="<?php echo $v['name']; ?>" src="<?php echo $v['imgLink']; ?>" /></a>
                 <div class="xiaozu_dt">
                   <a href="<?php echo $this->createUrl('group/detail',array('id'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>" target="_self"><?php echo $v['name']; ?></a>
-    <!--              （<font>--><?php //echo $v['topicCount']; ?><!--</font>）-->
                 </div>
-                  <div class="xiaozu_dd"><?php echo Helper::truncate_utf8_string($v['des'],30); ?></div>
+                  <div class="xiaozu_dd">
+                      <?php echo Helper::truncate_utf8_string($v['des'],20,false); ?>
+                      <a href="<?php echo $this->createUrl('group/detail',array('id'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>" target="_self">……详情</a>
+                  </div>
               </div>
               <div class="xiaozu_dl_list">
                   <ul>
@@ -280,6 +284,7 @@
                   </ul>
               </div>
           </div>
+          <?php if(($k + 1)%2 == 0) {?></div><?php }?>
         <?php } ?>
       </div>
 
