@@ -125,6 +125,7 @@ class Helper extends CController
     return  $newNum;
   }
 
+/*
   //根据email获取email首页
   public static  function goToMail($mail){  
      $t=explode('@',$mail);  
@@ -199,7 +200,7 @@ class Helper extends CController
     return $mail->send() ? true : false;
   }
 
-
+*/
   //json存储中文
   //暂时只处理一维数组为json数据
   public static function jsonHelper($arr){
@@ -242,12 +243,14 @@ class Helper extends CController
     return $config;
   }
  
+/*
   //由于分词软件较大加QQ群283691798获取下载地址,下载后覆盖/extensions/fenci即可
   public static function fenci($con){
     include_once(dirname(dirname(__FILE__)).'/extensions/fenci/index.php');
     $tages=new tags;
     return $tages->getTages($con);
   }
+*/
 
   // Function: 获取远程图片并把它保存到本地 
   // 确定您有把文件写入本地服务器的权限
