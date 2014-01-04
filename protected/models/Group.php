@@ -52,9 +52,9 @@ class Group extends CActiveRecord
 			array('tag', 'required','message'=>'标签不能为空！'),
 			array('logo,alias, sort, pnum, create_time, status,uid', 'required'),
 			array('tid, sort, pnum, status, type', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>30),
-			array('logo', 'length', 'max'=>50),
-			array('des', 'length', 'max'=>255),
+			array('name', 'length', 'max'=>300),
+			array('logo', 'length', 'max'=>500),
+			array('des', 'length', 'max'=>5000),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, tid, name, logo, des, sort, pnum, create_time, status, type', 'safe', 'on'=>'search'),
