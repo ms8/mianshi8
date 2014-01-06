@@ -30,61 +30,61 @@ class AdminHelper {
   {
 	  	$content=$content.'[新娘街]';
 	    $content = iconv('UTF-8','GB2312//IGNORE',$content);
-	 
-	    $flag = 0; 
-	    //要post的数据 
-	    $argv = array( 
-	      'sn'=>'SDK-BBX-010-08543', 
-	      'pwd'=>'130459', 
-	      'mobile'=>$mobile, 
+
+	    $flag = 0;
+	    //要post的数据
+	    $argv = array(
+	      'sn'=>'SDK-BBX-010-08543',
+	      'pwd'=>'130459',
+	      'mobile'=>$mobile,
 	      'content'=>$content,
 		  'stime'=>$nexttime,
-	    );     
-	    //构造要post的字符串 
+	    );
+	    //构造要post的字符串
 	    $params='';
-	    foreach ($argv as $key=>$value) { 
-	      if ($flag!=0) { 
-	         $params .= "&"; 
-	         $flag = 1; 
-	      } 
-	      $params.= $key."="; $params.= urlencode($value); 
-	      $flag = 1; 
-	    } 
-	    $length = strlen($params); 
-	    //创建socket连接 
-	    $fp = fsockopen("sdk2.entinfo.cn",80,$errno,$errstr,10) or exit($errstr."--->".$errno); 
-	    //构造post请求的头 
-	    $header = "POST /z_send.aspx HTTP/1.1\r\n"; 
-	    $header .= "Host:sdk2.entinfo.cn\r\n"; 
-	    $header .= "Referer:/mobile/sendpost.php\r\n"; 
-	    $header .= "Content-Type: application/x-www-form-urlencoded\r\n"; 
-	    $header .= "Content-Length: ".$length."\r\n"; 
-	    $header .= "Connection: Close\r\n\r\n"; 
-	    //添加post的字符串 
-	    $header .= $params."\r\n"; 
-	    //发送post的数据 
-	    fputs($fp,$header); 
-	    $inheader = 1;
-	    while (!feof($fp)) 
-	    { 
-	      $line = fgets($fp,1024); //去除请求包的头只显示页面的返回数据 
-	      if ($inheader && ($line == "\n" || $line == "\r\n")) { 
-	        $inheader = 0; 
-	      } 
-	      if($inheader == 0) { 
-	        // echo $line; 
+	    foreach ($argv as $key=>$value) {
+	      if ($flag!=0) {
+	         $params .= "&";
+	         $flag = 1;
 	      }
-	    } 
-	    fclose($fp); 
+	      $params.= $key."="; $params.= urlencode($value);
+	      $flag = 1;
+	    }
+	    $length = strlen($params);
+	    //创建socket连接
+	    $fp = fsockopen("sdk2.entinfo.cn",80,$errno,$errstr,10) or exit($errstr."--->".$errno);
+	    //构造post请求的头
+	    $header = "POST /z_send.aspx HTTP/1.1\r\n";
+	    $header .= "Host:sdk2.entinfo.cn\r\n";
+	    $header .= "Referer:/mobile/sendpost.php\r\n";
+	    $header .= "Content-Type: application/x-www-form-urlencoded\r\n";
+	    $header .= "Content-Length: ".$length."\r\n";
+	    $header .= "Connection: Close\r\n\r\n";
+	    //添加post的字符串
+	    $header .= $params."\r\n";
+	    //发送post的数据
+	    fputs($fp,$header);
+	    $inheader = 1;
+	    while (!feof($fp))
+	    {
+	      $line = fgets($fp,1024); //去除请求包的头只显示页面的返回数据
+	      if ($inheader && ($line == "\n" || $line == "\r\n")) {
+	        $inheader = 0;
+	      }
+	      if($inheader == 0) {
+	        // echo $line;
+	      }
+	    }
+	    fclose($fp);
 	    if($line==1)
 	    {
-	    //echo '短信发送成功 请查收 返回值'.$line ;  
+	    //echo '短信发送成功 请查收 返回值'.$line ;
 	    return true;
 	    }else
 	    {
 	     //echo '短信发送失败,请根据返回值查看相关错误问题 返回值'.$line ;
 	     return false;
-	    } 
+	    }
   }
   
   public static function getSendCouponInfo($objShop,$objUser,$status='1'){
