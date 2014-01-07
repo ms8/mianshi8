@@ -5,8 +5,8 @@ body,div,span,p,ul,li,dl,dd,dt,h1,h2,h3,h4,input,b,ol,i,font{margin:0; padding:0
 ul,li,ol{list-style:none;}
 img{ border:0 none;}
 body{font-size:12px; font-family:"宋体";}
-a{color:#666; text-decoration:none;}
-a:hover{text-decoration:none;}
+/*a{color:#666; text-decoration:none;}*/
+/*a:hover{text-decoration:none;}*/
 
 .man{width:950px; margin:0 auto;}
 /*列表左侧区域*/
@@ -41,10 +41,10 @@ a:hover.toug{width:70px; height:30px; float:left; background:#9c7674; padding:5p
 .lieb_r .lieb_rb ul li h3{ height:35px; line-height:35px; font-size:16px; font-weight:100; color:#666;}
 .lieb_r .lieb_rb ul li h3 a:hover{ background:none;color:#6e3939;}
 .lieb_r .lieb_rb ul li img{width:120px; height:90px; float:left;}
-.lieb_r .lieb_rb ul li font{width:620px; font-size:12px; color:#666; line-height:24px; }
+.lieb_r .lieb_rb ul li font,.lieb_r .lieb_rb ul li font p{width:620px; font-size:12px; color:#666; line-height:24px; }
 .lieb_r .lieb_rb ul li font a:hover{ background:none; color:#6e3939;}
 .lieb_r .lieb_rb ul li p{width:750px; line-height:25px; float:left; color:#ccc;}
-.lieb_r .lieb_rb ul li p a:hover{ background:none; color:#fff;}
+/*.lieb_r .lieb_rb ul li p a:hover{ background:none; color:#fff;}*/
 
 /*页码区域*/
 .lieb_r .page01{ width:665px; margin:15px 0; display:inline; float:left; overflow:hidden;}
