@@ -49,7 +49,7 @@ class SiteController extends Controller
 		// 最热话题
 //		$topicList = Topic::model()->findAll(array('condition'=>'status != 2','order'=>'istop asc,id desc','limit'=>10));
         // 文章类别
-        $articleSort = Cate::model()->findAll(array('condition'=>'status = 1 and type = 1','order'=>'id desc','limit'=>8));
+        $articleSort = Cate::model()->findAll(array('condition'=>'status = 1 and type = 1','order'=>'id','limit'=>80));
         $articleSortList = array();
         foreach ($articleSort as $key => $value){
             $articleDetailList = Article::model()->findAll(array('condition'=>'status = 1 and cateId = '.$value->id,'order'=>'id desc','limit'=>6));

@@ -223,10 +223,10 @@
       </h2>
       <div class="xiaozu">
             <?php foreach ($articleSortList as $k => $v) {?>
-              <?php if(($k + 1)%2 != 0) {?><div class="clear"><?php }?>
+              <?php if(($k + 1)%2 != 0) { ?><div class="clear"><?php }?>
                 <div class="xiaozu_dl">
                     <div class="xiaozu_dl_first">
-                        <a href="<?php echo $this->createUrl('article/index',array('cateId'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>" target="_self">
+                        <a href="<?php echo $this->createUrl('article/index',array('cateId'=>$v['id']));?>" title="<?php echo $v['name']; ?>" target="_self">
                             <img alt="<?php echo $v['name']; ?>" src="<?php echo $this->createUrl(IMAGES_FENLEI_PHOTO.$v['img']); ?>" /></a>
                         <div class="xiaozu_dt">
                             <a href="<?php echo $this->createUrl('article/index',array('cateId'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>" target="_self"><?php echo $v['name']; ?></a>
@@ -240,13 +240,14 @@
                         <ul>
                             <?php foreach ($v['data'] as $key => $value) {?>
                                <li>
-                                    <h3><a target="_self" title="<?php echo $value->title; ?>" href="<?php echo $this->createUrl('/article/show/'.$value->id); ?>"><?php echo $value->title; ?></a></h3>
+                                    <h3><a target="_self" title="<?php echo $value->title; ?>" href="<?php echo $this->createUrl('/article/show/'.$value->id); ?>"><?php echo  Helper::truncate_utf8_string($value->title,20,false); ?></a></h3>
                                </li>
                             <?php } ?>
                         </ul>
                     </div>
                 </div>
-              <?php if(($k + 1)%2 == 0) {?></div><?php }?>
+              <?php if(($k + 1)%2 == 0) { ?></div><?php }?>
+
 <!--                    <li>-->
 <!--                        <h3><a target="_self" title="--><?php //echo $value->title; ?><!--" href="--><?php //echo $this->createUrl('/article/index', array('cateId'=>$value->id)); ?><!--">--><?php //echo $value->title; ?><!--</a></h3>-->
 <!--                    </li>-->
