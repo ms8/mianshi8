@@ -19,7 +19,14 @@
             <!-- <div> <a href="#">推荐</a> </div> -->
         </div>
         <div class="huati">
-            <div class="huati1"><a <?php if(empty($_GET['order'])){?>class='htjd' <?php }?> href="<?php echo Yii::app()->createUrl('group/detail',array('id'=>$model->id)); ?>">最近话题</a> / <a <?php if(!empty($_GET['order'])){?>class='htjd' <?php }?>  href="<?php echo Yii::app()->createUrl('group/detail',array('id'=>$model->id,'order'=>'hot')); ?>">最热话题</a></div>
+            <div class="huati1">
+<!--                <a --><?php //if(empty($_GET['order'])){?><!--class='htjd' --><?php //}?><!-- href="--><?php //echo Yii::app()->createUrl('group/detail',array('id'=>$model->id)); ?><!--">最近话题</a> / -->
+<!--                <a --><?php //if(!empty($_GET['order'])){?><!--class='htjd' --><?php //}?><!--  href="--><?php //echo Yii::app()->createUrl('group/detail',array('id'=>$model->id,'order'=>'hot')); ?><!--">最热话题</a>-->
+                <a <?php if( !empty($_GET['type']) && $_GET['type'] == 1){?>class='htjd' <?php }?> href="<?php echo Yii::app()->createUrl('group/detail',array('id'=>$model->id,'type'=>'1')); ?>">招聘信息</a> /
+                <a <?php if(!empty($_GET['type']) && $_GET['type'] == 2){?>class='htjd' <?php }?> href="<?php echo Yii::app()->createUrl('group/detail',array('id'=>$model->id,'type'=>'2')); ?>">面经</a> /
+                <a <?php if(!empty($_GET['type']) && $_GET['type'] == 3){?>class='htjd' <?php }?> href="<?php echo Yii::app()->createUrl('group/detail',array('id'=>$model->id,'type'=>'3')); ?>">薪酬</a> /
+                <a <?php if(!empty($_GET['type']) && $_GET['type'] == 4){?>class='htjd' <?php }?>  href="<?php echo Yii::app()->createUrl('group/detail',array('id'=>$model->id,'type'=>'4')); ?>">其他</a>
+            </div>
             <div class="huati2"> <a href="javascript:void(0)" id="fayan"> + 发言</a> </div>
         </div>
         <div class="huatilist">

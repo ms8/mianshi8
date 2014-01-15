@@ -244,9 +244,13 @@ class GroupController extends Controller
 			}else{
 				$_order='create_time desc';
 			}
+
+            //读取小组类型
+            $_type=Yii::app()->request->getParam('type');
 			
 			$criteria = new CDbCriteria(); 
-        	$criteria->order = $_order; 
+        	$criteria->order = $_order;
+            if(!empty($_type)){$criteria->addCondition("type=".$_type);}
         	$count=$model->topicCount($criteria);
 
         	$pager = new CPagination($count);    

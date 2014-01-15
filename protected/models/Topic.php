@@ -14,6 +14,7 @@
  * @property integer $response_num
  * @property integer $update_time
  * @property integer $hot
+ * @property integer $type
  */
 class Topic extends CActiveRecord
 {
@@ -89,6 +90,7 @@ class Topic extends CActiveRecord
 			'update_time' => '修改时间',
 			'hot' => '热度',
 			'istop' => '是否置顶',
+            'type' => '类型',
 		);
 	}
 
@@ -141,6 +143,7 @@ class Topic extends CActiveRecord
 		$criteria->compare('response_num',$this->response_num);
 		$criteria->compare('update_time',$this->update_time);
 		$criteria->compare('hot',$this->hot);
+        $criteria->compare('type',$this->type);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

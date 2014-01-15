@@ -2,15 +2,19 @@
 <div class="top3">
     我的简历
 </div>
-<div class="mynav">
-    <a <?php if($this->action->id == 'info'){ ?>class="bai"<?php } ?> href="<?php echo $this->createUrl('/kongjian/info'); ?>">基本设置</a>
-    <a <?php if($this->action->id == 'changepwd'){ ?>class="bai"<?php } ?> href="<?php echo $this->createUrl('/kongjian/changepwd'); ?>">修改密码</a>
-    <a <?php if($this->action->id == 'jianli' || $this->action->id == 'jianliupload'){ ?>class="bai"<?php } ?> href="<?php echo $this->createUrl('/kongjian/jianli'); ?>">我的简历</a>
-    <a <?php if($this->action->id == 'myscore'){ ?>class="bai"<?php } ?> href="<?php echo $this->createUrl('/kongjian/myscore'); ?>">我的积分</a>
-</div>
+<!--<div class="mynav">-->
+<!--    <a --><?php //if($this->action->id == 'info'){ ?><!--class="bai"--><?php //} ?><!-- href="--><?php //echo $this->createUrl('/kongjian/info'); ?><!--">基本设置</a>-->
+<!--    <a --><?php //if($this->action->id == 'changepwd'){ ?><!--class="bai"--><?php //} ?><!-- href="--><?php //echo $this->createUrl('/kongjian/changepwd'); ?><!--">修改密码</a>-->
+<!--    <a --><?php //if($this->action->id == 'jianli' || $this->action->id == 'jianliupload'){ ?><!--class="bai"--><?php //} ?><!-- href="--><?php //echo $this->createUrl('/kongjian/jianli'); ?><!--">我的简历</a>-->
+<!--    <a --><?php //if($this->action->id == 'myscore'){ ?><!--class="bai"--><?php //} ?><!-- href="--><?php //echo $this->createUrl('/kongjian/myscore'); ?><!--">我的积分</a>-->
+<!--</div>-->
 
 
     <div class="con clear">
+        <form action="?r=kongjian/jianli" method="post" enctype="multipart/form-data">
+            <input type="file" name="jianlifile">
+            <input id="jianliSubmit" type="submit"  class="btn" value="上传简历">
+        </form>
         <?php if($jianlis != null && count($jianlis)>0){?>
         <div class="left2">
             <div class="huatilist" style="margin-top: 30px;">
@@ -52,10 +56,7 @@
             <h3 style="color:red"><?php echo $message?></h3>
         <?php
           }?>
-        <form action="?r=kongjian/jianli" method="post" enctype="multipart/form-data">
-            <label for="jianlifile">上传简历</label><input type="file" name="jianlifile">
-            <input id="jianliSubmit" type="submit" value="上传简历">
-        </form>
+
         <!-- 发现小组右侧 -->
         <?php //$this->renderPartial('_explore_right',array('tagSelected'=>$tagSelected)); ?>
         
