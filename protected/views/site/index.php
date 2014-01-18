@@ -246,7 +246,7 @@
                         </ul>
                     </div>
                 </div>
-              <?php if(($k + 1)%2 == 0) { ?></div><?php }?>
+              <?php if(($k + 1)%2 == 0 || count($articleSortList) == ($k + 1)) { ?></div><?php }?>
 
 <!--                    <li>-->
 <!--                        <h3><a target="_self" title="--><?php //echo $value->title; ?><!--" href="--><?php //echo $this->createUrl('/article/index', array('cateId'=>$value->id)); ?><!--">--><?php //echo $value->title; ?><!--</a></h3>-->
@@ -285,7 +285,7 @@
                   </ul>
               </div>
           </div>
-          <?php if(($k + 1)%2 == 0) {?></div><?php }?>
+          <?php if(($k + 1)%2 == 0 || count($groupSortList) == ($k + 1)) {?></div><?php }?>
         <?php } ?>
       </div>
 
