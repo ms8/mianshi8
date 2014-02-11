@@ -48,7 +48,7 @@ class SiteController extends Controller
         foreach ($xiaozuList as $key2 => $value2){
             $criteriaxiaozu = new CDbCriteria();
             $criteriaxiaozu->order = "hot desc,create_time desc";
-            $xiaozuTopicList=$value->topicMany($criteriaxiaozu);
+            $xiaozuTopicList=$value2->topicMany($criteriaxiaozu);
             array_push($xiaozuSortList,array("id"=>$value2->id,"imgLink"=>$value2->imgLink,"name"=>$value2->name,"title"=>$value2->topicCount,"des"=>$value2->des,"data"=>$xiaozuTopicList));
         }
 		// 活跃用户
