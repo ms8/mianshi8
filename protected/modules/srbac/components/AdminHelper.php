@@ -26,238 +26,238 @@ class AdminHelper {
     }
 
   //发送短信
-    public static  function sendsms($mobile,$content,$nexttime)
-  {
-	  	$content=$content.'[新娘街]';
-	    $content = iconv('UTF-8','GB2312//IGNORE',$content);
-
-	    $flag = 0;
-	    //要post的数据
-	    $argv = array(
-	      'sn'=>'SDK-BBX-010-08543',
-	      'pwd'=>'130459',
-	      'mobile'=>$mobile,
-	      'content'=>$content,
-		  'stime'=>$nexttime,
-	    );
-	    //构造要post的字符串
-	    $params='';
-	    foreach ($argv as $key=>$value) {
-	      if ($flag!=0) {
-	         $params .= "&";
-	         $flag = 1;
-	      }
-	      $params.= $key."="; $params.= urlencode($value);
-	      $flag = 1;
-	    }
-	    $length = strlen($params);
-	    //创建socket连接
-	    $fp = fsockopen("sdk2.entinfo.cn",80,$errno,$errstr,10) or exit($errstr."--->".$errno);
-	    //构造post请求的头
-	    $header = "POST /z_send.aspx HTTP/1.1\r\n";
-	    $header .= "Host:sdk2.entinfo.cn\r\n";
-	    $header .= "Referer:/mobile/sendpost.php\r\n";
-	    $header .= "Content-Type: application/x-www-form-urlencoded\r\n";
-	    $header .= "Content-Length: ".$length."\r\n";
-	    $header .= "Connection: Close\r\n\r\n";
-	    //添加post的字符串
-	    $header .= $params."\r\n";
-	    //发送post的数据
-	    fputs($fp,$header);
-	    $inheader = 1;
-	    while (!feof($fp))
-	    {
-	      $line = fgets($fp,1024); //去除请求包的头只显示页面的返回数据
-	      if ($inheader && ($line == "\n" || $line == "\r\n")) {
-	        $inheader = 0;
-	      }
-	      if($inheader == 0) {
-	        // echo $line;
-	      }
-	    }
-	    fclose($fp);
-	    if($line==1)
-	    {
-	    //echo '短信发送成功 请查收 返回值'.$line ;
-	    return true;
-	    }else
-	    {
-	     //echo '短信发送失败,请根据返回值查看相关错误问题 返回值'.$line ;
-	     return false;
-	    }
-  }
+//    public static  function sendsms($mobile,$content,$nexttime)
+//  {
+//	  	$content=$content.'[新娘街]';
+//	    $content = iconv('UTF-8','GB2312//IGNORE',$content);
+//
+//	    $flag = 0;
+//	    //要post的数据
+//	    $argv = array(
+//	      'sn'=>'SDK-BBX-010-08543',
+//	      'pwd'=>'130459',
+//	      'mobile'=>$mobile,
+//	      'content'=>$content,
+//		  'stime'=>$nexttime,
+//	    );
+//	    //构造要post的字符串
+//	    $params='';
+//	    foreach ($argv as $key=>$value) {
+//	      if ($flag!=0) {
+//	         $params .= "&";
+//	         $flag = 1;
+//	      }
+//	      $params.= $key."="; $params.= urlencode($value);
+//	      $flag = 1;
+//	    }
+//	    $length = strlen($params);
+//	    //创建socket连接
+//	    $fp = fsockopen("sdk2.entinfo.cn",80,$errno,$errstr,10) or exit($errstr."--->".$errno);
+//	    //构造post请求的头
+//	    $header = "POST /z_send.aspx HTTP/1.1\r\n";
+//	    $header .= "Host:sdk2.entinfo.cn\r\n";
+//	    $header .= "Referer:/mobile/sendpost.php\r\n";
+//	    $header .= "Content-Type: application/x-www-form-urlencoded\r\n";
+//	    $header .= "Content-Length: ".$length."\r\n";
+//	    $header .= "Connection: Close\r\n\r\n";
+//	    //添加post的字符串
+//	    $header .= $params."\r\n";
+//	    //发送post的数据
+//	    fputs($fp,$header);
+//	    $inheader = 1;
+//	    while (!feof($fp))
+//	    {
+//	      $line = fgets($fp,1024); //去除请求包的头只显示页面的返回数据
+//	      if ($inheader && ($line == "\n" || $line == "\r\n")) {
+//	        $inheader = 0;
+//	      }
+//	      if($inheader == 0) {
+//	        // echo $line;
+//	      }
+//	    }
+//	    fclose($fp);
+//	    if($line==1)
+//	    {
+//	    //echo '短信发送成功 请查收 返回值'.$line ;
+//	    return true;
+//	    }else
+//	    {
+//	     //echo '短信发送失败,请根据返回值查看相关错误问题 返回值'.$line ;
+//	     return false;
+//	    }
+//  }
   
-  public static function getSendCouponInfo($objShop,$objUser,$status='1'){
-		is_object($objShop)?'':exit;
-		is_object($objUser)?'':exit;
-		$userCcontent="";
-        $shopCcontent="";
-		$times=date('Y-m-d H:i:s',time());
-		$arr	=	json_decode($objShop->address);
-		$addressList =$arr[0];
-		if($status==1){
-			
-			//无认证+普通商家(approve==1 and  grade==2)
-			if($objShop->BlogOne->approve==1 and $objShop->BlogOne->grade==2){
-				if(!empty($addressList)){
-					$userCcontent='您已预约了'.$objShop->username.',地址:'.$addressList.'电话'.$objShop->bind_mobile.',新娘街不予返现,消费有5000元保障[新娘街]';
-				}
-				$shopCcontent='新娘街会员'.$objUser->username.'在'.$times.'时间预约了您家,请及时与新娘街联系。客服电话:4006786160[新娘街]';
-				
-			//无认证+合作商家(approve==1 and  grade!=2 and grade!=0)
-			}elseif ($objShop->BlogOne->approve==1 and $objShop->BlogOne->grade!=2 and $objShop->BlogOne->grade!=0) {
-
-				if(!empty($addressList)){
-					$userCcontent='您已预约了'.$objShop->username.',地址:'.$addressList.'电话'.$objShop->bind_mobile.',晒单可得新娘街100元返现，消费有5000元保障[新娘街]';
-				}
-				if(empty($objUser->mobile)){
-					$shopCcontent='新娘街会员'.$objUser->username.'在'.$times.'时间预约了您家,请及时与顾客联系.[新娘街]';
-				}else{
-					$shopCcontent='新娘街会员'.$objUser->username.'在'.$times.'时间预约了您家,手机号为：'.$objUser->mobile.',请及时与新娘街联系.[新娘街]';
-				}
-				
-			//有认证+普通商家(approve=0 and  grade=2)
-			}elseif ($objShop->BlogOne->approve==0 and $objShop->BlogOne->grade==2) {
-				if(!empty($addressList)){
-					$userCcontent='您已预约了'.$objShop->username.',地址:'.$addressList.'电话'.$objShop->bind_mobile.',新娘街不予返现,消费有5000元保障[新娘街]';
-				}
-				if(!empty($objShop->bind_mobile)){
-					$shopCcontent='新娘街会员'.$objUser->username.'在'.$times.'时间预约了您家,请及时与新娘街联系。客服电话:4006786160[新娘街]';
-				}
-
-			//有认证+合作商家(approve=0 and  grade!=2 and grade!=0)
-			}elseif ($objShop->BlogOne->approve==0 and $objShop->BlogOne->grade!=2 and $objShop->BlogOne->grade!=0) {
-				if(!empty($addressList)){
-					$userCcontent='您已预约了'.$objShop->username.',地址:'.$addressList.'电话'.$objShop->bind_mobile.',晒单可得新娘街100元返现，消费有5000元保障[新娘街]';
-				}
-				if(empty($objUser->mobile)){
-					$shopCcontent='新娘街会员'.$objUser->username.'在'.$times.'时间预约了您家,请及时与顾客联系.[新娘街]';
-				}else{
-					$shopCcontent='新娘街会员'.$objUser->username.'在'.$times.'时间预约了您家,手机号为：'.$objUser->mobile.',请及时与新娘街联系.[新娘街]';
-				}
-			}
-			
-            if(!empty($objUser->mobile)and !empty($userCcontent))
-            {
-            					$nexttime = date('Y-m-d H:i:s',time());
-	                        	self::sendsms($objUser->mobile,$userCcontent,$nexttime);
-	                        	echo '给会员手机号'.$objUser->mobile.'发短信：'.$userCcontent.'<br>';
-	                        	var_dump($nexttime);
-	        }
-	        if(!empty($objShop->bind_mobile) and !empty($shopCcontent)){
-	        					$nexttime = AdminHelper::getDateInterval("20 minutes");
-	                        	self::sendsms($objShop->bind_mobile,$shopCcontent,$nexttime);
-	                        	echo '给商家手机号'.$objShop->bind_mobile.'发短信：'.$shopCcontent.'<br>';
-	                        	var_dump($nexttime);
-	        }
-
-		//提示商家优惠劵不足
-		}elseif ($status==2) {
-			if(!empty($addressList)){
-					$userCcontent='您已预约了'.$objShop->username.',地址:'.$addressList.'电话'.$objShop->bind_mobile.',晒单可得新娘街100元返现，消费有5000元保障[新娘街]';
-			}
-			$shopCcontent='新娘街会员'.$objUser->username.'在'.$times.'时间预约了您家,请及时与新娘街联系。客服电话:4006786160[新娘街]';
-            if(!empty($objUser->mobile) and !empty($userCcontent))
-            {
-            					$nexttime = date('Y-m-d H:i:s',time());
-	                        	self::sendsms($objUser->mobile,$userCcontent,$nexttime);
-	                        	echo '给会员手机号'.$objUser->mobile.'发短信：'.$userCcontent.'<br>';
-	                        	var_dump($nexttime);
-	        }
-	        if(!empty($objShop->bind_mobile) and !empty($shopCcontent)){
-	        					$nexttime = AdminHelper::getDateInterval("20 minutes");
-	                        	self::sendsms($objShop->bind_mobile,$shopCcontent,$nexttime);
-	                        	echo '给商家手机号'.$objShop->bind_mobile.'发短信：'.$shopCcontent.'<br>';
-	                        	var_dump($nexttime);
-	        }
-		
-		}
-	}
-   //代会员预约并发送促销短信
-	public static  function getSendActivityCouponInfo($objShop,$objUser,$status){
-		is_object($objShop)?'':exit;
-		is_object($objUser)?'':exit;
-		$userCcontent="";
-        $shopCcontent="";
-		$times=date('Y-m-d H:i:s',time());
-		$FactivityContent	=	$objShop->FrdactivitiesOne->content;
-		if($status==1){
-			
-			//无认证+普通商家(approve==1 and  grade==2)
-			if($objShop->BlogOne->approve==1 and $objShop->BlogOne->grade==2){
-				if(!empty($FactivityContent)){
-					$userCcontent=$FactivityContent;
-				}
-				$shopCcontent='新娘街会员'.$objUser->username.'在'.$times.'时间预约了您家,请及时与新娘街联系。客服电话:4006786160[新娘街]';
-				
-			//无认证+合作商家(approve==1 and  grade!=2 and grade!=0)
-			}elseif ($objShop->BlogOne->approve==1 and $objShop->BlogOne->grade!=2 and $objShop->BlogOne->grade!=0) {
-
-				if(!empty($FactivityContent)){
-					$userCcontent=$FactivityContent;
-				}
-				if(empty($objUser->mobile)){
-					$shopCcontent='新娘街会员'.$objUser->username.'在'.$times.'时间预约了您家,请及时与顾客联系.[新娘街]';
-				}else{
-					$shopCcontent='新娘街会员'.$objUser->username.'在'.$times.'时间预约了您家,手机号为：'.$objUser->mobile.',请及时与新娘街联系.[新娘街]';
-				}
-				
-			//有认证+普通商家(approve=0 and  grade=2)
-			}elseif ($objShop->BlogOne->approve==0 and $objShop->BlogOne->grade==2) {
-				if(!empty($FactivityContent)){
-					$userCcontent=$FactivityContent;
-				}
-				if(!empty($objShop->bind_mobile)){
-					$shopCcontent='新娘街会员'.$objUser->username.'在'.$times.'时间预约了您家,请及时与新娘街联系。客服电话:4006786160[新娘街]';
-				}
-			//有认证+合作商家(approve=0 and  grade!=2 and grade!=0)
-			}elseif ($objShop->BlogOne->approve==0 and $objShop->BlogOne->grade!=2 and $objShop->BlogOne->grade!=0) {
-				if(!empty($FactivityContent)){
-					$userCcontent=$FactivityContent;
-				}
-				if(empty($objUser->mobile)){
-					$shopCcontent='新娘街会员'.$objUser->username.'在'.$times.'时间预约了您家,请及时与顾客联系.[新娘街]';
-				}else{
-					$shopCcontent='新娘街会员'.$objUser->username.'在'.$times.'时间预约了您家,手机号为：'.$objUser->mobile.',请及时与新娘街联系.[新娘街]';
-				}
-			}
-            if(!empty($objUser->mobile) and !empty($userCcontent))
-            {
-            					$nexttime = date('Y-m-d H:i:s',time());
-	                        	self::sendsms($objUser->mobile,$userCcontent,$nexttime);
-	                        	echo '给会员手机号'.$objUser->mobile.'发短信：'.$userCcontent.'<br>';
-	                        	var_dump($nexttime);
-	        }
-	        if(!empty($objShop->bind_mobile) and !empty($shopCcontent)){
-	        					$nexttime = AdminHelper::getDateInterval("20 minutes");
-	                        	self::sendsms($objShop->bind_mobile,$shopCcontent,$nexttime);
-	                        	echo '给商家手机号'.$objShop->bind_mobile.'发短信：'.$shopCcontent.'<br>';
-	                        	var_dump($nexttime);
-	        }
-
-		//提示商家优惠劵不足
-		}elseif ($status==2) {
-			if(!empty($FactivityContent)){
-					$userCcontent=$FactivityContent;
-				}
-			$shopCcontent='新娘街会员'.$objUser->username.'在'.$times.'时间预约了您家,请及时与新娘街联系。客服电话:4006786160[新娘街]';
-			
-            if(!empty($objUser->mobile) and !empty($objUser->mobile))
-            {
-	                        	$nexttime = date('Y-m-d H:i:s',time());
-	                        	self::sendsms($objUser->mobile,$userCcontent,$nexttime);
-	                        	echo '给会员手机号'.$objUser->mobile.'发短信：'.$userCcontent.'<br>';
-	                        	var_dump($nexttime);
-	        }
-	        if(!empty($objShop->bind_mobile) and !empty($shopCcontent)){
-	        					$nexttime = AdminHelper::getDateInterval("20 minutes");
-	                        	self::sendsms($objShop->bind_mobile,$shopCcontent,$nexttime);
-	                        	echo '给商家手机号'.$objShop->bind_mobile.'发短信：'.$shopCcontent.'<br>';
-	                        	var_dump($nexttime);
-	        }
-		
-		}
-	}
+//  public static function getSendCouponInfo($objShop,$objUser,$status='1'){
+//		is_object($objShop)?'':exit;
+//		is_object($objUser)?'':exit;
+//		$userCcontent="";
+//        $shopCcontent="";
+//		$times=date('Y-m-d H:i:s',time());
+//		$arr	=	json_decode($objShop->address);
+//		$addressList =$arr[0];
+//		if($status==1){
+//
+//			//无认证+普通商家(approve==1 and  grade==2)
+//			if($objShop->BlogOne->approve==1 and $objShop->BlogOne->grade==2){
+//				if(!empty($addressList)){
+//					$userCcontent='您已预约了'.$objShop->username.',地址:'.$addressList.'电话'.$objShop->bind_mobile.',新娘街不予返现,消费有5000元保障[新娘街]';
+//				}
+//				$shopCcontent='新娘街会员'.$objUser->username.'在'.$times.'时间预约了您家,请及时与新娘街联系。客服电话:4006786160[新娘街]';
+//
+//			//无认证+合作商家(approve==1 and  grade!=2 and grade!=0)
+//			}elseif ($objShop->BlogOne->approve==1 and $objShop->BlogOne->grade!=2 and $objShop->BlogOne->grade!=0) {
+//
+//				if(!empty($addressList)){
+//					$userCcontent='您已预约了'.$objShop->username.',地址:'.$addressList.'电话'.$objShop->bind_mobile.',晒单可得新娘街100元返现，消费有5000元保障[新娘街]';
+//				}
+//				if(empty($objUser->mobile)){
+//					$shopCcontent='新娘街会员'.$objUser->username.'在'.$times.'时间预约了您家,请及时与顾客联系.[新娘街]';
+//				}else{
+//					$shopCcontent='新娘街会员'.$objUser->username.'在'.$times.'时间预约了您家,手机号为：'.$objUser->mobile.',请及时与新娘街联系.[新娘街]';
+//				}
+//
+//			//有认证+普通商家(approve=0 and  grade=2)
+//			}elseif ($objShop->BlogOne->approve==0 and $objShop->BlogOne->grade==2) {
+//				if(!empty($addressList)){
+//					$userCcontent='您已预约了'.$objShop->username.',地址:'.$addressList.'电话'.$objShop->bind_mobile.',新娘街不予返现,消费有5000元保障[新娘街]';
+//				}
+//				if(!empty($objShop->bind_mobile)){
+//					$shopCcontent='新娘街会员'.$objUser->username.'在'.$times.'时间预约了您家,请及时与新娘街联系。客服电话:4006786160[新娘街]';
+//				}
+//
+//			//有认证+合作商家(approve=0 and  grade!=2 and grade!=0)
+//			}elseif ($objShop->BlogOne->approve==0 and $objShop->BlogOne->grade!=2 and $objShop->BlogOne->grade!=0) {
+//				if(!empty($addressList)){
+//					$userCcontent='您已预约了'.$objShop->username.',地址:'.$addressList.'电话'.$objShop->bind_mobile.',晒单可得新娘街100元返现，消费有5000元保障[新娘街]';
+//				}
+//				if(empty($objUser->mobile)){
+//					$shopCcontent='新娘街会员'.$objUser->username.'在'.$times.'时间预约了您家,请及时与顾客联系.[新娘街]';
+//				}else{
+//					$shopCcontent='新娘街会员'.$objUser->username.'在'.$times.'时间预约了您家,手机号为：'.$objUser->mobile.',请及时与新娘街联系.[新娘街]';
+//				}
+//			}
+//
+//            if(!empty($objUser->mobile)and !empty($userCcontent))
+//            {
+//            					$nexttime = date('Y-m-d H:i:s',time());
+//	                        	self::sendsms($objUser->mobile,$userCcontent,$nexttime);
+//	                        	echo '给会员手机号'.$objUser->mobile.'发短信：'.$userCcontent.'<br>';
+//	                        	var_dump($nexttime);
+//	        }
+//	        if(!empty($objShop->bind_mobile) and !empty($shopCcontent)){
+//	        					$nexttime = AdminHelper::getDateInterval("20 minutes");
+//	                        	self::sendsms($objShop->bind_mobile,$shopCcontent,$nexttime);
+//	                        	echo '给商家手机号'.$objShop->bind_mobile.'发短信：'.$shopCcontent.'<br>';
+//	                        	var_dump($nexttime);
+//	        }
+//
+//		//提示商家优惠劵不足
+//		}elseif ($status==2) {
+//			if(!empty($addressList)){
+//					$userCcontent='您已预约了'.$objShop->username.',地址:'.$addressList.'电话'.$objShop->bind_mobile.',晒单可得新娘街100元返现，消费有5000元保障[新娘街]';
+//			}
+//			$shopCcontent='新娘街会员'.$objUser->username.'在'.$times.'时间预约了您家,请及时与新娘街联系。客服电话:4006786160[新娘街]';
+//            if(!empty($objUser->mobile) and !empty($userCcontent))
+//            {
+//            					$nexttime = date('Y-m-d H:i:s',time());
+//	                        	self::sendsms($objUser->mobile,$userCcontent,$nexttime);
+//	                        	echo '给会员手机号'.$objUser->mobile.'发短信：'.$userCcontent.'<br>';
+//	                        	var_dump($nexttime);
+//	        }
+//	        if(!empty($objShop->bind_mobile) and !empty($shopCcontent)){
+//	        					$nexttime = AdminHelper::getDateInterval("20 minutes");
+//	                        	self::sendsms($objShop->bind_mobile,$shopCcontent,$nexttime);
+//	                        	echo '给商家手机号'.$objShop->bind_mobile.'发短信：'.$shopCcontent.'<br>';
+//	                        	var_dump($nexttime);
+//	        }
+//
+//		}
+//	}
+//   //代会员预约并发送促销短信
+//	public static  function getSendActivityCouponInfo($objShop,$objUser,$status){
+//		is_object($objShop)?'':exit;
+//		is_object($objUser)?'':exit;
+//		$userCcontent="";
+//        $shopCcontent="";
+//		$times=date('Y-m-d H:i:s',time());
+//		$FactivityContent	=	$objShop->FrdactivitiesOne->content;
+//		if($status==1){
+//
+//			//无认证+普通商家(approve==1 and  grade==2)
+//			if($objShop->BlogOne->approve==1 and $objShop->BlogOne->grade==2){
+//				if(!empty($FactivityContent)){
+//					$userCcontent=$FactivityContent;
+//				}
+//				$shopCcontent='新娘街会员'.$objUser->username.'在'.$times.'时间预约了您家,请及时与新娘街联系。客服电话:4006786160[新娘街]';
+//
+//			//无认证+合作商家(approve==1 and  grade!=2 and grade!=0)
+//			}elseif ($objShop->BlogOne->approve==1 and $objShop->BlogOne->grade!=2 and $objShop->BlogOne->grade!=0) {
+//
+//				if(!empty($FactivityContent)){
+//					$userCcontent=$FactivityContent;
+//				}
+//				if(empty($objUser->mobile)){
+//					$shopCcontent='新娘街会员'.$objUser->username.'在'.$times.'时间预约了您家,请及时与顾客联系.[新娘街]';
+//				}else{
+//					$shopCcontent='新娘街会员'.$objUser->username.'在'.$times.'时间预约了您家,手机号为：'.$objUser->mobile.',请及时与新娘街联系.[新娘街]';
+//				}
+//
+//			//有认证+普通商家(approve=0 and  grade=2)
+//			}elseif ($objShop->BlogOne->approve==0 and $objShop->BlogOne->grade==2) {
+//				if(!empty($FactivityContent)){
+//					$userCcontent=$FactivityContent;
+//				}
+//				if(!empty($objShop->bind_mobile)){
+//					$shopCcontent='新娘街会员'.$objUser->username.'在'.$times.'时间预约了您家,请及时与新娘街联系。客服电话:4006786160[新娘街]';
+//				}
+//			//有认证+合作商家(approve=0 and  grade!=2 and grade!=0)
+//			}elseif ($objShop->BlogOne->approve==0 and $objShop->BlogOne->grade!=2 and $objShop->BlogOne->grade!=0) {
+//				if(!empty($FactivityContent)){
+//					$userCcontent=$FactivityContent;
+//				}
+//				if(empty($objUser->mobile)){
+//					$shopCcontent='新娘街会员'.$objUser->username.'在'.$times.'时间预约了您家,请及时与顾客联系.[新娘街]';
+//				}else{
+//					$shopCcontent='新娘街会员'.$objUser->username.'在'.$times.'时间预约了您家,手机号为：'.$objUser->mobile.',请及时与新娘街联系.[新娘街]';
+//				}
+//			}
+//            if(!empty($objUser->mobile) and !empty($userCcontent))
+//            {
+//            					$nexttime = date('Y-m-d H:i:s',time());
+//	                        	self::sendsms($objUser->mobile,$userCcontent,$nexttime);
+//	                        	echo '给会员手机号'.$objUser->mobile.'发短信：'.$userCcontent.'<br>';
+//	                        	var_dump($nexttime);
+//	        }
+//	        if(!empty($objShop->bind_mobile) and !empty($shopCcontent)){
+//	        					$nexttime = AdminHelper::getDateInterval("20 minutes");
+//	                        	self::sendsms($objShop->bind_mobile,$shopCcontent,$nexttime);
+//	                        	echo '给商家手机号'.$objShop->bind_mobile.'发短信：'.$shopCcontent.'<br>';
+//	                        	var_dump($nexttime);
+//	        }
+//
+//		//提示商家优惠劵不足
+//		}elseif ($status==2) {
+//			if(!empty($FactivityContent)){
+//					$userCcontent=$FactivityContent;
+//				}
+//			$shopCcontent='新娘街会员'.$objUser->username.'在'.$times.'时间预约了您家,请及时与新娘街联系。客服电话:4006786160[新娘街]';
+//
+//            if(!empty($objUser->mobile) and !empty($objUser->mobile))
+//            {
+//	                        	$nexttime = date('Y-m-d H:i:s',time());
+//	                        	self::sendsms($objUser->mobile,$userCcontent,$nexttime);
+//	                        	echo '给会员手机号'.$objUser->mobile.'发短信：'.$userCcontent.'<br>';
+//	                        	var_dump($nexttime);
+//	        }
+//	        if(!empty($objShop->bind_mobile) and !empty($shopCcontent)){
+//	        					$nexttime = AdminHelper::getDateInterval("20 minutes");
+//	                        	self::sendsms($objShop->bind_mobile,$shopCcontent,$nexttime);
+//	                        	echo '给商家手机号'.$objShop->bind_mobile.'发短信：'.$shopCcontent.'<br>';
+//	                        	var_dump($nexttime);
+//	        }
+//
+//		}
+//	}
 
 	 //对象转为数组
   public static function objToArr($models){

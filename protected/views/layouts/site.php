@@ -2,7 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta name="baidu-site-verification" content="t4WhrRxoqk" />
-    <meta name="baidu_union_verify" content="b28656e50023bf21eae0e478bb665580">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="robots" content="all" />
 <meta name="author" content="mianshi8@qq.com" />
@@ -65,6 +64,7 @@
                 <li><a href="<?php echo Yii::app()->baseUrl;?>/">首页</a></li>
                 <li><a href="<?php echo Yii::app()->createUrl('/mszhaopinhui'); ?>">招聘会</a></li>
                 <li><a href="<?php echo Yii::app()->createUrl('/group'); ?>">公司</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl('/xiaozu'); ?>">小组</a></li>
                 <li><a href="<?php echo Yii::app()->createUrl('/article'); ?>">学院</a></li>
             </ul>
         </div>
@@ -94,11 +94,13 @@
                     <a class="shouye" href="<?php echo Yii::app()->baseUrl;?>/">首页</a>
                     <a href="<?php echo Yii::app()->createUrl('/mszhaopinhui'); ?>">招聘会</a>
                     <a href="<?php echo Yii::app()->createUrl('/group'); ?>">公司</a>
+                    <a href="<?php echo Yii::app()->createUrl('/xiaozu'); ?>">小组</a>
                     <a href="<?php echo Yii::app()->createUrl('/article'); ?>">学院</a>
                 <?php }else{?>
                     <a class="shouye" href="<?php echo Yii::app()->baseUrl;?>/">首页</a>
                     <a href="<?php echo Yii::app()->createUrl('/mszhaopinhui'); ?>">招聘会</a>
                     <a href="<?php echo Yii::app()->createUrl('/group'); ?>">公司</a>
+                    <a href="<?php echo Yii::app()->createUrl('/xiaozu'); ?>">小组</a>
                     <a href="<?php echo Yii::app()->createUrl('/article'); ?>">学院</a>
 
                 <?php }?>

@@ -32,8 +32,8 @@ class SiteController extends Controller
 		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.JS_PATH.'jquery.form.js');
 		$model=new LoginForm;
 
-		// 推荐小组
-		$groupList = Group::model()->findAll(array('condition'=>'status = 1','order'=>'sort desc','limit'=>8));
+		// 推荐公司
+		$groupList = Group::model()->findAll(array('condition'=>'status = 1 and type=1','order'=>'sort desc','limit'=>8));
         $groupSortList = array();
         foreach ($groupList as $key => $value){
             $criteria = new CDbCriteria();
@@ -42,11 +42,23 @@ class SiteController extends Controller
             array_push($groupSortList,array("id"=>$value->id,"imgLink"=>$value->imgLink,"name"=>$value->name,"title"=>$value->topicCount,"des"=>$value->des,"data"=>$groupTopicList));
         }
 
+        // 推荐小组
+        $xiaozuList = Group::model()->findAll(array('condition'=>'status = 1 and type=2','order'=>'sort desc','limit'=>8));
+        $xiaozuSortList = array();
+        foreach ($xiaozuList as $key2 => $value2){
+            $criteriaxiaozu = new CDbCriteria();
+            $criteriaxiaozu->order = "hot desc,create_time desc";
+            $xiaozuTopicList=$value->topicMany($criteriaxiaozu);
+            array_push($xiaozuSortList,array("id"=>$value2->id,"imgLink"=>$value2->imgLink,"name"=>$value2->name,"title"=>$value2->topicCount,"des"=>$value2->des,"data"=>$xiaozuTopicList));
+        }
 		// 活跃用户
 		$memberList = Member::model()->findAll(array('condition'=>'','order'=>'last_login_time desc','limit'=>20));
-		// 最新创建小组
-		$groupListNew = Group::model()->findAll(array('condition'=>'status = 1','order'=>'id desc','limit'=>20));
-		// 最热话题
+		// 最新创建公司
+		$groupListNew = Group::model()->findAll(array('condition'=>'status = 1 and type=1','order'=>'id desc','limit'=>20));
+        // 最新创建公司
+        $xiaozuListNew = Group::model()->findAll(array('condition'=>'status = 1 and type=2','order'=>'id desc','limit'=>20));
+
+        // 最热话题
 //		$topicList = Topic::model()->findAll(array('condition'=>'status != 2','order'=>'istop asc,id desc','limit'=>10));
         // 文章类别
         $articleSort = Cate::model()->findAll(array('condition'=>'status = 1 and type = 1','order'=>'id','limit'=>80));
@@ -75,7 +87,7 @@ class SiteController extends Controller
 			'keywords'=>Helper::siteConfig()->seo_keywords,
 			'description'=>Helper::siteConfig()->seo_description,
 		);
-		$this->render('index',compact('model','memberList','groupListNew','articleList','articleSortList','groupSortList','zhaopinhui'));
+		$this->render('index',compact('model','memberList','groupListNew','articleList','articleSortList','groupSortList','zhaopinhui','xiaozuListNew','xiaozuSortList'));
 	}
 
 	public function actionDown(){

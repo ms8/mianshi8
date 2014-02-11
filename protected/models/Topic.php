@@ -67,7 +67,7 @@ class Topic extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'memberOne'=>array(self::BELONGS_TO, 'Member', 'uid'),//	
-			'groupOne'=>array(self::BELONGS_TO, 'Group', 'gid'),//	
+			'groupOne'=>array(self::BELONGS_TO, 'Group', 'gid'),//
 			'responseMany'=>array(self::HAS_MANY, 'Response', 'tid', 'condition'=>'status = 1'),
 			'responseCount'=>array(self::STAT, 'Response', 'tid', 'condition'=>'status = 1'),
 			);

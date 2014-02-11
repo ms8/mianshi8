@@ -290,6 +290,43 @@
       </div>
 
 
+
+
+        <h2>
+            热门小组
+        <span>
+          <a href="<?php echo $this->createUrl('/xiaozu'); ?>" title="全部" target="_self">（全部）</a>
+        </span>
+        </h2>
+        <div class="xiaozu">
+            <?php foreach($xiaozuSortList as $k=>$v){ ?>
+                <?php if(($k + 1)%2 != 0) {?><div class="clear"><?php }?>
+                <div class="xiaozu_dl">
+                    <div class="xiaozu_dl_first">
+                        <a href="<?php echo $this->createUrl('xiaozu/detail',array('id'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>" target="_self">
+                            <img alt="<?php echo $v['name']; ?>" src="<?php echo $v['imgLink']; ?>" /></a>
+                        <div class="xiaozu_dt">
+                            <a href="<?php echo $this->createUrl('xiaozu/detail',array('id'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>" target="_self"><?php echo $v['name']; ?></a>
+                        </div>
+                        <div class="xiaozu_dd">
+                            <?php echo Helper::truncate_utf8_string($v['des'],20,false); ?>
+                            <a href="<?php echo $this->createUrl('xiaozu/detail',array('id'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>" target="_self">……详情</a>
+                        </div>
+                    </div>
+                    <div class="xiaozu_dl_list">
+                        <ul>
+                            <?php foreach ($v['data'] as $key => $value) {?>
+                                <li>
+                                    <h3><a href="<?php echo $this->createUrl('/xiaozu/topic',array('id'=>$value->id)); ?>" title="<?php echo $value->title; ?>" target="_self"><?php echo $value->title; ?></a></h3>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                </div>
+                <?php if(($k + 1)%2 == 0) {?></div><?php }?>
+            <?php } ?>
+        </div>
+
     </div>
     <div class="right1">
       <!-- <div>
@@ -374,7 +411,22 @@
           （<?php echo $v->topicCount; ?>）
         </div>
       <?php } ?>
+        <div class="xshd">
+            <h2>最新创建小组</h2>
+            · · ·
+        <span>
+          (
+          <a href="<?php echo $this->createUrl('/xiaozu'); ?>">更多</a>
+          )
+        </span>
+        </div>
 
+        <?php foreach($xiaozuListNew as $k=>$v){ ?>
+            <div class="right2">
+                <a href="<?php echo $this->createUrl('xiaozu/detail',array('id'=>$v->id)); ?>"><?php echo $v->name; ?></a>
+                （<?php echo $v->topicCount; ?>）
+            </div>
+        <?php } ?>
       <div class="xshd">
         <h2>最新文章</h2>
         · · ·

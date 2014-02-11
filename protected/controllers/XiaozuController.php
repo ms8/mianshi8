@@ -1,8 +1,8 @@
 <?php
 
-class GroupController extends Controller
+class XiaozuController extends Controller
 {
-	public $layout='common';
+	public $layout='xiaozu';
 
 	public $filePath;
 
@@ -39,7 +39,7 @@ class GroupController extends Controller
 		}else{
 			self::$member='';
 		}
-		return self::$member->mGroup;
+		return self::$member->mXiaozu;//mGroup 修改成mXiaozu
 	}
 
 	public function init(){
@@ -63,10 +63,10 @@ class GroupController extends Controller
 	public function actionIndex()
 	{
 		if(Yii::app()->user->isGuest){
-			$this->redirect(Yii::app()->baseUrl.'/group/explore');//未登录跳转页面
+			$this->redirect(Yii::app()->baseUrl.'/xiaozu/explore');//未登录跳转页面
 		}else{
 			//我的小组话题
-			$model=$this->isLogin()->mGroup;
+			$model=$this->isLogin()->mXiaozu;
 		
 			$arr=array();
 			foreach ($model as $key => $value) {
@@ -98,13 +98,13 @@ class GroupController extends Controller
 	public function actionMyTopic()
 	{
 		if(Yii::app()->user->isGuest){
-			$this->redirect(Yii::app()->baseUrl.'/group/explore');//未登录跳转页面
+			$this->redirect(Yii::app()->baseUrl.'/xiaozu/explore');//未登录跳转页面
 		}else{
 
 			//我发起的话题
 			$criteria = new CDbCriteria();
-            //先找到加入的公司
-            $model=$this->isLogin()->mGroup;
+            //思路：先找到我加入的小组，然后找小组下我发表的话题
+            $model=$this->isLogin()->mXiaozu;
             $arr=array();
             foreach ($model as $key => $value) {
                 $arr[$key]=(int) $value->id;
@@ -114,7 +114,8 @@ class GroupController extends Controller
 			$criteria->addCondition("uid = :uid and status=:status"); 
 			$criteria->params[':uid']=$this->isLogin()->id;//公开
 			$criteria->params[':status']=1;//公开
-        	$criteria->order ='create_time desc'; 
+        	$criteria->order ='create_time desc';
+
         	$count=Topic::model()->count($criteria);
 
         	$pager = new CPagination($count);    
@@ -134,14 +135,11 @@ class GroupController extends Controller
 	public function actionRepliedTopics()
 	{
 		if(Yii::app()->user->isGuest){
-			$this->redirect(Yii::app()->baseUrl.'/group/explore');//未登录跳转页面
+			$this->redirect(Yii::app()->baseUrl.'/xiaozu/explore');//未登录跳转页面
 		}else{
 			//我回应的话题
 			$model=$this->islogin();
-	
-			$criteria = new CDbCriteria();
-
-
+            $criteria = new CDbCriteria();
 			$criteria->addCondition("uid = :uid"); 
    			$criteria->params[':uid']= $model->id;
       		$criteria->group ='tid';
@@ -152,7 +150,7 @@ class GroupController extends Controller
         	$pager->pageSize = 20;             
         	$pager->applyLimit($criteria); 
 
-			$repliedtopics=$$count=Response::model()->findAll($criteria);
+			$repliedtopics=Response::model()->findAll($criteria);
 
 		}
 		$this->pageKeyword=array(
@@ -174,10 +172,9 @@ class GroupController extends Controller
 
 			$criteria = new CDbCriteria();
 			$criteria->addCondition("status = :status");
-            $criteria->addCondition("type = :type");
-            // $criteria->addCondition("type = :type");
+			$criteria->addCondition("type = :type");
 	   		$criteria->params[':status']=1;//启用
-	   		 $criteria->params[':type']=1;//公司
+	   		$criteria->params[':type']=2;//1.公司， 2.小组
 	        $criteria->order = 'pnum desc,create_time desc';    
 	        $count = Group::model()->count($criteria);
 	        
@@ -191,19 +188,19 @@ class GroupController extends Controller
 			
 			$criteria = new CDbCriteria();
 			$criteria->addSearchCondition('tid',$gid);
-			$criteria->addCondition("status = :status"); 
-			// $criteria->addCondition("type = :type"); 
+			$criteria->addCondition("status = :status");
+			$criteria->addCondition("type = :type");
 	   		$criteria->params[':status']=1;//启用
-	   		// $criteria->params[':type']=1;//公开
+	   		 $criteria->params[':type']=2;//1.公司 2.小组
 	        $criteria->order = 'pnum desc,create_time desc';
 	     
-	        $count = Group::model()->count($criteria);
+	        $count = Xiaozu::model()->count($criteria);
 	        
 	        $pager = new CPagination($count);
 	        $pager->pageSize = 20;         
 	        $pager->applyLimit($criteria);
 
-	        $artList = Group::model()->findAll($criteria);
+	        $artList = Xiaozu::model()->findAll($criteria);
 		}
 
         if(!Yii::app()->user->isGuest){
@@ -218,9 +215,9 @@ class GroupController extends Controller
         }
         //seo设置
 		$this->pageKeyword=array(
-			'title'=>'发现公司'.'-'.Helper::siteConfig()->site_name,
-			'keywords'=>'发现公司',
-			'description'=>'发现公司',
+			'title'=>'发现小组'.'-'.Helper::siteConfig()->site_name,
+			'keywords'=>'发现小组',
+			'description'=>'发现小组',
 		);
         
 		$this->render('explore',array('list'=>$artList,'tag'=>$tag));
@@ -230,17 +227,17 @@ class GroupController extends Controller
 		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.JS_PATH.'jquery-1.7.1.min.js');
 		
 		$id		=Yii::app()->request->getParam('id');//组id
-		$model 	=Group::model()->find('id = :id and status = 1', array(':id'=>$id));
+		$model 	=Xiaozu::model()->find('id = :id and status = 1', array(':id'=>$id));
 
 		if(!$model){
-			throw new CHttpException(404,'您访问的公司不存在');
+			throw new CHttpException(404,'您访问的小组不存在');
 		}else{
 			//读取登陆用户状态
 			$m=$this->islogin();
 			if(!empty($m)){
 				$mmember=Mmember::model()->find('mid = :mid and gid = :gid', array(':mid'=>$m->id,':gid'=>$model->id));
 				if($mmember){
-					$Group=Group::model()->find('id = :id and uid = :uid', array(':id'=>$mmember->gid,':uid'=>$m->id));
+					$Group=Xiaozu::model()->find('id = :id and uid = :uid', array(':id'=>$mmember->gid,':uid'=>$m->id));
 					if($Group){
 						$model->mark=2;
 					}else{
@@ -255,13 +252,9 @@ class GroupController extends Controller
 			}else{
 				$_order='create_time desc';
 			}
-
-            //读取小组类型
-            $_type=Yii::app()->request->getParam('type');
 			
 			$criteria = new CDbCriteria(); 
-        	$criteria->order = $_order;
-            if(!empty($_type)){$criteria->addCondition("type=".$_type);}
+        	$criteria->order = $_order; 
         	$count=$model->topicCount($criteria);
 
         	$pager = new CPagination($count);    
@@ -292,7 +285,7 @@ class GroupController extends Controller
 	//申请加入小组
 	public function actionAdd(){
 		if(Yii::app()->user->isGuest){
-			$this->redirect(Yii::app()->baseUrl.'/group/explore');//未登录跳转页面
+			$this->redirect(Yii::app()->baseUrl.'/xiaozu/explore');//未登录跳转页面
 		}else{
 			$gid=Yii::app()->request->getParam('gid');//组id
 			$mid=Yii::app()->request->getParam('mid');//用户id
@@ -300,9 +293,9 @@ class GroupController extends Controller
 				$model=Mmember::model()->find('gid = :gid and mid = :mid', array(':gid'=>$gid,':mid'=>$mid));
 				if($model){
 					$status['status']='3';
-					$status['info']='您已经加入该公司！';
+					$status['info']='您已经加入该小组！';
 				}else{
-					$group=Group::model()->find('id = :id and status = 1', array(':id'=>$gid));
+					$group=Xiaozu::model()->find('id = :id and status = 1', array(':id'=>$gid));
 					if(empty($group)){
 						$status['status']='9';
 						$status['info']='非法操作！';
@@ -333,7 +326,7 @@ class GroupController extends Controller
 	//退出小组
 	public function actionDel(){
 		if(Yii::app()->user->isGuest){
-			$this->redirect(Yii::app()->baseUrl.'/group/explore');//未登录跳转页面
+			$this->redirect(Yii::app()->baseUrl.'/xiaozu/explore');//未登录跳转页面
 		}else{
 			$gid=Yii::app()->request->getParam('gid');//组id
 			$mid=Yii::app()->request->getParam('mid');//用户id
@@ -341,7 +334,7 @@ class GroupController extends Controller
 				$model=Mmember::model()->find('gid = :gid and mid = :mid', array(':gid'=>$gid,':mid'=>$mid));
 				if(empty($model)){
 					$status['status']='3';
-					$status['info']='您尚未加入该公司！';
+					$status['info']='您尚未加入该小组！';
 				}else{
 					if($model->delete()){
 						$group=Group::model()->find('id = :id and status = 1', array(':id'=>$gid));
@@ -364,14 +357,14 @@ class GroupController extends Controller
 	//我加入的小组
 	public function actionMine(){
 		if(Yii::app()->user->isGuest){
-			$this->redirect(Yii::app()->baseUrl.'/group/explore');//未登录跳转页面
+			$this->redirect(Yii::app()->baseUrl.'/xiaozu/explore');//未登录跳转页面
 		}else{
 			$model=$this->isLogin();	
 		}
 		$this->pageKeyword=array(
-			'title'=>'我加入的公司'.'-'.Helper::siteConfig()->site_name,
-			'keywords'=>'我加入的公司',
-			'description'=>'我加入的公司',
+			'title'=>'我加入的小组'.'-'.Helper::siteConfig()->site_name,
+			'keywords'=>'我加入的小组',
+			'description'=>'我加入的小组',
 		);
 		$this->render('mine',array('model'=>$model));
 	}
@@ -382,9 +375,9 @@ class GroupController extends Controller
 			throw new CHttpException ('404', '您访问的页面不存在');  
 		}else{
 			$this->pageKeyword=array(
-				'title'=>'申请创建公司'.'-'.Helper::siteConfig()->site_name,
-				'keywords'=>'申请创建公司',
-				'description'=>'申请创建公司',
+				'title'=>'申请创建小组'.'-'.Helper::siteConfig()->site_name,
+				'keywords'=>'申请创建小组',
+				'description'=>'申请创建小组',
 			);
 			$this->render('apply'); 
 		}
@@ -411,10 +404,10 @@ class GroupController extends Controller
 	      		$model->uid=Yii::app()->user->id;
 	      	 	$model->create_time=time();//创建时间
 	      	 	$model->tid=0;//默认无tag分类
-	      	 	$model->status=1;//默认审核通过
+	      	 	$model->status=1;//默认审核
 	      	 	$model->pnum=1;
                 $model->sort = 1;
-                $model->type = 1;//1.公司 2. 小组
+                $model->type = 2;//小组的类型为2
 	      
 	      	 	if($model->save(false)){
 	      	 		$mmember=new Mmember;
@@ -433,9 +426,9 @@ class GroupController extends Controller
 
 		}
         $this->pageKeyword=array(
-            'title'=>'创建公司'.'-'.Helper::siteConfig()->site_name,
-            'keywords'=>'创建公司',
-            'description'=>'创建公司',
+            'title'=>'创建小组'.'-'.Helper::siteConfig()->site_name,
+            'keywords'=>'创建小组',
+            'description'=>'创建小组',
         );
         $this->render('create',array('model'=>$model));
 	}
@@ -481,9 +474,9 @@ class GroupController extends Controller
     	 }
 		}
 		$this->pageKeyword=array(
-			'title'=>'修改公司'.'-'.Helper::siteConfig()->site_name,
-			'keywords'=>'修改公司',
-			'description'=>'修改公司',
+			'title'=>'修改小组'.'-'.Helper::siteConfig()->site_name,
+			'keywords'=>'修改小组',
+			'description'=>'修改小组',
 		);
 		$this->render('update',array('model'=>$model));
 	}
@@ -492,13 +485,14 @@ class GroupController extends Controller
 	public function actionExploreTopic(){
 		
 		$criteria = new CDbCriteria(); 
-//    	$criteria->order ='create_time desc';
-//    	$criteria->addCondition("status != :status");
-//    	$criteria->params[':status']=2;//启用
+    	//$criteria->order ='create_time desc';
+    	//$criteria->addCondition("status != :status");
+    	//$criteria->params[':status']=2;//启用
         //关联group 选取type为2的
         $criteria->with='groupOne';
         $criteria->addCondition("type=:type");
-        $criteria->params[':type']=1;//公司
+        $criteria->params[':type']=2;//小组
+        // $criteria->order ='create_time desc';
     	$count=Topic::model()->count($criteria);
 
     	$pager = new CPagination($count); 
@@ -754,8 +748,8 @@ class GroupController extends Controller
 
 		$this->pageKeyword=array(
 			'title'=>'搜索-'.Helper::siteConfig()->site_name,
-			'keywords'=>'搜索公司,搜索话题',
-			'description'=>'搜索公司,搜索话题',
+			'keywords'=>'搜索小组,搜索话题',
+			'description'=>'搜索小组,搜索话题',
 		);		
 
 		$this->render('search',compact('model','datas','keyword','type'));

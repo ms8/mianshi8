@@ -30,6 +30,8 @@
                 <li><a href="<?php echo Yii::app()->baseUrl;?>/">首页</a></li>
                 <li><a href="<?php echo Yii::app()->createUrl('/mszhaopinhui'); ?>">招聘会</a></li>
                 <li><a href="<?php echo Yii::app()->createUrl('/group'); ?>">公司</a></li>
+                <li><a href="<?php echo Yii::app()->createUrl('/xiaozu'); ?>">小组</a></li>
+
                 <li><a href="<?php echo Yii::app()->createUrl('/article'); ?>">学院</a></li>
                <!-- <a href="<?php //echo Yii::app()->createUrl('/tongcheng'); ?>">活动</a>-->
 	        </ul>

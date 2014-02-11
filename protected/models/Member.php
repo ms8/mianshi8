@@ -89,13 +89,20 @@ class Member extends CActiveRecord
 		// class name for the relations automatically generated below.
 		
 		return array(
-			//我加入的小组
-			'mGroup'=>array(self::MANY_MANY, 'Group','ms_mmember(mid, gid)','condition'=>'status = 1'),
-			'mGroupCount'=>array(self::STAT, 'Group','ms_mmember(mid, gid)','condition'=>'status = 1'),
-			//我的小组
-			'groupMany'=>array(self::HAS_MANY, 'Group', 'uid', 'condition'=>'status = 1'),
-			'groupCount'=>array(self::STAT, 'Group', 'uid', 'condition'=>'status = 1'),
-			
+			//我加入的公司
+			'mGroup'=>array(self::MANY_MANY, 'Group','ms_mmember(mid, gid)','condition'=>'status = 1 and type=1'),
+			'mGroupCount'=>array(self::STAT, 'Group','ms_mmember(mid, gid)','condition'=>'status = 1 and type =1'),
+			//我的公司
+			'groupMany'=>array(self::HAS_MANY, 'Group', 'uid', 'condition'=>'status = 1 and type =1'),
+			'groupCount'=>array(self::STAT, 'Group', 'uid', 'condition'=>'status = 1 and type =1'),
+
+            //我加入的小组
+            'mXiaozu'=>array(self::MANY_MANY, 'Group','ms_mmember(mid, gid)','condition'=>'status = 1 and type=2',),
+            'mXiaozuCount'=>array(self::STAT, 'Group','ms_mmember(mid, gid)','condition'=>'status = 1 and type=2'),
+            //我的小组
+            'xiaozuMany'=>array(self::HAS_MANY, 'Group', 'uid', 'condition'=>'status = 1 and type =2'),
+            'xiaozuCount'=>array(self::STAT, 'Group', 'uid', 'condition'=>'status = 1 and type =2'),
+
 			//我的话题
 			'topicMany'=>array(self::HAS_MANY, 'Topic', 'uid', 'condition'=>'status = 1'),
 			'topicCount'=>array(self::STAT, 'Topic', 'uid', 'condition'=>'status = 1'),

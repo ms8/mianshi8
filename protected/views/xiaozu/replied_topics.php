@@ -1,5 +1,5 @@
     <div class="top3">
-    	我回应的话题
+    	我回应的小组话题
     </div>
 	<div class="con clear">
     	<div class="left2">
@@ -14,15 +14,16 @@
                         }
                     $groupid = $value->topicOne->gid;
                     $result =Group::model()->find('id=:id',array(':id'=>$groupid));
-                    if($result->type!=1){
+                    if($result->type!=2){
                         continue;
                     }
                     ?>
+
                     <div class="left31">
-                        <div class="left32"><a href="<?php echo Yii::app()->createUrl('group/topic',array('id'=>$value->tid)); ?>"><?php  echo $value->topicOne->title ?></a></div>
+                        <div class="left32"><a href="<?php echo Yii::app()->createUrl('xiaozu/topic',array('id'=>$value->tid)); ?>"><?php  echo $value->topicOne->title ?></a></div>
                         <div class="left33"><?php echo $value->topicOne->response_num;  ?>回应</div>
                         <div class="left34"><?php echo Helper::getTime($value->topicOne->create_time)  ?></div>
-                        <div class="left35"><a href="<?php echo Yii::app()->createUrl('group/detail',array('id'=>$value->topicOne->groupOne->id)); ?>"><?php echo $value->topicOne->groupOne->name ?></a></div>
+                        <div class="left35"><a href="<?php echo Yii::app()->createUrl('xiaozu/detail',array('id'=>$value->topicOne->groupOne->id)); ?>"><?php echo $value->topicOne->groupOne->name ?></a></div>
                     </div>
                <?php } ?> 
             <div id="pager">    
